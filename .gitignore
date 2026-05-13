@@ -1,0 +1,5 @@
+.DS_Store
+.wrangler/
+.claude/
+*.pdf
+Thumbs.db

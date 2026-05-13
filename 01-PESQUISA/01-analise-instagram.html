@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analise Instagram — Impermeabilizacao | CAFF Engenharia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --primary-light: #FF8C5A;
+            --primary-dark: #E55A28;
+            --bg: #0A0A0A;
+            --bg-card: #141414;
+            --bg-card-hover: #1A1A1A;
+            --bg-section: #111111;
+            --text: #E8E8E8;
+            --text-muted: #999999;
+            --text-light: #CCCCCC;
+            --border: #222222;
+            --accent-green: #2ECC71;
+            --accent-blue: #3498DB;
+            --accent-purple: #9B59B6;
+            --accent-yellow: #F1C40F;
+            --accent-red: #E74C3C;
+            --gradient-primary: linear-gradient(135deg, #FF6B35, #FF8C5A);
+            --gradient-dark: linear-gradient(180deg, #141414, #0A0A0A);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(180deg, #111111 0%, #0A0A0A 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-logo {
+            height: 40px;
+            opacity: 0.9;
+        }
+
+        .header-badge {
+            background: var(--gradient-primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A0E08 50%, #0A0A0A 100%);
+            padding: 80px 24px 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255, 107, 53, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 24px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .hero-stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ===== NAV INTERNA ===== */
+        .nav-internal {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-internal-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 8px;
+            min-width: max-content;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(22px, 4vw, 32px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .section-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        /* ===== CARDS DE PLAYER ===== */
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        .player-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-card:hover {
+            border-color: rgba(255, 107, 53, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.08);
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .player-card:hover::before {
+            opacity: 1;
+        }
+
+        .player-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .player-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .player-tier {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .tier-marca {
+            background: rgba(155, 89, 182, 0.15);
+            color: var(--accent-purple);
+        }
+
+        .tier-empresa {
+            background: rgba(52, 152, 219, 0.15);
+            color: var(--accent-blue);
+        }
+
+        .tier-influencer {
+            background: rgba(46, 204, 113, 0.15);
+            color: var(--accent-green);
+        }
+
+        .tier-nicho {
+            background: rgba(241, 196, 15, 0.15);
+            color: var(--accent-yellow);
+        }
+
+        .player-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .player-handle {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .player-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .player-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .metric-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .player-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255, 107, 53, 0.08);
+            color: var(--primary-light);
+            border: 1px solid rgba(255, 107, 53, 0.15);
+        }
+
+        .player-analysis {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .analysis-item {
+            margin-bottom: 12px;
+        }
+
+        .analysis-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .analysis-text {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== INSIGHT BOX ===== */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.08), rgba(255, 107, 53, 0.02));
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .insight-box-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insight-box-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .insight-box p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ===== GANCHO CARDS ===== */
+        .gancho-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .gancho-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .gancho-card:hover {
+            border-color: rgba(255, 107, 53, 0.25);
+            background: var(--bg-card-hover);
+        }
+
+        .gancho-category {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .gancho-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .gancho-explain {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .gancho-format {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+
+        /* ===== TENDENCIA CARDS ===== */
+        .tendencia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        .tendencia-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tendencia-card:hover {
+            border-color: rgba(52, 152, 219, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tendencia-origin {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: var(--accent-blue);
+        }
+
+        .tendencia-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .tendencia-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .tendencia-adapt {
+            background: rgba(46, 204, 113, 0.06);
+            border: 1px solid rgba(46, 204, 113, 0.15);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .tendencia-adapt-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .tendencia-adapt-text {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== ESTRATEGIA SECTION ===== */
+        .estrategia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .estrategia-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .estrategia-card:hover {
+            border-color: rgba(255, 107, 53, 0.25);
+        }
+
+        .estrategia-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(255, 107, 53, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 16px;
+        }
+
+        .estrategia-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .estrategia-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== CHECKLIST ===== */
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .checklist li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        /* ===== HASHTAG CLOUD ===== */
+        .hashtag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 24px 0;
+        }
+
+        .hashtag {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 107, 53, 0.08);
+            color: var(--primary-light);
+            border: 1px solid rgba(255, 107, 53, 0.15);
+            transition: all 0.3s;
+        }
+
+        .hashtag:hover {
+            background: rgba(255, 107, 53, 0.15);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .hashtag.big {
+            font-size: 15px;
+            font-weight: 700;
+            padding: 10px 20px;
+        }
+
+        .hashtag.small {
+            font-size: 11px;
+            padding: 6px 12px;
+        }
+
+        /* ===== FORMATO COMPARISON ===== */
+        .formato-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        .formato-table th,
+        .formato-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .formato-table th {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .formato-table td {
+            color: var(--text-light);
+        }
+
+        .formato-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .bar-fill {
+            height: 6px;
+            border-radius: 3px;
+            background: var(--gradient-primary);
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.02));
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 20px;
+            padding: 48px 32px;
+            text-align: center;
+            margin: 48px 0;
+        }
+
+        .cta-section h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 32px 24px;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .footer-brand {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* ===== TWO COLUMNS ===== */
+        .two-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .col-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .col-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .col-box ul {
+            list-style: none;
+        }
+
+        .col-box ul li {
+            font-size: 13px;
+            color: var(--text-light);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            line-height: 1.5;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .col-box ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px 40px;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .hero-stat-number {
+                font-size: 24px;
+            }
+
+            .player-grid,
+            .gancho-grid,
+            .tendencia-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .player-metrics {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .two-cols {
+                grid-template-columns: 1fr;
+            }
+
+            .estrategia-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .formato-table {
+                font-size: 12px;
+            }
+
+            .formato-table th,
+            .formato-table td {
+                padding: 10px 12px;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            .header-inner {
+                flex-direction: row;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .player-metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .gancho-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .formato-table th:nth-child(4),
+            .formato-table td:nth-child(4) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- NAV BAR -->
+<div style="position:sticky;top:0;z-index:9999;background:rgba(10,10,10,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Pesquisas
+  </a>
+  <a href="../index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+<!-- /NAV BAR -->
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-inner">
+        <img src="../ads-logo.png" alt="ADS Company" class="header-logo" onerror="this.style.display='none'">
+        <span class="header-badge">Pesquisa de Mercado</span>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <span class="hero-label">CAFF Engenharia &mdash; Pesquisa Instagram</span>
+        <h1>Analise de <span>Presenca no Instagram</span><br>do Mercado de Impermeabilizacao</h1>
+        <p>Mapeamento completo de perfis, estrategias de conteudo, formatos de alto engajamento e tendencias internacionais para posicionar a CAFF Engenharia como referencia digital no interior da Bahia.</p>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-number">12+</div>
+                <div class="hero-stat-label">Perfis Analisados</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">6</div>
+                <div class="hero-stat-label">Tipos de Conteudo</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">20+</div>
+                <div class="hero-stat-label">Ganchos Replicaveis</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">8</div>
+                <div class="hero-stat-label">Tendencias Globais</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav-internal">
+    <div class="nav-internal-inner">
+        <a href="#panorama" class="nav-link active">Panorama</a>
+        <a href="#marcas" class="nav-link">Marcas Fabricantes</a>
+        <a href="#empresas" class="nav-link">Empresas de Servico</a>
+        <a href="#engenheiros" class="nav-link">Engenheiros e Influencers</a>
+        <a href="#formatos" class="nav-link">Formatos</a>
+        <a href="#ganchos" class="nav-link">Ganchos</a>
+        <a href="#hashtags" class="nav-link">Hashtags</a>
+        <a href="#tendencias" class="nav-link">Tendencias Internacionais</a>
+        <a href="#estrategia" class="nav-link">Estrategia CAFF</a>
+    </div>
+</nav>
+
+<main>
+
+<!-- ===== SECAO 1: PANORAMA ===== -->
+<section id="panorama" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <h2 class="section-title">Panorama do Nicho no Instagram</h2>
+            <p class="section-subtitle">O mercado de impermeabilizacao no Instagram e fragmentado: poucas empresas tem presenca forte, e a maioria dos perfis tem menos de 10 mil seguidores. Isso representa uma oportunidade enorme para quem investir com consistencia.</p>
+        </div>
+
+        <div class="two-cols">
+            <div class="col-box">
+                <h4><span style="color: var(--accent-green);">&#9679;</span> O que funciona no nicho</h4>
+                <ul>
+                    <li>Conteudo "antes e depois" com transformacoes visuais dramaticas</li>
+                    <li>Reels mostrando o processo de aplicacao (satisfying content)</li>
+                    <li>Conteudo educativo: "por que sua laje esta infiltrando?"</li>
+                    <li>Prova social com depoimentos reais de clientes</li>
+                    <li>Bastidores da obra com equipe trabalhando</li>
+                    <li>Posts de problema/solucao com fotos reais</li>
+                    <li>Time-lapses de obras comprimidos em 15-30 segundos</li>
+                </ul>
+            </div>
+            <div class="col-box">
+                <h4><span style="color: var(--accent-red);">&#9679;</span> Erros comuns no nicho</h4>
+                <ul>
+                    <li>Perfis abandonados ou com postagens irregulares</li>
+                    <li>Fotos sem qualidade, mal enquadradas, sem iluminacao</li>
+                    <li>Legendas tecnicas demais, sem linguagem acessivel</li>
+                    <li>Ausencia de CTA (chamada para acao) nos posts</li>
+                    <li>Nao usar Reels &mdash; ainda apostando so em fotos estaticas</li>
+                    <li>Feed sem identidade visual (cores, fontes, padrao)</li>
+                    <li>Nao responder comentarios e mensagens diretas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <div class="insight-box-title">Insight de Mercado</div>
+            <p>O nicho de impermeabilizacao no Instagram brasileiro e dominado por perfis com menos de 5 mil seguidores. As marcas fabricantes (Vedacit, Denver, Sika) lideram em numeros, mas empresas prestadoras de servico raramente passam de 12 mil seguidores. Isso significa que <strong>uma estrategia consistente de 3-6 meses pode posicionar a CAFF Engenharia entre os perfis mais relevantes do nicho na Bahia</strong>, onde a concorrencia digital e ainda menor.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECAO 2: MARCAS FABRICANTES ===== -->
+<section id="marcas" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">2</div>
+            <h2 class="section-title">Marcas Fabricantes &mdash; Referencia de Conteudo</h2>
+            <p class="section-subtitle">As grandes marcas de impermeabilizantes investem pesado em Instagram. Sao referencia de producao, mas nao concorrentes diretos da CAFF. O aprendizado aqui e sobre formato e linguagem.</p>
+        </div>
+
+        <div class="player-grid">
+
+            <!-- VEDACIT -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">V</div>
+                    <span class="player-tier tier-marca">Marca Fabricante</span>
+                </div>
+                <div class="player-name">Vedacit</div>
+                <div class="player-handle">@vedacit</div>
+                <div class="player-desc">Lider absoluta do mercado brasileiro de impermeabilizantes. Slogan "Paz pra toda obra". Referencia em marketing digital no setor de construcao civil.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">113K</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">2K+</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Alto</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Reels tutoriais</span>
+                    <span class="tag">Campanha com influencers</span>
+                    <span class="tag">Educativo</span>
+                    <span class="tag">Dicas praticas</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Combinacao de conteudo educativo ("como impermeabilizar sua laje") com campanhas de influenciadores. Lancou a campanha "Caca-Infiltracao" com o influencer Henrique Beverly Hills (358K+ seguidores), gerando milhares de interacoes. Investe pesado em Reels com tutoriais de aplicacao.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">O tom acessivel e educativo. Vedacit transforma assuntos tecnicos em conteudo para leigos. A CAFF pode usar a mesma abordagem: ensinar sobre infiltracao em linguagem simples, gerando autoridade.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VEDACIT PRO -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">VP</div>
+                    <span class="player-tier tier-marca">Marca Fabricante</span>
+                </div>
+                <div class="player-name">Vedacit Pro</div>
+                <div class="player-handle">@vedacitpro</div>
+                <div class="player-desc">Perfil profissional da Vedacit, voltado para engenheiros, construtores e aplicadores. Conteudo tecnico mais aprofundado.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">45K+</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">800+</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Medio</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Conteudo tecnico</span>
+                    <span class="tag">Especificacoes</span>
+                    <span class="tag">Para profissionais</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Segmentacao clara: enquanto @vedacit fala com o consumidor final, @vedacitpro fala com o profissional. Conteudo tecnico sobre normas, especificacoes e boas praticas de aplicacao.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">A segmentacao de publico. A CAFF pode criar conteudo que fale com dois publicos: o proprietario do imovel (leigo) e o construtor/arquiteto (tecnico), alternando abordagens.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DENVER / SOPREMA -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">D</div>
+                    <span class="player-tier tier-marca">Marca Fabricante</span>
+                </div>
+                <div class="player-name">Denver Impermeabilizantes (Soprema)</div>
+                <div class="player-handle">@denverimper</div>
+                <div class="player-desc">Uma das marcas mais tradicionais do mercado brasileiro, agora parte do grupo Soprema. Forte presenca em obras de grande porte.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">30K+</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">500+</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Medio</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Institucional</span>
+                    <span class="tag">Obras grandes</span>
+                    <span class="tag">Produto</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Conteudo mais institucional, focado em demonstrar a robustez tecnica dos produtos. Menos engajamento organico que a Vedacit, porem com credibilidade tecnica solida. Usa carrosseis explicativos e Reels com aplicacao em obra.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">A associacao da marca com obras de grande porte transmite confianca. A CAFF pode fotografar/filmar suas obras maiores e usar como vitrine de credibilidade.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECAO 3: EMPRESAS DE SERVICO ===== -->
+<section id="empresas" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">3</div>
+            <h2 class="section-title">Empresas Prestadoras de Servico</h2>
+            <p class="section-subtitle">Estes sao os concorrentes diretos no Instagram &mdash; empresas que prestam servico de impermeabilizacao e usam a rede para captar clientes. A maioria tem audiencia pequena, o que revela a oportunidade.</p>
+        </div>
+
+        <div class="player-grid">
+
+            <!-- ALL CLEAN -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">AC</div>
+                    <span class="player-tier tier-empresa">Empresa de Servico</span>
+                </div>
+                <div class="player-name">All Clean Higienizacao e Impermeabilizacao</div>
+                <div class="player-handle">@allclean_rc</div>
+                <div class="player-desc">Empresa focada em higienizacao e impermeabilizacao de estofados e superficies. Maior perfil do nicho em numero de seguidores entre prestadores de servico.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">12K</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">1.143</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Alto</div>
+                        <div class="metric-label">Frequencia</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Antes e depois</span>
+                    <span class="tag">Satisfying</span>
+                    <span class="tag">Reels curtos</span>
+                    <span class="tag">Alta frequencia</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Volume massivo de conteudo (1.143 posts). Aposta forte em Reels de "antes e depois" com transformacoes visuais dramaticas. O formato "satisfying" &mdash; onde a sujeira e removida ou a superficie e impermeabilizada &mdash; gera alto engajamento organico e compartilhamentos.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">Formatos Dominantes</div>
+                        <div class="analysis-text">90% Reels curtos (15-30 segundos) com antes/depois. Videos com close no processo de limpeza e impermeabilizacao. Musica trending de fundo. Textos sobrepostos com "Olha a diferenca!" ou "Seu sofa ta assim?".</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">A frequencia de postagem e o formato "satisfying". A CAFF pode criar Reels curtos mostrando a aplicacao da manta, o preenchimento de trincas, a vedacao &mdash; processos que sao visualmente satisfatorios.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOTAL PRO -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">TP</div>
+                    <span class="player-tier tier-empresa">Empresa de Servico</span>
+                </div>
+                <div class="player-name">Total Pro Impermeabilizacao</div>
+                <div class="player-handle">@totalproimpermeabilizacao</div>
+                <div class="player-desc">Empresa de Sao Paulo com presenca solida no Instagram. Foco em impermeabilizacao de lajes, piscinas e reservatorios.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">8.287</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">390</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Medio</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Portfolio de obras</span>
+                    <span class="tag">Carrosseis</span>
+                    <span class="tag">Antes e depois</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Equilibrio entre portfolio (fotos de obras finalizadas) e conteudo educativo. Usa carrosseis para explicar processos e Reels para mostrar obras em andamento. Boa consistencia de postagem.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">O equilibrio entre "mostrar trabalho feito" e "ensinar". A CAFF pode alternar entre posts de portfolio e conteudo educativo, criando autoridade sem parecer apenas propaganda.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OBRA ATIVA -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">OA</div>
+                    <span class="player-tier tier-empresa">Empresa de Servico</span>
+                </div>
+                <div class="player-name">Obra Ativa Impermeabilizacoes</div>
+                <div class="player-handle">@obraativa.imp</div>
+                <div class="player-desc">Impermeabilizacao de alto desempenho com garantia de 10 anos. Mais de 5.000 projetos concluidos e 600.000 m&sup2; impermeabilizados.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">5K+</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">300+</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Medio</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Numeros como prova</span>
+                    <span class="tag">Garantia 10 anos</span>
+                    <span class="tag">Portfolio</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Usa numeros como prova social: "5.000+ projetos", "600.000 m&sup2;". Isso gera credibilidade instantanea. Conteudo focado em portfolio e resultados de obras, com destaque para a garantia de 10 anos.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">A quantificacao de resultados. A CAFF deve comecar a contabilizar metros quadrados impermeabilizados, anos de experiencia, numero de projetos &mdash; e usar esses dados na bio e nos posts.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMPERMAIS -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">IM</div>
+                    <span class="player-tier tier-empresa">Empresa de Servico</span>
+                </div>
+                <div class="player-name">Impermais</div>
+                <div class="player-handle">@impermais</div>
+                <div class="player-desc">23 anos de experiencia em impermeabilizacao. Posicionamento como "especialista" no nicho com foco em solucoes e inovacao.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">4.354</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">500</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Medio</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Posicionamento especialista</span>
+                    <span class="tag">23 anos</span>
+                    <span class="tag">Educativo</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Posicionamento como "especialista" na bio ("23 anos entregando solucao e inovacao"). Conteudo misto entre educativo e portfolio. Volume consistente de 500 posts ao longo da vida do perfil.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">O posicionamento na bio: tempo de experiencia + especializacao. A CAFF deve usar a bio para deixar claro: "Impermeabilizacao no interior da Bahia | X anos de experiencia | Garantia de Y anos".</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROTECAO ENG -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">PE</div>
+                    <span class="player-tier tier-empresa">Empresa de Servico</span>
+                </div>
+                <div class="player-name">Protecao Engenharia</div>
+                <div class="player-handle">@protecaoeng</div>
+                <div class="player-desc">Empresa de Fortaleza com qualidade em impermeabilizacao desde 2006. Foco no mercado do Nordeste.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">4.038</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">400+</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Medio</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Nordeste</span>
+                    <span class="tag">Desde 2006</span>
+                    <span class="tag">Portfolio regional</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Referencia regional no Nordeste. Usa a localizacao como diferencial ("impermeabilizacao em Fortaleza"). Conteudo de portfolio com obras locais, gerando identificacao com o publico da regiao.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">A estrategia regional. A CAFF deve abracar a identidade do interior da Bahia: usar localizacao nos posts, marcar a cidade, usar hashtags regionais. Quem busca impermeabilizacao quer alguem proximo.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MUNDO DA IMPERMEABILIZACAO -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">MI</div>
+                    <span class="player-tier tier-empresa">Empresa de Servico</span>
+                </div>
+                <div class="player-name">Mundo da Impermeabilizacao</div>
+                <div class="player-handle">@mundodaimpermeabilizacao</div>
+                <div class="player-desc">Empresa de Recife com 20 anos de qualidade e confiabilidade em impermeabilizacao para construcao civil.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">2.731</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">505</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Baixo</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Nordeste</span>
+                    <span class="tag">Alto volume</span>
+                    <span class="tag">20 anos</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Estrategia Principal</div>
+                        <div class="analysis-text">Alto volume de publicacoes (505 posts) mas engajamento baixo em relacao ao volume. Indica que quantidade sem qualidade nao gera resultados. Outro player nordestino, mostrando que ha demanda na regiao.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">A presenca regional confirma que o Nordeste busca esses servicos. O que NAO replicar: postar muito sem estrategia. Melhor 3 posts excelentes por semana do que 7 mediocres.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="insight-box">
+            <div class="insight-box-title">Gap Identificado &mdash; Interior da Bahia</div>
+            <p>Nenhum dos perfis analisados tem presenca forte no interior da Bahia. As empresas mapeadas estao em Sao Paulo, Fortaleza, Recife e Rio de Janeiro. A CAFF Engenharia pode se tornar <strong>o primeiro perfil de referencia em impermeabilizacao no interior baiano</strong>, capturando demanda organica de uma regiao sem concorrencia digital significativa.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECAO 4: ENGENHEIROS E INFLUENCERS ===== -->
+<section id="engenheiros" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">4</div>
+            <h2 class="section-title">Engenheiros, Influenciadores e Perfis Educativos</h2>
+            <p class="section-subtitle">Perfis de profissionais e criadores de conteudo no nicho de construcao civil que servem como referencia de formato, linguagem e engajamento.</p>
+        </div>
+
+        <div class="player-grid">
+
+            <!-- DICAS DE CONSTRUCAO -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">DC</div>
+                    <span class="player-tier tier-influencer">Influenciador</span>
+                </div>
+                <div class="player-name">Dicas de Construcao Civil</div>
+                <div class="player-handle">@dicas.de.construcao.civil</div>
+                <div class="player-desc">Maior perfil de dicas de construcao civil do Instagram Brasil. Conteudo tecnico acessivel para leigos e profissionais.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">1M+</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">1.457</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Alto</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Dicas praticas</span>
+                    <span class="tag">Reels virais</span>
+                    <span class="tag">Linguagem simples</span>
+                    <span class="tag">Carrosseis didaticos</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Por que Funciona</div>
+                        <div class="analysis-text">Transforma assuntos tecnicos de construcao em conteudo visual, rapido e acessivel. Usa Reels de 15-30 segundos com dicas diretas. Linguagem popular, sem jargao. Ganchos como "Voce sabia que..." e "Nunca faca isso na sua obra".</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">O formato de "dica rapida" em Reel. A CAFF pode criar a serie "Dica de Impermeabilizacao" com dicas de 15 segundos: "Como saber se sua laje precisa de impermeabilizacao?", "3 sinais de infiltracao que voce esta ignorando".</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERFIL ENGENHARIA -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">PE</div>
+                    <span class="player-tier tier-influencer">Influenciador</span>
+                </div>
+                <div class="player-name">Perfil Engenharia</div>
+                <div class="player-handle">@perfil.engenharia</div>
+                <div class="player-desc">Perfil de engenharia com conteudo sobre projetos, inspiracoes e bastidores do dia a dia do engenheiro civil.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">200K+</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">1K+</div>
+                        <div class="metric-label">Publicacoes</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Alto</div>
+                        <div class="metric-label">Engajamento</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Dia a dia profissional</span>
+                    <span class="tag">Memes de engenharia</span>
+                    <span class="tag">Bastidores</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Por que Funciona</div>
+                        <div class="analysis-text">Mistura conteudo tecnico com humor e memes relacionados a engenharia. Mostra o dia a dia real das obras. Gera identificacao com profissionais e curiosidade em leigos.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">Humanizar a marca. Mostrar a equipe CAFF em acao, bastidores das obras, momentos reais. Humor leve sobre problemas comuns de infiltracao ("Quando o cliente diz que e so uma manchinha...").</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HENRIQUE BEVERLY HILLS -->
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">HB</div>
+                    <span class="player-tier tier-influencer">Influenciador Parceiro</span>
+                </div>
+                <div class="player-name">Henrique Beverly Hills (Meia Cuie)</div>
+                <div class="player-handle">@henriquebeverlyhills</div>
+                <div class="player-desc">Influenciador de humor/lifestyle que fez parceria de sucesso com a Vedacit na campanha "Caca-Infiltracao", gerando milhares de interacoes.</div>
+                <div class="player-metrics">
+                    <div class="metric">
+                        <div class="metric-value">358K+</div>
+                        <div class="metric-label">Seguidores</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">N/A</div>
+                        <div class="metric-label">No Nicho</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Viral</div>
+                        <div class="metric-label">Campanha</div>
+                    </div>
+                </div>
+                <div class="player-tags">
+                    <span class="tag">Publi com humor</span>
+                    <span class="tag">Campanha viral</span>
+                    <span class="tag">Parceria marca</span>
+                </div>
+                <div class="player-analysis">
+                    <div class="analysis-item">
+                        <div class="analysis-label">Caso de Estudo</div>
+                        <div class="analysis-text">A Vedacit contratou um influenciador de humor &mdash; nao de construcao &mdash; para falar sobre infiltracao. Resultado: a campanha viralizou porque o formato era entretenimento, nao propaganda. O publico compartilhou porque era engracado, nao porque era um anuncio.</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="analysis-label">O que Replicar</div>
+                        <div class="analysis-text">No nivel local: a CAFF pode criar conteudo com humor sobre infiltracao ("A cara do dono do imovel quando descobre a goteira"), parcerias com influenciadores regionais da Bahia, ou ate com pedreiros/mestres de obra que tenham presenca digital.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECAO 5: FORMATOS ===== -->
+<section id="formatos" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">5</div>
+            <h2 class="section-title">Formatos que Performam no Nicho</h2>
+            <p class="section-subtitle">Analise dos formatos de conteudo que geram mais engajamento no segmento de construcao civil e impermeabilizacao no Instagram em 2026.</p>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table class="formato-table">
+                <thead>
+                    <tr>
+                        <th>Formato</th>
+                        <th>Alcance</th>
+                        <th>Engajamento</th>
+                        <th>Melhor Uso</th>
+                        <th>Performance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Reels Antes/Depois</strong></td>
+                        <td>Altissimo</td>
+                        <td>Compartilhamento + Salvar</td>
+                        <td>Transformacoes de laje, piso, parede</td>
+                        <td><span class="bar-fill" style="width: 95%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reels Time-lapse</strong></td>
+                        <td>Alto</td>
+                        <td>Views + Tempo assistido</td>
+                        <td>Processo completo de impermeabilizacao</td>
+                        <td><span class="bar-fill" style="width: 88%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carrossel Educativo</strong></td>
+                        <td>Medio-Alto</td>
+                        <td>Salvar + Compartilhar</td>
+                        <td>"5 sinais de infiltracao", "Como escolher..."</td>
+                        <td><span class="bar-fill" style="width: 82%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reels Satisfying</strong></td>
+                        <td>Altissimo</td>
+                        <td>Views + Compartilhamento</td>
+                        <td>Aplicacao de manta, vedacao, pintura</td>
+                        <td><span class="bar-fill" style="width: 90%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stories Bastidores</strong></td>
+                        <td>Baixo (so seguidores)</td>
+                        <td>Respostas + Enquetes</td>
+                        <td>Dia a dia na obra, equipe, rotina</td>
+                        <td><span class="bar-fill" style="width: 60%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Foto Portfolio</strong></td>
+                        <td>Baixo</td>
+                        <td>Curtidas</td>
+                        <td>Obra finalizada, resultado limpo</td>
+                        <td><span class="bar-fill" style="width: 40%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reels Problema/Solucao</strong></td>
+                        <td>Alto</td>
+                        <td>Comentarios + Compartilhar</td>
+                        <td>"Sua parede ta assim? Veja a solucao"</td>
+                        <td><span class="bar-fill" style="width: 85%;"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carrossel Depoimento</strong></td>
+                        <td>Medio</td>
+                        <td>Confianca + Conversao</td>
+                        <td>Print de WhatsApp com elogio do cliente</td>
+                        <td><span class="bar-fill" style="width: 70%;"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="insight-box">
+            <div class="insight-box-title">Tendencia Instagram 2026 &mdash; Reels + Carrosseis</div>
+            <p>Em 2026, o Instagram consolidou a dupla <strong>Reels + Carrosseis</strong> como a combinacao mais eficaz. Reels geram alcance e novos seguidores; carrosseis geram salvamentos e aprofundamento. Para a CAFF, a formula ideal e: <strong>3 Reels + 2 Carrosseis por semana</strong>, alternando entre antes/depois (Reels), dicas educativas (Carrossel) e bastidores (Stories diarios).</p>
+        </div>
+
+        <div class="two-cols" style="margin-top: 32px;">
+            <div class="col-box">
+                <h4><span style="color: var(--primary);">&#9650;</span> Horarios de Maior Engajamento</h4>
+                <ul>
+                    <li><strong>Terca a quinta-feira</strong> &mdash; melhores dias para Reels</li>
+                    <li><strong>11h &ndash; 13h</strong> &mdash; horario de almoco, pico de visualizacao</li>
+                    <li><strong>19h &ndash; 21h</strong> &mdash; pos-trabalho, segundo pico</li>
+                    <li><strong>Sabado 10h &ndash; 12h</strong> &mdash; bom para conteudo leve</li>
+                    <li><strong>Evitar</strong> &mdash; madrugada e segunda-feira cedo</li>
+                </ul>
+            </div>
+            <div class="col-box">
+                <h4><span style="color: var(--primary);">&#9650;</span> Frequencia Ideal de Postagem</h4>
+                <ul>
+                    <li><strong>Reels:</strong> 3-4x por semana (prioridade maxima)</li>
+                    <li><strong>Carrosseis:</strong> 2x por semana (educativo/dicas)</li>
+                    <li><strong>Stories:</strong> 3-5 por dia (bastidores, enquetes)</li>
+                    <li><strong>Fotos:</strong> 1x por semana (portfolio, obra finalizada)</li>
+                    <li><strong>Lives:</strong> 1-2x por mes (tire duvidas, visita a obra)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECAO 6: GANCHOS ===== -->
+<section id="ganchos" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">6</div>
+            <h2 class="section-title">20+ Ganchos Replicaveis para a CAFF Engenharia</h2>
+            <p class="section-subtitle">Ganchos testados e validados no nicho de construcao civil e impermeabilizacao. Prontos para adaptar com a identidade da CAFF e o contexto do interior da Bahia.</p>
+        </div>
+
+        <div class="gancho-grid">
+
+            <div class="gancho-card">
+                <div class="gancho-category">Problema / Solucao</div>
+                <div class="gancho-text">"Sua laje ta assim? Olha o que acontece se voce nao impermeabilizar."</div>
+                <div class="gancho-explain">Comeca mostrando uma laje com infiltracao, manchas e mofo. Transicao para o processo de impermeabilizacao e o resultado final impecavel.</div>
+                <span class="gancho-format">Reel 15-30s</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Medo / Urgencia</div>
+                <div class="gancho-text">"3 sinais de que sua casa esta pedindo socorro (e voce nao percebeu)"</div>
+                <div class="gancho-explain">Manchas na parede, bolhas na pintura, cheiro de mofo. Cada sinal e um slide/corte. CTA: "Se voce viu algum desses, chama no Direct."</div>
+                <span class="gancho-format">Carrossel ou Reel</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Curiosidade</div>
+                <div class="gancho-text">"Voce sabe quanto custa NAO impermeabilizar? A conta e assustadora."</div>
+                <div class="gancho-explain">Comparacao de custo: impermeabilizar custa X, mas o reparo por infiltracao custa 5X. Dados reais, numeros concretos.</div>
+                <span class="gancho-format">Carrossel</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Antes e Depois</div>
+                <div class="gancho-text">"Essa laje estava destruida. Olha como ficou em 3 dias."</div>
+                <div class="gancho-explain">Transicao dramatica com audio trending. Close na infiltracao, corte para a equipe trabalhando, resultado final brilhando. O "satisfying" vende.</div>
+                <span class="gancho-format">Reel 15-30s</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Educativo</div>
+                <div class="gancho-text">"Manta asfaltica ou manta liquida? Qual usar na sua laje?"</div>
+                <div class="gancho-explain">Comparacao tecnica em linguagem simples. Vantagens, desvantagens e quando usar cada uma. Posiciona como especialista.</div>
+                <span class="gancho-format">Carrossel</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Bastidores</div>
+                <div class="gancho-text">"Um dia na obra com a equipe CAFF. Olha o que a gente faz antes de comecar."</div>
+                <div class="gancho-explain">Mostra a preparacao: EPI, limpeza da superficie, primers. Humaniza a marca e mostra profissionalismo.</div>
+                <span class="gancho-format">Reel + Stories</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Satisfying</div>
+                <div class="gancho-text">"Impermeabilizacao e arte. Assista ate o final."</div>
+                <div class="gancho-explain">Video em close da aplicacao de manta, rolamento de impermeabilizante, vedacao de trinca. O processo em si e visualmente prazeroso. Audio ASMR ou trending.</div>
+                <span class="gancho-format">Reel 15-60s</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Prova Social</div>
+                <div class="gancho-text">"O que nossos clientes falam sobre a CAFF (prints reais)"</div>
+                <div class="gancho-explain">Carrossel com prints de mensagens do WhatsApp agradecendo pelo servico. Autenticidade pura. Nada de depoimento encenado.</div>
+                <span class="gancho-format">Carrossel</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Autoridade</div>
+                <div class="gancho-text">"O erro mais caro que voce pode cometer na sua obra"</div>
+                <div class="gancho-explain">Falar sobre o custo de nao impermeabilizar na fase certa da construcao. Dado: "80% dos problemas estruturais em edificios estao ligados a falta de impermeabilizacao" (IBI).</div>
+                <span class="gancho-format">Reel com face</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Dica Rapida</div>
+                <div class="gancho-text">"Dica de ouro: nunca faca isso na hora de impermeabilizar"</div>
+                <div class="gancho-explain">Erro comum que leigos cometem (ex: aplicar manta com a laje umida, nao fazer caimento, esquecer os rodapes). Rapido, direto, util.</div>
+                <span class="gancho-format">Reel 15s</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Localizacao</div>
+                <div class="gancho-text">"Impermeabilizacao no interior da Bahia: por que o clima exige mais cuidado"</div>
+                <div class="gancho-explain">Conecta o servico com a realidade local. Chuvas fortes, calor intenso, umidade &mdash; fatores que aceleram a degradacao sem impermeabilizacao.</div>
+                <span class="gancho-format">Carrossel</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Comparacao</div>
+                <div class="gancho-text">"Impermeabilizacao profissional vs. 'jeitinho brasileiro': veja a diferenca em 6 meses"</div>
+                <div class="gancho-explain">Lado a lado: resultado de impermeabilizacao feita por profissional vs. feita "por conta". Depois de 6 meses, a diferenca e gritante.</div>
+                <span class="gancho-format">Reel</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Time-lapse</div>
+                <div class="gancho-text">"600 m&sup2; impermeabilizados em 30 segundos"</div>
+                <div class="gancho-explain">Time-lapse acelerado de uma obra inteira. De laje suja e rachada ate o acabamento final. Audio epico ou trending. Altamente compartilhavel.</div>
+                <span class="gancho-format">Reel 30s</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Interativo</div>
+                <div class="gancho-text">"Qual problema e pior: infiltracao no teto ou infiltracao no piso? Comenta ai!"</div>
+                <div class="gancho-explain">Posts que pedem opiniao geram comentarios, e comentarios impulsionam o algoritmo. Enquetes nos Stories funcionam da mesma forma.</div>
+                <span class="gancho-format">Foto + Stories</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Mito vs. Verdade</div>
+                <div class="gancho-text">"Mito: 'impermeabilizacao so precisa em predio'. Verdade: toda casa precisa."</div>
+                <div class="gancho-explain">Formato de desmistificacao que atrai leigos. Cada slide derruba um mito comum. Gera salvamentos porque as pessoas guardam para consultar depois.</div>
+                <span class="gancho-format">Carrossel</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Humor</div>
+                <div class="gancho-text">"POV: voce ignorou a infiltracao por 6 meses"</div>
+                <div class="gancho-explain">Formato de humor com tendencia de audio. Mostra a evolucao da infiltracao de forma exagerada/comica. Engajamento altissimo por compartilhamentos.</div>
+                <span class="gancho-format">Reel Trending</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Garantia / Confianca</div>
+                <div class="gancho-text">"Por que a gente da garantia de X anos (e a maioria nao da)"</div>
+                <div class="gancho-explain">Diferencial competitivo transformado em conteudo. Explica o processo de qualidade que justifica a garantia. Gera confianca e diferenciacao.</div>
+                <span class="gancho-format">Reel com face</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Transformacao Completa</div>
+                <div class="gancho-text">"De laje abandonada a area de lazer: o poder da impermeabilizacao"</div>
+                <div class="gancho-explain">Mostrar que impermeabilizacao nao e so tecnica &mdash; e o que permite transformar espacos inutilizados em areas nobres do imovel.</div>
+                <span class="gancho-format">Reel 30-60s</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Pergunta Direta</div>
+                <div class="gancho-text">"Voce construiu sua casa e nao impermeabilizou a laje? Precisa ler isso."</div>
+                <div class="gancho-explain">Segmentacao por pergunta: so continua lendo quem se identifica. Isso gera engajamento qualificado &mdash; quem interage realmente precisa do servico.</div>
+                <span class="gancho-format">Carrossel</span>
+            </div>
+
+            <div class="gancho-card">
+                <div class="gancho-category">Dados / Estatistica</div>
+                <div class="gancho-text">"80% dos problemas em edificios sao causados por falta de impermeabilizacao"</div>
+                <div class="gancho-explain">Dado do Instituto Brasileiro de Impermeabilizacao (IBI). Numeros geram credibilidade e compartilhamento. Slide unico com tipografia impactante.</div>
+                <span class="gancho-format">Post Unico ou Reel</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECAO 7: HASHTAGS ===== -->
+<section id="hashtags" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">7</div>
+            <h2 class="section-title">Estrategia de Hashtags para 2026</h2>
+            <p class="section-subtitle">Em 2026, o Instagram limita a 5 hashtags por publicacao. A estrategia e combinar hashtags de nicho (alta relevancia) com hashtags regionais (captura local). Nada de hashtags genericas como #instagood.</p>
+        </div>
+
+        <div class="two-cols">
+            <div class="col-box">
+                <h4><span style="color: var(--primary);">&#9679;</span> Hashtags de Nicho (Rotacionar)</h4>
+                <div class="hashtag-cloud">
+                    <span class="hashtag big">#impermeabilizacao</span>
+                    <span class="hashtag">#impermeabilizante</span>
+                    <span class="hashtag">#mantaasfaltica</span>
+                    <span class="hashtag">#mantaimpermeabilizante</span>
+                    <span class="hashtag">#infiltracao</span>
+                    <span class="hashtag">#vedarainfiltracao</span>
+                    <span class="hashtag">#laje</span>
+                    <span class="hashtag">#reformadelaje</span>
+                    <span class="hashtag big">#construcaocivil</span>
+                    <span class="hashtag">#engenhariabrasil</span>
+                    <span class="hashtag">#obraresidencial</span>
+                    <span class="hashtag">#reformacasa</span>
+                    <span class="hashtag">#antesedepois</span>
+                    <span class="hashtag small">#obrabahia</span>
+                    <span class="hashtag small">#dicasdeobra</span>
+                </div>
+            </div>
+            <div class="col-box">
+                <h4><span style="color: var(--accent-green);">&#9679;</span> Hashtags Regionais (Localizacao)</h4>
+                <div class="hashtag-cloud">
+                    <span class="hashtag big">#bahia</span>
+                    <span class="hashtag big">#interiordabahia</span>
+                    <span class="hashtag">#construcaobahia</span>
+                    <span class="hashtag">#reformabahia</span>
+                    <span class="hashtag">#engenhariabahia</span>
+                    <span class="hashtag">#obrabahia</span>
+                    <span class="hashtag small">#nordeste</span>
+                    <span class="hashtag small">#construcaonordeste</span>
+                </div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 16px; line-height: 1.6;">Sempre usar a cidade especifica nos posts: nome da cidade + "BA". Hashtags locais tem menos competicao e atraem clientes reais da regiao.</p>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <div class="insight-box-title">Regra de Ouro: 5 Hashtags por Post</div>
+            <p>A formula ideal para cada post da CAFF: <strong>2 hashtags de nicho + 2 hashtags regionais + 1 hashtag do formato/conteudo</strong>. Exemplo: #impermeabilizacao + #infiltracao + #interiordabahia + #[cidade]BA + #antesedepois. Rotacionar as combinacoes a cada post para maximizar o alcance sem repetir.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECAO 8: TENDENCIAS INTERNACIONAIS ===== -->
+<section id="tendencias" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">8</div>
+            <h2 class="section-title">Tendencias Internacionais Adaptaveis</h2>
+            <p class="section-subtitle">Estrategias de marketing digital para waterproofing contractors nos EUA, Europa e Australia que podem ser adaptadas para o mercado brasileiro &mdash; especificamente para uma empresa no interior da Bahia.</p>
+        </div>
+
+        <div class="tendencia-grid">
+
+            <div class="tendencia-card">
+                <div class="tendencia-origin">EUA &mdash; Rainmaker for Contractors</div>
+                <div class="tendencia-title">Video-First: O Video Constroi Confianca Mais Rapido que Texto</div>
+                <div class="tendencia-desc">Nos EUA, empresas de waterproofing que adotaram video como formato principal viram aumento de 3-5x em leads organicos. A logica: "video builds trust faster than text or static ads because it shows your expertise in action."</div>
+                <div class="tendencia-adapt">
+                    <div class="tendencia-adapt-label">Como Adaptar para a CAFF</div>
+                    <div class="tendencia-adapt-text">Filmar TODA obra com o celular. Nao precisa producao profissional &mdash; autenticidade importa mais. O engenheiro responsavel pode narrar o processo em 30-60 segundos. A regra e: se esta na obra, esta filmando.</div>
+                </div>
+            </div>
+
+            <div class="tendencia-card">
+                <div class="tendencia-origin">EUA &mdash; Superpath Marketing</div>
+                <div class="tendencia-title">Video Ads Sazonais: Primavera = Epoca de Waterproofing</div>
+                <div class="tendencia-desc">Empresas americanas lancam campanhas de video no inicio da primavera (epoca de chuvas), quando a demanda por waterproofing dispara. Targeted video advertising that converts.</div>
+                <div class="tendencia-adapt">
+                    <div class="tendencia-adapt-label">Como Adaptar para a CAFF</div>
+                    <div class="tendencia-adapt-text">Na Bahia, o periodo de chuvas (novembro a marco) e o equivalente. A CAFF deve comecar a postar conteudo sobre infiltracao em setembro/outubro (prevencao) e intensificar em novembro/dezembro (urgencia). Criar conteudo: "O inverno ta chegando. Sua laje ta pronta?"</div>
+                </div>
+            </div>
+
+            <div class="tendencia-card">
+                <div class="tendencia-origin">Australia &mdash; Gripset</div>
+                <div class="tendencia-title">Social Media para Waterproofing: Antes/Depois como Padrao</div>
+                <div class="tendencia-desc">Empresas australianas de waterproofing padronizaram o formato antes/depois como conteudo principal. "Use Instagram to highlight the effectiveness of your waterproofing services by showing the problem before your intervention and the result after."</div>
+                <div class="tendencia-adapt">
+                    <div class="tendencia-adapt-label">Como Adaptar para a CAFF</div>
+                    <div class="tendencia-adapt-text">Criar um protocolo de foto/video obrigatorio para toda obra: foto do estado original, video do processo, foto do resultado final. Isso gera um banco de conteudo infinito e cada obra vira 3-5 posts diferentes.</div>
+                </div>
+            </div>
+
+            <div class="tendencia-card">
+                <div class="tendencia-origin">EUA &mdash; Desygner</div>
+                <div class="tendencia-title">Email + Instagram: Funil Integrado para Contractors</div>
+                <div class="tendencia-desc">Empresas americanas usam Instagram para atrair e email marketing para converter. O Instagram gera a confianca visual, o email fecha o orcamento. Integracao entre canais e a chave.</div>
+                <div class="tendencia-adapt">
+                    <div class="tendencia-adapt-label">Como Adaptar para a CAFF</div>
+                    <div class="tendencia-adapt-text">Instagram atrai + WhatsApp converte. No Brasil, o WhatsApp substitui o email. Todo CTA no Instagram deve direcionar para o WhatsApp com mensagem pre-escrita: "Oi, vi o trabalho de voces no Instagram e quero um orcamento."</div>
+                </div>
+            </div>
+
+            <div class="tendencia-card">
+                <div class="tendencia-origin">EUA &mdash; Rohring Results</div>
+                <div class="tendencia-title">Case: +28.408% em Views com Estrategia de Video (Plumbing)</div>
+                <div class="tendencia-desc">Uma empresa de encanamento nos EUA teve crescimento de 28.408% em visualizacoes e 226,8% em engajamento em apenas 3 meses apos implementar estrategia de video nas redes sociais. O caso demonstra o potencial do video para servicos de construcao/reparo.</div>
+                <div class="tendencia-adapt">
+                    <div class="tendencia-adapt-label">Como Adaptar para a CAFF</div>
+                    <div class="tendencia-adapt-text">O nicho de home services (encanamento, eletrica, impermeabilizacao) funciona da mesma forma. Videos curtos do processo de trabalho, com ganchos fortes nos primeiros 3 segundos, e o caminho para crescimento explosivo. Meta realista: 5-10K seguidores em 6 meses com postagem consistente.</div>
+                </div>
+            </div>
+
+            <div class="tendencia-card">
+                <div class="tendencia-origin">Global &mdash; Instagram 2026</div>
+                <div class="tendencia-title">Microcomunidades > Numero de Seguidores</div>
+                <div class="tendencia-desc">Em 2026, o Instagram prioriza engajamento de qualidade sobre quantidade de seguidores. O algoritmo favorece conteudo original, autenticidade e comunidades de nicho. Perfis menores com engajamento alto tem mais alcance que perfis grandes com engajamento baixo.</div>
+                <div class="tendencia-adapt">
+                    <div class="tendencia-adapt-label">Como Adaptar para a CAFF</div>
+                    <div class="tendencia-adapt-text">Nao buscar seguidores vazios. Focar em criar conteudo que gere salvamentos e compartilhamentos. Responder todos os comentarios. Criar comunidade local: interagir com perfis de construtores, arquitetos e imobiliarias da regiao. 2.000 seguidores engajados valem mais que 20.000 fantasmas.</div>
+                </div>
+            </div>
+
+            <div class="tendencia-card">
+                <div class="tendencia-origin">Global &mdash; Instagram 2026</div>
+                <div class="tendencia-title">Carrosseis como Formato de Profundidade</div>
+                <div class="tendencia-desc">O carrossel continua sendo o formato mais forte para gerar salvamentos, aprofundar narrativas e construir storytelling no Instagram em 2026. E o formato que mais gera "salvar" &mdash; metrica que o algoritmo adora.</div>
+                <div class="tendencia-adapt">
+                    <div class="tendencia-adapt-label">Como Adaptar para a CAFF</div>
+                    <div class="tendencia-adapt-text">Criar carrosseis didaticos: "Guia da impermeabilizacao residencial em 7 passos", "5 erros que destroem sua laje", "Comparacao: manta asfaltica vs. manta liquida". Design limpo com cores da marca CAFF. Cada carrossel deve ter CTA no ultimo slide: "Salve para consultar depois" ou "Envie para quem esta construindo".</div>
+                </div>
+            </div>
+
+            <div class="tendencia-card">
+                <div class="tendencia-origin">Global &mdash; Instagram 2026</div>
+                <div class="tendencia-title">Trending Audio + Nicho = Alcance Explosivo</div>
+                <div class="tendencia-desc">O algoritmo ativamente impulsiona conteudo que usa audios em alta. Adaptar um audio viral ao seu nicho ("sound that's currently going viral and adapt it to your industry") e uma das formas mais rapidas de alcancar novos publicos.</div>
+                <div class="tendencia-adapt">
+                    <div class="tendencia-adapt-label">Como Adaptar para a CAFF</div>
+                    <div class="tendencia-adapt-text">Monitorar audios em alta semanalmente (aba Reels > Audios Populares). Adaptar para o contexto de impermeabilizacao. Exemplo: audio "Expectativa vs. Realidade" com antes/depois de uma obra. Nao forcar &mdash; so usar audios que encaixem naturalmente.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECAO 9: ESTRATEGIA CAFF ===== -->
+<section id="estrategia" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">9</div>
+            <h2 class="section-title">Estrategia Instagram para a CAFF Engenharia</h2>
+            <p class="section-subtitle">Plano de acao consolidado a partir de toda a pesquisa. Cada recomendacao e baseada nos dados coletados e adaptada para o contexto de uma empresa de impermeabilizacao no interior da Bahia.</p>
+        </div>
+
+        <div class="estrategia-grid">
+            <div class="estrategia-card">
+                <div class="estrategia-icon">1</div>
+                <div class="estrategia-title">Bio Otimizada</div>
+                <div class="estrategia-text">Nome: CAFF Engenharia | Impermeabilizacao. Bio: Especialistas em impermeabilizacao no interior da Bahia. Garantia + anos de experiencia + CTA para WhatsApp.</div>
+            </div>
+            <div class="estrategia-card">
+                <div class="estrategia-icon">2</div>
+                <div class="estrategia-title">Identidade Visual</div>
+                <div class="estrategia-text">Feed com padrao visual: cores da marca, Montserrat nas artes, template para Reels e carrosseis. Consistencia gera profissionalismo.</div>
+            </div>
+            <div class="estrategia-card">
+                <div class="estrategia-icon">3</div>
+                <div class="estrategia-title">Conteudo 70/20/10</div>
+                <div class="estrategia-text">70% educativo e portfolio (autoridade). 20% bastidores e equipe (humanizacao). 10% depoimentos e CTAs diretos (conversao).</div>
+            </div>
+            <div class="estrategia-card">
+                <div class="estrategia-icon">4</div>
+                <div class="estrategia-title">Protocolo de Obra</div>
+                <div class="estrategia-text">Toda obra gera conteudo: foto antes, video durante (time-lapse + close do processo), foto depois. Banco de conteudo infinito.</div>
+            </div>
+            <div class="estrategia-card">
+                <div class="estrategia-icon">5</div>
+                <div class="estrategia-title">Localizacao como Arma</div>
+                <div class="estrategia-text">Marcar localizacao em todo post. Hashtags regionais. Conteudo sobre o clima local e seus efeitos. Ser a referencia da regiao.</div>
+            </div>
+            <div class="estrategia-card">
+                <div class="estrategia-icon">6</div>
+                <div class="estrategia-title">WhatsApp como Destino</div>
+                <div class="estrategia-text">Todo CTA direciona para WhatsApp com mensagem pre-escrita. Link na bio. Botao de acao no perfil. Resposta em ate 1 hora.</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3>Meta Realista: 6 Meses de Consistencia</h3>
+            <p>Com 5 posts por semana (3 Reels + 2 carrosseis) + Stories diarios + interacao ativa com a comunidade local, a CAFF pode atingir <strong>5.000-10.000 seguidores qualificados em 6 meses</strong> &mdash; numeros superiores a 90% dos concorrentes do nicho no Brasil inteiro. No interior da Bahia, seria a referencia absoluta.</p>
+        </div>
+
+        <div class="insight-box">
+            <div class="insight-box-title">Resumo Final da Pesquisa</div>
+            <p>O mercado de impermeabilizacao no Instagram e imaturo: poucos concorrentes com presenca forte, audiencias pequenas, conteudo inconsistente. A oportunidade e clara. Uma estrategia baseada em <strong>Reels satisfying + carrosseis educativos + localizacao regional + CTA para WhatsApp</strong>, executada com consistencia, coloca a CAFF Engenharia em posicao de lideranca digital no nicho em questao de meses. O mercado ja mostra o que funciona &mdash; so precisa executar.</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p><span class="footer-brand">ADS Company</span> &mdash; Pesquisa de Mercado | CAFF Engenharia | Maio 2026</p>
+    <p style="margin-top: 8px; font-size: 11px; color: #555;">Dados coletados em maio de 2026. Numeros de seguidores podem variar.</p>
+</footer>
+
+<!-- SMOOTH SCROLL -->
+<script>
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Active nav on scroll
+    const sections = document.querySelectorAll('.section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

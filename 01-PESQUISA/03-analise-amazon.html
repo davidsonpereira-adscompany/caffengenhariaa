@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa Amazon — Livros de Impermeabilização | CAFF Engenharia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-card-hover: #1C1C1C;
+            --accent: #FF6B35;
+            --accent-light: #FF8B5E;
+            --accent-dark: #CC5529;
+            --text-primary: #F0F0F0;
+            --text-secondary: #B0B0B0;
+            --text-muted: #787878;
+            --border: #2A2A2A;
+            --border-accent: rgba(255, 107, 53, 0.3);
+            --star: #FFB800;
+            --green: #4CAF50;
+            --red: #EF5350;
+            --blue: #42A5F5;
+            --purple: #AB47BC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ==================== HEADER ==================== */
+        .header {
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1008 50%, #0D0D0D 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .header-logo img {
+            height: 36px;
+            opacity: 0.9;
+        }
+
+        .header-logo-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid var(--border-accent);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .header-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            background: linear-gradient(180deg, #1A1008 0%, var(--bg-primary) 100%);
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .hero-stat-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* ==================== CONTAINER ==================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ==================== SECTION ==================== */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
+            margin: 0;
+        }
+
+        /* ==================== BOOK CARDS ==================== */
+        .books-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .book-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.08);
+        }
+
+        .book-card-header {
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .book-number {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .book-meta {
+            flex: 1;
+        }
+
+        .book-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-author {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .book-author strong {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .book-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .book-tag {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(255, 107, 53, 0.15);
+        }
+
+        .book-tag.blue {
+            background: rgba(66, 165, 245, 0.1);
+            color: var(--blue);
+            border-color: rgba(66, 165, 245, 0.15);
+        }
+
+        .book-tag.purple {
+            background: rgba(171, 71, 188, 0.1);
+            color: var(--purple);
+            border-color: rgba(171, 71, 188, 0.15);
+        }
+
+        .book-tag.green {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--green);
+            border-color: rgba(76, 175, 80, 0.15);
+        }
+
+        .book-card-body {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .book-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .book-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stars {
+            color: var(--star);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .rating-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .review-box {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+        }
+
+        .review-box-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .review-box-title.positive {
+            color: var(--green);
+        }
+
+        .review-box-title.negative {
+            color: var(--red);
+        }
+
+        .review-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .review-box li {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            padding: 0.35rem 0;
+            padding-left: 1rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .review-box li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+        }
+
+        .review-box.positive li::before {
+            background: var(--green);
+        }
+
+        .review-box.negative li::before {
+            background: var(--red);
+        }
+
+        .book-insight {
+            margin-top: 1.5rem;
+            background: rgba(255, 107, 53, 0.05);
+            border: 1px solid var(--border-accent);
+            border-radius: 10px;
+            padding: 1.25rem;
+        }
+
+        .book-insight-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .book-insight p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ==================== PAIN MAP ==================== */
+        .pain-map {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .pain-card:hover {
+            border-color: var(--border-accent);
+        }
+
+        .pain-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .pain-card-icon.red {
+            background: rgba(239, 83, 80, 0.12);
+        }
+
+        .pain-card-icon.orange {
+            background: rgba(255, 107, 53, 0.12);
+        }
+
+        .pain-card-icon.blue {
+            background: rgba(66, 165, 245, 0.12);
+        }
+
+        .pain-card-icon.green {
+            background: rgba(76, 175, 80, 0.12);
+        }
+
+        .pain-card-icon.purple {
+            background: rgba(171, 71, 188, 0.12);
+        }
+
+        .pain-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .pain-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pain-card li {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            padding: 0.4rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .pain-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.72rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* ==================== DESIRES ==================== */
+        .desires-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .desire-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .desire-item:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+        }
+
+        .desire-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .desire-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .desire-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ==================== INSIGHTS ==================== */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .insight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+        }
+
+        .insight-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(255, 107, 53, 0.1);
+            position: absolute;
+            top: 0.5rem;
+            right: 1.5rem;
+            line-height: 1;
+        }
+
+        .insight-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--accent-light);
+        }
+
+        .insight-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .insight-card .highlight {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ==================== QUOTES ==================== */
+        .quote-block {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .quote-block p {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .quote-block .quote-source {
+            font-size: 0.75rem;
+            font-style: normal;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* ==================== FEAR MAP ==================== */
+        .fear-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .fear-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .fear-item:hover {
+            border-color: rgba(239, 83, 80, 0.3);
+        }
+
+        .fear-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(239, 83, 80, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .fear-content h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .fear-content p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ==================== LANGUAGE MAP ==================== */
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .language-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .language-box h4 {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .language-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .lang-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        /* ==================== GAPS ==================== */
+        .gaps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gap-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255, 107, 53, 0.03) 100%);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .gap-card::after {
+            content: 'GAP';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 0.55rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--accent);
+            background: rgba(255, 107, 53, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+        }
+
+        .gap-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            padding-right: 4rem;
+        }
+
+        .gap-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .gap-card .gap-opportunity {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .footer-brand {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            margin: 1.25rem auto;
+            border-radius: 2px;
+        }
+
+        .footer-sub {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+
+            .hero {
+                padding: 3.5rem 1.5rem 3rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .book-card-header {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+
+            .book-card-body {
+                padding: 1.25rem 1.5rem 1.5rem;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pain-map,
+            .insights-grid,
+            .gaps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .desires-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fear-item {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .desires-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stat-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- NAV BAR -->
+<div style="position:sticky;top:0;z-index:9999;background:rgba(10,10,10,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Pesquisas
+  </a>
+  <a href="../index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+<!-- /NAV BAR -->
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <img src="../ads-logo.png" alt="ADS Company" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="header-logo-text" style="display:none;">ADS Company</span>
+            </div>
+            <div class="header-badge">Pesquisa de Mercado</div>
+        </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+        <span class="hero-label">CAFF Engenharia &mdash; Intelig&ecirc;ncia de Mercado</span>
+        <h1>An&aacute;lise de Livros Amazon<br>Impermeabiliza&ccedil;&atilde;o &amp; Constru&ccedil;&atilde;o Civil</h1>
+        <p>Pesquisa profunda em livros, manuais t&eacute;cnicos e avalia&ccedil;&otilde;es de leitores na Amazon Brasil e EUA. Dores, desejos e gaps extra&iacute;dos dos coment&aacute;rios de quem compra, l&ecirc; e aplica no dia a dia da obra.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-number">14</div>
+                <div class="hero-stat-label">Livros Analisados</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">2</div>
+                <div class="hero-stat-label">Pa&iacute;ses Pesquisados</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">8</div>
+                <div class="hero-stat-label">Dores Mapeadas</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">10</div>
+                <div class="hero-stat-label">Insights para Ads</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <!-- ==================== LIVROS BRASIL ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Pilar 1 &mdash; Livros Brasil</span>
+                <h2 class="section-title">Livros de Impermeabiliza&ccedil;&atilde;o &mdash; Amazon Brasil</h2>
+                <p class="section-desc">Obras t&eacute;cnicas em portugu&ecirc;s que o p&uacute;blico brasileiro compra, l&ecirc; e comenta. An&aacute;lise de conte&uacute;do, avalia&ccedil;&otilde;es e linguagem dos leitores.</p>
+            </div>
+
+            <div class="books-grid">
+
+                <!-- LIVRO 1 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">01</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Impermeabiliza&ccedil;&atilde;o: Construindo o Conhecimento</h3>
+                            <p class="book-author">Por <strong>Maraysa Woloszyn, Gihad Mohamad, Rog&eacute;rio C. A. de Lima, Alexandre S. de Vargas</strong> &mdash; Editora Blucher</p>
+                            <div class="book-tags">
+                                <span class="book-tag">Refer&ecirc;ncia T&eacute;cnica</span>
+                                <span class="book-tag blue">6 Cap&iacute;tulos</span>
+                                <span class="book-tag green">Mais Citado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Apresenta os principais sistemas de impermeabiliza&ccedil;&atilde;o existentes no mercado, suas caracter&iacute;sticas, vantagens e desvantagens. Composto por seis cap&iacute;tulos que v&atilde;o dos conceitos b&aacute;sicos at&eacute; as manifesta&ccedil;&otilde;es patol&oacute;gicas. Guia destinado a profissionais da constru&ccedil;&atilde;o, estudantes de Engenharia Civil e Arquitetura. Reconhecido como a obra de refer&ecirc;ncia mais completa sobre impermeabiliza&ccedil;&atilde;o em portugu&ecirc;s.
+                        </p>
+                        <div class="review-grid">
+                            <div class="review-box positive">
+                                <div class="review-box-title positive">&#10003; O que os leitores elogiam</div>
+                                <ul>
+                                    <li>Abordagem did&aacute;tica e bem organizada por sistemas</li>
+                                    <li>Compara&ccedil;&atilde;o clara entre vantagens e desvantagens de cada sistema</li>
+                                    <li>Linguagem acess&iacute;vel tanto para engenheiros quanto para t&eacute;cnicos</li>
+                                    <li>Cap&iacute;tulo sobre patologias ajuda no diagn&oacute;stico de campo</li>
+                                </ul>
+                            </div>
+                            <div class="review-box negative">
+                                <div class="review-box-title negative">&#10007; O que sentem falta</div>
+                                <ul>
+                                    <li>Poucas fotos de obras reais e casos pr&aacute;ticos</li>
+                                    <li>N&atilde;o aborda or&ccedil;amento e custos de execu&ccedil;&atilde;o</li>
+                                    <li>Falta passo a passo de aplica&ccedil;&atilde;o para cada sistema</li>
+                                    <li>N&atilde;o traz normas atualizadas p&oacute;s-2020</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="book-insight">
+                            <div class="book-insight-title">Insight para a CAFF Engenharia</div>
+                            <p>Os leitores querem <strong>praticidade</strong>. Um conte&uacute;do da CAFF mostrando &ldquo;como identificamos o sistema ideal para cada obra&rdquo; com fotos reais e compara&ccedil;&atilde;o de custos preenche exatamente o gap que este livro deixa.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 2 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">02</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Patologia das Constru&ccedil;&otilde;es</h3>
+                            <p class="book-author">Por <strong>Gideon Oliveira de Sena</strong> &mdash; Mais de 8.000 exemplares vendidos</p>
+                            <div class="book-tags">
+                                <span class="book-tag">Mais Vendido BR</span>
+                                <span class="book-tag purple">QR Codes</span>
+                                <span class="book-tag blue">Casos Reais</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Considerado &ldquo;a b&iacute;blia das fissuras&rdquo; na constru&ccedil;&atilde;o civil brasileira. Dividido nas etapas construtivas: funda&ccedil;&otilde;es, estruturas, alvenaria, revestimento, veda&ccedil;&atilde;o, cobertura, impermeabiliza&ccedil;&atilde;o, inspe&ccedil;&atilde;o e diagn&oacute;sticos. Integrado com QR Codes que d&atilde;o acesso a v&iacute;deos e materiais complementares. O livro mais vendido de Engenharia Civil no Brasil.
+                        </p>
+                        <div class="book-rating">
+                            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                            <span class="rating-text">+8.000 exemplares vendidos &mdash; Mais vendido do segmento</span>
+                        </div>
+                        <div class="review-grid">
+                            <div class="review-box positive">
+                                <div class="review-box-title positive">&#10003; O que os leitores elogiam</div>
+                                <ul>
+                                    <li>Teoria esquematizada com quadros, tabelas e esquemas did&aacute;ticos</li>
+                                    <li>Casos reais de manifesta&ccedil;&otilde;es patol&oacute;gicas</li>
+                                    <li>QR Codes com conte&uacute;do extra enriquecem o aprendizado</li>
+                                    <li>Cobre impermeabiliza&ccedil;&atilde;o como parte do sistema construtivo completo</li>
+                                </ul>
+                            </div>
+                            <div class="review-box negative">
+                                <div class="review-box-title negative">&#10007; O que sentem falta</div>
+                                <ul>
+                                    <li>Foco acad&ecirc;mico &mdash; profissionais de campo querem mais praticidade</li>
+                                    <li>Pouca orienta&ccedil;&atilde;o sobre como or&ccedil;ar reparos</li>
+                                    <li>N&atilde;o ensina como vender solu&ccedil;&otilde;es ao cliente final</li>
+                                    <li>Exemplos concentrados em grandes obras, poucos em resid&ecirc;ncias</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="book-insight">
+                            <div class="book-insight-title">Insight para a CAFF Engenharia</div>
+                            <p>O p&uacute;blico consome este livro para <strong>diagnosticar problemas</strong>, mas n&atilde;o sabe como resolver. A CAFF pode se posicionar como &ldquo;quem resolve o que o livro s&oacute; explica&rdquo; &mdash; diagn&oacute;stico + solu&ccedil;&atilde;o + garantia.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 3 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">03</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Passo a Passo para Impermeabiliza&ccedil;&atilde;o de Constru&ccedil;&otilde;es Residenciais e Comerciais</h3>
+                            <p class="book-author">Por <strong>Sika S.A.</strong> &mdash; eBook gratuito / Kindle Unlimited</p>
+                            <div class="book-tags">
+                                <span class="book-tag green">Gratuito</span>
+                                <span class="book-tag">15 Ambientes</span>
+                                <span class="book-tag blue">Marca Sika</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Guia pr&aacute;tico da Sika (l&iacute;der mundial em solu&ccedil;&otilde;es para constru&ccedil;&atilde;o com mais de 100 anos de mercado) que ensina impermeabiliza&ccedil;&atilde;o de 15 ambientes diferentes. Cada se&ccedil;&atilde;o explica por que impermeabilizar aquela &aacute;rea, qual a solu&ccedil;&atilde;o t&eacute;cnica, quais os impermeabilizantes indicados e o passo a passo de aplica&ccedil;&atilde;o.
+                        </p>
+                        <div class="review-grid">
+                            <div class="review-box positive">
+                                <div class="review-box-title positive">&#10003; O que os leitores elogiam</div>
+                                <ul>
+                                    <li>Linguagem extremamente pr&aacute;tica e direta</li>
+                                    <li>Cobre 15 ambientes &mdash; do banheiro &agrave; laje</li>
+                                    <li>Passo a passo visual f&aacute;cil de seguir</li>
+                                    <li>Gratuito e de fonte confi&aacute;vel (Sika)</li>
+                                </ul>
+                            </div>
+                            <div class="review-box negative">
+                                <div class="review-box-title negative">&#10007; O que sentem falta</div>
+                                <ul>
+                                    <li>Recomenda apenas produtos Sika (vi&eacute;s comercial)</li>
+                                    <li>N&atilde;o compara sistemas concorrentes</li>
+                                    <li>Pouca profundidade t&eacute;cnica para engenheiros</li>
+                                    <li>N&atilde;o aborda diagn&oacute;stico de infiltra&ccedil;&otilde;es existentes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="book-insight">
+                            <div class="book-insight-title">Insight para a CAFF Engenharia</div>
+                            <p>O DIY (fa&ccedil;a voc&ecirc; mesmo) &eacute; tentador para o cliente, mas gera problemas. A CAFF pode mostrar &ldquo;por que o passo a passo n&atilde;o basta&rdquo; &mdash; destacando que <strong>cada obra exige diagn&oacute;stico profissional</strong> para escolher o sistema correto.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 4 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">04</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Patologias das Constru&ccedil;&otilde;es: Diagn&oacute;stico e Solu&ccedil;&otilde;es</h3>
+                            <p class="book-author">Por <strong>Conrobert Azenha</strong> &mdash; eBook Kindle</p>
+                            <div class="book-tags">
+                                <span class="book-tag">Diagn&oacute;stico</span>
+                                <span class="book-tag green">Casos Pr&aacute;ticos</span>
+                                <span class="book-tag purple">Linguagem Acess&iacute;vel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Guia t&eacute;cnico e pr&aacute;tico para quem trabalha ou estuda constru&ccedil;&atilde;o civil, engenharia, arquitetura e manuten&ccedil;&atilde;o predial. Abordagem clara e atualizada sobre os problemas mais comuns em edifica&ccedil;&otilde;es &mdash; causas, diagn&oacute;sticos e melhores formas de reparo. Inclui casos pr&aacute;ticos, exemplos vividos e dicas &uacute;teis com linguagem acess&iacute;vel.
+                        </p>
+                        <div class="review-grid">
+                            <div class="review-box positive">
+                                <div class="review-box-title positive">&#10003; O que os leitores elogiam</div>
+                                <ul>
+                                    <li>Conte&uacute;do pr&oacute;ximo da realidade do canteiro de obras</li>
+                                    <li>Exemplos reais vividos pelo autor</li>
+                                    <li>Dicas &uacute;teis que podem ser aplicadas imediatamente</li>
+                                    <li>Linguagem acess&iacute;vel para quem n&atilde;o &eacute; engenheiro</li>
+                                </ul>
+                            </div>
+                            <div class="review-box negative">
+                                <div class="review-box-title negative">&#10007; O que sentem falta</div>
+                                <ul>
+                                    <li>Formato digital dificulta consulta em obra</li>
+                                    <li>Poderia ter mais fotos e diagramas</li>
+                                    <li>N&atilde;o aprofunda em impermeabiliza&ccedil;&atilde;o especificamente</li>
+                                    <li>Falta checklist para inspe&ccedil;&atilde;o r&aacute;pida</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 5 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">05</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Manuten&ccedil;&atilde;o Predial</h3>
+                            <p class="book-author">Por <strong>M&aacute;rio S&eacute;rgio Pini</strong> &mdash; Editora Pini</p>
+                            <div class="book-tags">
+                                <span class="book-tag">Gest&atilde;o Predial</span>
+                                <span class="book-tag blue">Inspe&ccedil;&atilde;o</span>
+                                <span class="book-tag purple">Refer&ecirc;ncia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Reuni&atilde;o de artigos t&eacute;cnicos sobre manuten&ccedil;&atilde;o predial cobrindo planejamento e economia, riscos e seguran&ccedil;a, inspe&ccedil;&otilde;es t&eacute;cnicas e manuten&ccedil;&atilde;o preditiva. Indicado para propriet&aacute;rios, gestores de im&oacute;veis e profissionais de projeto, especifica&ccedil;&otilde;es, custos, per&iacute;cia e fiscaliza&ccedil;&atilde;o.
+                        </p>
+                        <div class="book-insight">
+                            <div class="book-insight-title">Insight para a CAFF Engenharia</div>
+                            <p>S&iacute;ndicos e gestores prediais s&atilde;o um p&uacute;blico-alvo estrat&eacute;gico. Eles compram este livro para <strong>entender manuten&ccedil;&atilde;o</strong>, mas precisam de quem <strong>execute</strong>. A CAFF pode criar conte&uacute;do espec&iacute;fico para condom&iacute;nios e gest&atilde;o predial.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 6 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">06</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Inspe&ccedil;&atilde;o Predial: Check-Up Predial &mdash; Guia da Boa Manuten&ccedil;&atilde;o</h3>
+                            <p class="book-author">Por <strong>Aiton Pessoa de Siqueira</strong> &mdash; 3&ordf; edi&ccedil;&atilde;o</p>
+                            <div class="book-tags">
+                                <span class="book-tag green">3&ordf; Edi&ccedil;&atilde;o</span>
+                                <span class="book-tag">Inspe&ccedil;&atilde;o</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Busca informar ao mercado imobili&aacute;rio a import&acirc;ncia da manuten&ccedil;&atilde;o predial &mdash; um problema cultural que a enxerga como custo em vez de investimento a longo prazo. A inspe&ccedil;&atilde;o predial &eacute; uma ferramenta para padronizar e sistematizar vistorias em edifica&ccedil;&otilde;es, aprimorada desde a d&eacute;cada de 1980.
+                        </p>
+                        <div class="book-insight">
+                            <div class="book-insight-title">Insight para a CAFF Engenharia</div>
+                            <p>O livro refor&ccedil;a que manuten&ccedil;&atilde;o &eacute; <strong>investimento, n&atilde;o custo</strong>. Esse &eacute; um &acirc;ngulo poderoso para a CAFF: &ldquo;Impermeabilizar agora custa X. Consertar depois custa 15X.&rdquo;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 7 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">07</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Patologias das Edifica&ccedil;&otilde;es: Manifesta&ccedil;&otilde;es nas Edifica&ccedil;&otilde;es e no Patrim&ocirc;nio Hist&oacute;rico</h3>
+                            <p class="book-author">Por <strong>Jefferson Luiz Alves Marinho e outros</strong> &mdash; 2&ordf; edi&ccedil;&atilde;o</p>
+                            <div class="book-tags">
+                                <span class="book-tag">2&ordf; Edi&ccedil;&atilde;o</span>
+                                <span class="book-tag purple">Patrim&ocirc;nio Hist&oacute;rico</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Aceita&ccedil;&atilde;o positiva entre leitores, estudantes e profissionais da &aacute;rea de Patologia das Edifica&ccedil;&otilde;es e Engenharia Diagn&oacute;stica. A segunda edi&ccedil;&atilde;o amplia o escopo incluindo manifesta&ccedil;&otilde;es patol&oacute;gicas em patrim&ocirc;nio hist&oacute;rico, segmento onde a impermeabiliza&ccedil;&atilde;o &eacute; cr&iacute;tica.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ==================== LIVROS INTERNACIONAIS ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Pilar 2 &mdash; Livros Internacionais</span>
+                <h2 class="section-title">Livros de Waterproofing &mdash; Amazon EUA</h2>
+                <p class="section-desc">Obras em ingl&ecirc;s com reviews detalhados que revelam dores universais sobre impermeabiliza&ccedil;&atilde;o. Coment&aacute;rios ricos em insights para comunica&ccedil;&atilde;o.</p>
+            </div>
+
+            <div class="books-grid">
+
+                <!-- LIVRO 8 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">08</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Construction Waterproofing Handbook</h3>
+                            <p class="book-author">Por <strong>Michael T. Kubal</strong> &mdash; 2&ordf; edi&ccedil;&atilde;o, McGraw-Hill</p>
+                            <div class="book-tags">
+                                <span class="book-tag">B&iacute;blia do Setor</span>
+                                <span class="book-tag green">Mais Citado EUA</span>
+                                <span class="book-tag blue">Profissional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            O manual mais abrangente sobre impermeabiliza&ccedil;&atilde;o na constru&ccedil;&atilde;o civil em l&iacute;ngua inglesa. Atualizado com t&eacute;cnicas de remedia&ccedil;&atilde;o de mofo. Cobre impermeabiliza&ccedil;&atilde;o subterr&acirc;nea, acima do solo, residencial, juntas de expans&atilde;o, aditivos, detec&ccedil;&atilde;o de vazamentos, seguran&ccedil;a e especifica&ccedil;&otilde;es t&eacute;cnicas. Escrito por especialista com experi&ecirc;ncia pr&aacute;tica como empreiteiro.
+                        </p>
+                        <div class="review-grid">
+                            <div class="review-box positive">
+                                <div class="review-box-title positive">&#10003; O que os leitores elogiam</div>
+                                <ul>
+                                    <li>Orienta&ccedil;&otilde;es pr&aacute;ticas superiores a textos acad&ecirc;micos</li>
+                                    <li>Experi&ecirc;ncia real do autor como empreiteiro faz a diferen&ccedil;a</li>
+                                    <li>&Uacute;til para criar especifica&ccedil;&otilde;es em projetos comerciais</li>
+                                    <li>Recomendado para propriet&aacute;rios, gestores e restauradores</li>
+                                </ul>
+                            </div>
+                            <div class="review-box negative">
+                                <div class="review-box-title negative">&#10007; O que os leitores reclamam</div>
+                                <ul>
+                                    <li>Problemas de impress&atilde;o: faixa branca no meio das p&aacute;ginas</li>
+                                    <li>Texto ileg&iacute;vel em diversas se&ccedil;&otilde;es</li>
+                                    <li>V&aacute;rias c&oacute;pias com linhas faltando nas p&aacute;ginas</li>
+                                    <li>Pre&ccedil;o alto para qualidade f&iacute;sica entregue</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="book-insight">
+                            <div class="book-insight-title">Insight para a CAFF Engenharia</div>
+                            <p>Leitores valorizam <strong>experi&ecirc;ncia pr&aacute;tica acima de teoria</strong>. A CAFF deve comunicar &ldquo;n&oacute;s fazemos isso todos os dias&rdquo; &mdash; mostrar obras reais, antes/depois, e depoimentos supera qualquer certificado acad&ecirc;mico.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 9 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">09</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">The Original Basement Waterproofing Handbook</h3>
+                            <p class="book-author">Por <strong>Jack Masters &amp; Randy Gumbacher</strong></p>
+                            <div class="book-tags">
+                                <span class="book-tag">Best Reviews</span>
+                                <span class="book-tag green">Suporte do Autor</span>
+                                <span class="book-tag purple">Economia Real</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Manual completo e direto sobre impermeabiliza&ccedil;&atilde;o de por&otilde;es e funda&ccedil;&otilde;es. Instru&ccedil;&otilde;es passo a passo para identificar e resolver problemas, com diagramas claros e linguagem acess&iacute;vel para leigos. O autor fornece seu e-mail e responde d&uacute;vidas pessoais dos leitores &mdash; atendimento que gerou elogios extraordin&aacute;rios.
+                        </p>
+                        <div class="book-rating">
+                            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                            <span class="rating-text">Reviews excepcionais &mdash; Leitores declaram ter economizado US$ 10-15 mil</span>
+                        </div>
+                        <div class="review-grid">
+                            <div class="review-box positive">
+                                <div class="review-box-title positive">&#10003; O que os leitores elogiam</div>
+                                <ul>
+                                    <li>&ldquo;Vale muitas vezes o pre&ccedil;o pago&rdquo; &mdash; unanimidade entre os leitores</li>
+                                    <li>Ajuda a identificar empreiteiros desonestos e negociar pre&ccedil;os justos</li>
+                                    <li>Autor responde e-mails pessoalmente em menos de 24h</li>
+                                    <li>Um leitor economizou US$ 10-15 mil ap&oacute;s consultar o autor</li>
+                                    <li>Diagramas claros e texto compreens&iacute;vel para leigos</li>
+                                </ul>
+                            </div>
+                            <div class="review-box negative">
+                                <div class="review-box-title negative">&#10007; O que os leitores reclamam</div>
+                                <ul>
+                                    <li>Focado no mercado americano (produtos e normas)</li>
+                                    <li>N&atilde;o cobre impermeabiliza&ccedil;&atilde;o de telhados/coberturas</li>
+                                    <li>Algumas t&eacute;cnicas podem estar desatualizadas</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="quote-block">
+                            <p>&ldquo;Esta informa&ccedil;&atilde;o ajuda enormemente o propriet&aacute;rio leigo que pode n&atilde;o saber se o empreiteiro est&aacute; recomendando a solu&ccedil;&atilde;o correta ou apenas tentando vender seu sistema particular de impermeabiliza&ccedil;&atilde;o.&rdquo;</p>
+                            <div class="quote-source">&mdash; Avalia&ccedil;&atilde;o verificada na Amazon</div>
+                        </div>
+
+                        <div class="book-insight">
+                            <div class="book-insight-title">Insight cr&iacute;tico para a CAFF Engenharia</div>
+                            <p>O review mais revelador: clientes t&ecirc;m <strong>medo de ser enganados</strong>. Compram livros para se proteger de empreiteiros desonestos. A CAFF precisa comunicar <strong>transpar&ecirc;ncia, honestidade e garantia</strong> &mdash; isso vale mais que pre&ccedil;o baixo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 10 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">10</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Waterproofing the Building Envelope</h3>
+                            <p class="book-author">Por <strong>Michael T. Kubal</strong></p>
+                            <div class="book-tags">
+                                <span class="book-tag">Princ&iacute;pio 90/1%</span>
+                                <span class="book-tag blue">Envelope Predial</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Explica o princ&iacute;pio cr&iacute;tico 90%/1% &mdash; por que 90% de todos os vazamentos s&atilde;o atribu&iacute;veis a apenas 1% da &aacute;rea do edif&iacute;cio. Mostra como selecionar materiais e sistemas, incluindo selantes e juntas de expans&atilde;o. Inclui dicas sobre testes, limpeza, manuten&ccedil;&atilde;o, reparo e padr&otilde;es ambientais.
+                        </p>
+                        <div class="book-insight">
+                            <div class="book-insight-title">Insight para a CAFF Engenharia</div>
+                            <p>O princ&iacute;pio 90/1% &eacute; um <strong>&acirc;ngulo poderoso para an&uacute;ncios</strong>: &ldquo;90% dos vazamentos v&ecirc;m de apenas 1% do seu im&oacute;vel. Sabemos exatamente onde encontrar esse 1%.&rdquo;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 11 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">11</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">The Manual of Below-Grade Waterproofing</h3>
+                            <p class="book-author">Por <strong>Justin Henshell</strong> &mdash; +50 anos de experi&ecirc;ncia</p>
+                            <div class="book-tags">
+                                <span class="book-tag">Subterr&acirc;neo</span>
+                                <span class="book-tag green">Expert</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Escrito por arquiteto que pratica desde 1952 e se especializou exclusivamente em problemas de umidade no envelope predial desde 1974. Autor de mais de 60 artigos sobre impermeabiliza&ccedil;&atilde;o. Foco em impermeabiliza&ccedil;&atilde;o subterr&acirc;nea &mdash; funda&ccedil;&otilde;es, subsolos e estruturas enterradas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- LIVRO 12 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">12</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">The Complete Modern Guide to Basement Waterproofing</h3>
+                            <p class="book-author">Por <strong>J. Scott Gallawa</strong> &mdash; +20 anos no setor</p>
+                            <div class="book-tags">
+                                <span class="book-tag">DIY Friendly</span>
+                                <span class="book-tag green">Suporte Pessoal</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Para qualquer pessoa que queira aprender sobre vazamentos em por&otilde;es e problemas de funda&ccedil;&atilde;o. O autor tem mais de 20 anos de experi&ecirc;ncia, tendo projetado e instalado milhares de sistemas de impermeabiliza&ccedil;&atilde;o. Linguagem direta e acess&iacute;vel com ilustra&ccedil;&otilde;es &uacute;teis em p&aacute;gina inteira. Autor responde e-mails pessoalmente.
+                        </p>
+                        <div class="review-grid">
+                            <div class="review-box positive">
+                                <div class="review-box-title positive">&#10003; O que os leitores elogiam</div>
+                                <ul>
+                                    <li>Instru&ccedil;&otilde;es passo a passo simples e detalhadas</li>
+                                    <li>Leitores impermeabilizaram seus pr&oacute;prios por&otilde;es com sucesso</li>
+                                    <li>Economia de milhares de d&oacute;lares evitando empreiteiros</li>
+                                    <li>Autor respondeu e-mails em menos de 24h</li>
+                                </ul>
+                            </div>
+                            <div class="review-box negative">
+                                <div class="review-box-title negative">&#10007; O que os leitores reclamam</div>
+                                <ul>
+                                    <li>Focado apenas em por&otilde;es/subsolos residenciais</li>
+                                    <li>N&atilde;o cobre impermeabiliza&ccedil;&atilde;o comercial</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 13 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">13</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Roofing, Flashing, and Waterproofing (For Pros by Pros)</h3>
+                            <p class="book-author">Por <strong>Editores da Fine Homebuilding</strong> &mdash; Taunton Press</p>
+                            <div class="book-tags">
+                                <span class="book-tag">Coberturas</span>
+                                <span class="book-tag blue">4.4 estrelas</span>
+                                <span class="book-tag purple">Profissional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Guia essencial da revista Fine Homebuilding com t&eacute;cnicas testadas em campo. Apresenta princ&iacute;pios b&aacute;sicos de impermeabiliza&ccedil;&atilde;o residencial para proteger contra intrus&atilde;o de &aacute;gua e prevenir falhas em telhados e rufos. Avalia&ccedil;&atilde;o m&eacute;dia de 4.4 estrelas.
+                        </p>
+                        <div class="book-rating">
+                            <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                            <span class="rating-text">4.4 estrelas &mdash; T&eacute;cnicas de campo testadas por profissionais</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVRO 14 -->
+                <div class="book-card">
+                    <div class="book-card-header">
+                        <div class="book-number">14</div>
+                        <div class="book-meta">
+                            <h3 class="book-title">Basement Waterproofing Techniques: Problems and Solutions</h3>
+                            <p class="book-author">Por <strong>Sammy Sevens</strong></p>
+                            <div class="book-tags">
+                                <span class="book-tag red" style="background:rgba(239,83,80,0.1);color:var(--red);border-color:rgba(239,83,80,0.15);">Mal Avaliado</span>
+                                <span class="book-tag">Superficial</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-description">
+                            Escrito por pedreiro com 15 anos de experi&ecirc;ncia em concreto. Recebeu cr&iacute;ticas severas dos leitores por falta de profundidade. Leitores reclamaram que se consegue mais informa&ccedil;&atilde;o em uma &uacute;nica p&aacute;gina web de qualquer site de reformas. P&aacute;ginas com 4-6 frases em tipo grande com espa&ccedil;amento excessivo. Cap&iacute;tulo sobre secagem de crawlspaces tem apenas 4 frases.
+                        </p>
+                        <div class="review-grid">
+                            <div class="review-box negative" style="grid-column: 1/-1;">
+                                <div class="review-box-title negative">&#10007; Avalia&ccedil;&atilde;o cr&iacute;tica dos leitores</div>
+                                <ul>
+                                    <li>&ldquo;Informa&ccedil;&atilde;o &oacute;bvia que qualquer pessoa com senso comum saberia&rdquo;</li>
+                                    <li>Cap&iacute;tulo sobre desvio de &aacute;gua n&atilde;o menciona sistemas de drenagem</li>
+                                    <li>Conselho de &ldquo;ligar um ventilador por algumas horas&rdquo; para inunda&ccedil;&atilde;o no por&atilde;o</li>
+                                    <li>Conte&uacute;do insuficiente para o pre&ccedil;o cobrado</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="book-insight">
+                            <div class="book-insight-title">Li&ccedil;&atilde;o para a CAFF Engenharia</div>
+                            <p>Este livro prova que o p&uacute;blico <strong>rejeita superf&iacute;cialidade</strong>. Clientes querem profundidade, detalhamento e solu&ccedil;&otilde;es reais. Conte&uacute;do gen&eacute;rico destr&oacute;i credibilidade. A CAFF deve sempre entregar <strong>informa&ccedil;&atilde;o de valor real</strong> na comunica&ccedil;&atilde;o.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ==================== MAPA DE DORES ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Pilar 3 &mdash; Intelig&ecirc;ncia de P&uacute;blico</span>
+                <h2 class="section-title">Mapa de Dores &mdash; Extra&iacute;das dos Coment&aacute;rios</h2>
+                <p class="section-desc">As dores reais que os leitores expressam nas avalia&ccedil;&otilde;es, coment&aacute;rios e reclama&ccedil;&otilde;es. Cada dor &eacute; uma oportunidade de comunica&ccedil;&atilde;o para a CAFF.</p>
+            </div>
+
+            <div class="pain-map">
+
+                <div class="pain-card">
+                    <div class="pain-card-icon red">&#128167;</div>
+                    <h3>Infiltra&ccedil;&atilde;o Recorrente</h3>
+                    <ul>
+                        <li>&ldquo;J&aacute; mandei consertar 3 vezes e volta sempre&rdquo;</li>
+                        <li>70% das reclama&ccedil;&otilde;es de v&iacute;cios construtivos s&atilde;o sobre infiltra&ccedil;&otilde;es</li>
+                        <li>Construtoras dizem que &eacute; &ldquo;problema de manuten&ccedil;&atilde;o&rdquo; e n&atilde;o resolvem</li>
+                        <li>O sonho da casa pr&oacute;pria vira pesadelo com umidade</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-card-icon orange">&#128176;</div>
+                    <h3>Custo de Reparo vs. Preven&ccedil;&atilde;o</h3>
+                    <ul>
+                        <li>Reparos custam at&eacute; 15x mais que a impermeabiliza&ccedil;&atilde;o original</li>
+                        <li>Clientes descobrem tarde demais que &ldquo;o barato saiu caro&rdquo;</li>
+                        <li>Falta de or&ccedil;amento claro gera desconfian&ccedil;a</li>
+                        <li>Medo de ser cobrado por servi&ccedil;os desnecess&aacute;rios</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-card-icon blue">&#128170;</div>
+                    <h3>Sa&uacute;de e Qualidade de Vida</h3>
+                    <ul>
+                        <li>Mofo e fungos causam asma, alergias e problemas respirat&oacute;rios</li>
+                        <li>Crian&ccedil;as e idosos s&atilde;o os mais afetados</li>
+                        <li>Ambientes insalubres geram ang&uacute;stia e frustra&ccedil;&atilde;o</li>
+                        <li>Impossibilidade de usar c&ocirc;modos por causa da umidade</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-card-icon green">&#128269;</div>
+                    <h3>Desconfian&ccedil;a do Profissional</h3>
+                    <ul>
+                        <li>Medo de contratar empreiteiro desonesto</li>
+                        <li>Compram livros para se proteger de golpes</li>
+                        <li>&ldquo;N&atilde;o sei se o empreiteiro est&aacute; recomendando a solu&ccedil;&atilde;o correta&rdquo;</li>
+                        <li>Procuram informa&ccedil;&atilde;o para negociar pre&ccedil;o justo</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-card-icon purple">&#9888;</div>
+                    <h3>Garantia e P&oacute;s-Servi&ccedil;o</h3>
+                    <ul>
+                        <li>&ldquo;Garantia vitalic&iacute;a&rdquo; que n&atilde;o cobre nada na pr&aacute;tica</li>
+                        <li>Empreiteiro desaparece depois do pagamento</li>
+                        <li>Solu&ccedil;&otilde;es incompletas que tratam sintomas, n&atilde;o a causa</li>
+                        <li>Falta de comunica&ccedil;&atilde;o durante e ap&oacute;s o servi&ccedil;o</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-card-icon red">&#127959;</div>
+                    <h3>Falta de Conhecimento T&eacute;cnico</h3>
+                    <ul>
+                        <li>N&atilde;o sabem diferenciar sistemas de impermeabiliza&ccedil;&atilde;o</li>
+                        <li>N&atilde;o entendem por que uma solu&ccedil;&atilde;o &eacute; melhor que outra</li>
+                        <li>Dificuldade em avaliar se o servi&ccedil;o foi bem executado</li>
+                        <li>Dependem da palavra do profissional sem conseguir verificar</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-card-icon orange">&#128200;</div>
+                    <h3>Desvaloriza&ccedil;&atilde;o do Im&oacute;vel</h3>
+                    <ul>
+                        <li>Infiltra&ccedil;&otilde;es depreciam o valor do im&oacute;vel significativamente</li>
+                        <li>Manchas de umidade afastam compradores e inquilinos</li>
+                        <li>Or&ccedil;amentos de reparo assustam na hora da vistoria</li>
+                        <li>Preju&iacute;zo financeiro a longo prazo por falta de manuten&ccedil;&atilde;o</li>
+                    </ul>
+                </div>
+
+                <div class="pain-card">
+                    <div class="pain-card-icon blue">&#9200;</div>
+                    <h3>Urg&ecirc;ncia e Desespero</h3>
+                    <ul>
+                        <li>Buscam solu&ccedil;&atilde;o quando o problema j&aacute; est&aacute; grave</li>
+                        <li>Press&atilde;o para resolver r&aacute;pido, medo de esperar mais</li>
+                        <li>Vulnerabilidade a &ldquo;solu&ccedil;&otilde;es r&aacute;pidas&rdquo; que n&atilde;o resolvem</li>
+                        <li>Tomam decis&otilde;es por desespero, n&atilde;o por estrat&eacute;gia</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ==================== MAPA DE DESEJOS ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Pilar 4 &mdash; Desejos do P&uacute;blico</span>
+                <h2 class="section-title">O Que os Clientes Realmente Querem</h2>
+                <p class="section-desc">Os desejos impl&iacute;citos e expl&iacute;citos extra&iacute;dos das avalia&ccedil;&otilde;es de livros e reclama&ccedil;&otilde;es de consumidores.</p>
+            </div>
+
+            <div class="desires-grid">
+
+                <div class="desire-item">
+                    <div class="desire-number">01</div>
+                    <div class="desire-text">Solu&ccedil;&atilde;o Definitiva</div>
+                    <div class="desire-sub">&ldquo;Quero resolver de uma vez por todas, sem voltar a ter problemas&rdquo;</div>
+                </div>
+
+                <div class="desire-item">
+                    <div class="desire-number">02</div>
+                    <div class="desire-text">Transpar&ecirc;ncia no Pre&ccedil;o</div>
+                    <div class="desire-sub">&ldquo;Quero saber exatamente o que vou pagar e por que custa isso&rdquo;</div>
+                </div>
+
+                <div class="desire-item">
+                    <div class="desire-number">03</div>
+                    <div class="desire-text">Garantia Real</div>
+                    <div class="desire-sub">&ldquo;Quero garantia que funcione de verdade, n&atilde;o s&oacute; no papel&rdquo;</div>
+                </div>
+
+                <div class="desire-item">
+                    <div class="desire-number">04</div>
+                    <div class="desire-text">Profissional Confi&aacute;vel</div>
+                    <div class="desire-sub">&ldquo;Quero confiar que est&aacute; sendo feito o certo para a minha situa&ccedil;&atilde;o&rdquo;</div>
+                </div>
+
+                <div class="desire-item">
+                    <div class="desire-number">05</div>
+                    <div class="desire-text">Entender o Processo</div>
+                    <div class="desire-sub">&ldquo;Quero que me expliquem o que v&atilde;o fazer e por que isso resolve&rdquo;</div>
+                </div>
+
+                <div class="desire-item">
+                    <div class="desire-number">06</div>
+                    <div class="desire-text">Antes e Depois</div>
+                    <div class="desire-sub">&ldquo;Quero ver resultados reais de outros clientes, n&atilde;o s&oacute; promessas&rdquo;</div>
+                </div>
+
+                <div class="desire-item">
+                    <div class="desire-number">07</div>
+                    <div class="desire-text">Comunica&ccedil;&atilde;o Clara</div>
+                    <div class="desire-sub">&ldquo;Quero acompanhar o servi&ccedil;o e ser informado sobre tudo&rdquo;</div>
+                </div>
+
+                <div class="desire-item">
+                    <div class="desire-number">08</div>
+                    <div class="desire-text">Proteger o Patrim&ocirc;nio</div>
+                    <div class="desire-sub">&ldquo;Quero que meu im&oacute;vel pare de se deteriorar e mantenha o valor&rdquo;</div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ==================== MEDOS ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Pilar 5 &mdash; Medos do Cliente</span>
+                <h2 class="section-title">10 Red Flags &mdash; O Que o Cliente Teme ao Contratar</h2>
+                <p class="section-desc">Medos extra&iacute;dos de reviews de livros, Reclame Aqui e sites de orienta&ccedil;&atilde;o ao consumidor. Cada medo &eacute; uma barreira que a comunica&ccedil;&atilde;o da CAFF precisa derrubar.</p>
+            </div>
+
+            <div class="fear-list">
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#128176;</div>
+                    <div class="fear-content">
+                        <h4>Or&ccedil;amentos Irrealisticamente Baixos</h4>
+                        <p>Golpistas usam pre&ccedil;os muito baixos para fechar contrato, depois inflam custos no meio do projeto ou usam materiais inferiores que falham rapidamente.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#128196;</div>
+                    <div class="fear-content">
+                        <h4>Falta de Credenciais</h4>
+                        <p>Empreiteiros sem licen&ccedil;a ou seguro deixam o propriet&aacute;rio respons&aacute;vel por acidentes e trabalho mal feito, sem recurso legal.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#9888;</div>
+                    <div class="fear-content">
+                        <h4>Vendas por Press&atilde;o e Medo</h4>
+                        <p>Linguagem como &ldquo;sua estrutura pode desabar&rdquo; for&ccedil;a decis&otilde;es apressadas sem avalia&ccedil;&atilde;o adequada. Cliente se sente manipulado.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#128221;</div>
+                    <div class="fear-content">
+                        <h4>Contratos Vagos</h4>
+                        <p>Acordos verbais e termos imprecisos n&atilde;o oferecem prote&ccedil;&atilde;o se o trabalho for feito incorretamente. Cliente fica desprotegido.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#128269;</div>
+                    <div class="fear-content">
+                        <h4>Nenhum Hist&oacute;rico Verific&aacute;vel</h4>
+                        <p>Aus&ecirc;ncia de portf&oacute;lio, refer&ecirc;ncias ou presen&ccedil;a online. Avalia&ccedil;&otilde;es falsas ou inexistentes indicam falta de confian&ccedil;a.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#128184;</div>
+                    <div class="fear-content">
+                        <h4>Pagamento Antecipado Excessivo</h4>
+                        <p>Exigir 50% ou mais de entrada sinaliza potencial abandono da obra. Pagamentos devem ser vinculados a etapas conclu&iacute;das.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#128104;</div>
+                    <div class="fear-content">
+                        <h4>Equipe Desqualificada</h4>
+                        <p>Funcion&aacute;rios que n&atilde;o conseguem explicar tipos de materiais ou especifica&ccedil;&otilde;es t&eacute;cnicas demonstram falta de expertise.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#9201;</div>
+                    <div class="fear-content">
+                        <h4>&ldquo;Solu&ccedil;&atilde;o R&aacute;pida&rdquo; em 1 Dia</h4>
+                        <p>Solu&ccedil;&otilde;es tempor&aacute;rias de superf&iacute;cie mascaram problemas subjacentes em vez de tratar a causa raiz. O problema volta pior.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#128247;</div>
+                    <div class="fear-content">
+                        <h4>Comunica&ccedil;&atilde;o Inexistente</h4>
+                        <p>Dificuldade em contatar o empreiteiro, falta de atualiza&ccedil;&otilde;es por escrito e desorganiza&ccedil;&atilde;o sugerem desonestidade.</p>
+                    </div>
+                </div>
+
+                <div class="fear-item">
+                    <div class="fear-icon">&#128683;</div>
+                    <div class="fear-content">
+                        <h4>Sem Garantia Escrita</h4>
+                        <p>Aus&ecirc;ncia de garantias formais significa zero responsabilidade ap&oacute;s o pagamento. Sem garantia = sem compromisso.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ==================== LINGUAGEM DO PÚBLICO ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Pilar 6 &mdash; Linguagem do P&uacute;blico</span>
+                <h2 class="section-title">Palavras e Express&otilde;es Reais do P&uacute;blico</h2>
+                <p class="section-desc">As palavras exatas que os leitores usam em reviews e reclama&ccedil;&otilde;es. Usar essa linguagem nos an&uacute;ncios gera identifica&ccedil;&atilde;o instant&acirc;nea.</p>
+            </div>
+
+            <div class="language-grid">
+
+                <div class="language-box">
+                    <h4>Descrevendo o Problema</h4>
+                    <div class="language-tags">
+                        <span class="lang-tag">infiltra&ccedil;&atilde;o</span>
+                        <span class="lang-tag">vazamento</span>
+                        <span class="lang-tag">umidade</span>
+                        <span class="lang-tag">mofo</span>
+                        <span class="lang-tag">bolor</span>
+                        <span class="lang-tag">mancha na parede</span>
+                        <span class="lang-tag">goteira</span>
+                        <span class="lang-tag">parede descascando</span>
+                        <span class="lang-tag">cheiro de mofo</span>
+                        <span class="lang-tag">&aacute;gua entrando</span>
+                        <span class="lang-tag">parede &uacute;mida</span>
+                        <span class="lang-tag">teto pingando</span>
+                    </div>
+                </div>
+
+                <div class="language-box">
+                    <h4>Expressando Frustra&ccedil;&atilde;o</h4>
+                    <div class="language-tags">
+                        <span class="lang-tag">j&aacute; tentei de tudo</span>
+                        <span class="lang-tag">volta sempre</span>
+                        <span class="lang-tag">n&atilde;o aguento mais</span>
+                        <span class="lang-tag">pesadelo</span>
+                        <span class="lang-tag">jogar dinheiro fora</span>
+                        <span class="lang-tag">o barato saiu caro</span>
+                        <span class="lang-tag">ang&uacute;stia</span>
+                        <span class="lang-tag">frustra&ccedil;&atilde;o</span>
+                        <span class="lang-tag">medo de contratar</span>
+                        <span class="lang-tag">n&atilde;o sei em quem confiar</span>
+                    </div>
+                </div>
+
+                <div class="language-box">
+                    <h4>Buscando Solu&ccedil;&atilde;o</h4>
+                    <div class="language-tags">
+                        <span class="lang-tag">resolver de vez</span>
+                        <span class="lang-tag">solu&ccedil;&atilde;o definitiva</span>
+                        <span class="lang-tag">garantia</span>
+                        <span class="lang-tag">profissional s&eacute;rio</span>
+                        <span class="lang-tag">empresa de confian&ccedil;a</span>
+                        <span class="lang-tag">or&ccedil;amento justo</span>
+                        <span class="lang-tag">pode contratar sem medo</span>
+                        <span class="lang-tag">indica&ccedil;&atilde;o</span>
+                        <span class="lang-tag">refer&ecirc;ncia</span>
+                        <span class="lang-tag">antes e depois</span>
+                    </div>
+                </div>
+
+                <div class="language-box">
+                    <h4>Termos T&eacute;cnicos Populares</h4>
+                    <div class="language-tags">
+                        <span class="lang-tag">impermeabiliza&ccedil;&atilde;o</span>
+                        <span class="lang-tag">manta asf&aacute;ltica</span>
+                        <span class="lang-tag">laje</span>
+                        <span class="lang-tag">funda&ccedil;&atilde;o</span>
+                        <span class="lang-tag">trinca</span>
+                        <span class="lang-tag">fissura</span>
+                        <span class="lang-tag">rejunte</span>
+                        <span class="lang-tag">prote&ccedil;&atilde;o mec&acirc;nica</span>
+                        <span class="lang-tag">estanqueidade</span>
+                        <span class="lang-tag">vida &uacute;til</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ==================== GAPS ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Pilar 7 &mdash; Gaps de Mercado</span>
+                <h2 class="section-title">O Que Ningu&eacute;m Est&aacute; Fazendo (e a CAFF Pode Fazer)</h2>
+                <p class="section-desc">Gaps identificados nos livros, reviews e reclama&ccedil;&otilde;es. Cada gap &eacute; uma oportunidade de posicionamento.</p>
+            </div>
+
+            <div class="gaps-grid">
+
+                <div class="gap-card">
+                    <h3>Educa&ccedil;&atilde;o do Cliente</h3>
+                    <p>Nenhum concorrente ensina o cliente a entender o que est&aacute; sendo feito. Livros s&atilde;o t&eacute;cnicos demais ou superficiais demais. N&atilde;o existe conte&uacute;do do tipo &ldquo;como avaliar se a impermeabiliza&ccedil;&atilde;o foi bem feita&rdquo; em linguagem acess&iacute;vel.</p>
+                    <div class="gap-opportunity">Oportunidade: criar conte&uacute;do educativo que gera confian&ccedil;a e autoridade.</div>
+                </div>
+
+                <div class="gap-card">
+                    <h3>Transpar&ecirc;ncia no Processo</h3>
+                    <p>Clientes reclamam que n&atilde;o sabem o que est&aacute; sendo aplicado, por que aquele sistema foi escolhido e quanto vai durar. Ningu&eacute;m documenta o processo de forma vis&iacute;vel e acess&iacute;vel para o cliente.</p>
+                    <div class="gap-opportunity">Oportunidade: enviar relat&oacute;rio fotogr&aacute;fico de cada etapa via WhatsApp.</div>
+                </div>
+
+                <div class="gap-card">
+                    <h3>Garantia com Substância</h3>
+                    <p>Reviews revelam que &ldquo;garantia vitalícia&rdquo; &eacute; a principal reclama&ccedil;&atilde;o &mdash; promessas vagas sem cobertura real. Ningu&eacute;m oferece garantia com termos claros, inspe&ccedil;&atilde;o peri&oacute;dica e compromisso escrito.</p>
+                    <div class="gap-opportunity">Oportunidade: garantia documentada com inspe&ccedil;&atilde;o anual inclu&iacute;da.</div>
+                </div>
+
+                <div class="gap-card">
+                    <h3>Or&ccedil;amento Detalhado e Educativo</h3>
+                    <p>Livros n&atilde;o abordam custos. Empresas n&atilde;o detalham. Clientes ficam no escuro. N&atilde;o existe padr&atilde;o de or&ccedil;amento que explique &ldquo;por que custa isso&rdquo; de forma transparente.</p>
+                    <div class="gap-opportunity">Oportunidade: or&ccedil;amento com compara&ccedil;&atilde;o custo de fazer agora vs. custo de reparar depois.</div>
+                </div>
+
+                <div class="gap-card">
+                    <h3>Conte&uacute;do Regional (Interior da Bahia)</h3>
+                    <p>Todo conte&uacute;do sobre impermeabiliza&ccedil;&atilde;o &eacute; gen&eacute;rico ou focado em capitais. N&atilde;o existe refer&ecirc;ncia espec&iacute;fica para o clima, solo e constru&ccedil;&otilde;es do interior baiano.</p>
+                    <div class="gap-opportunity">Oportunidade: posicionar como especialista em impermeabiliza&ccedil;&atilde;o para o clima e solo da regi&atilde;o.</div>
+                </div>
+
+                <div class="gap-card">
+                    <h3>P&oacute;s-Servi&ccedil;o e Relacionamento</h3>
+                    <p>Autores de livros que respondem e-mails recebem reviews incr&iacute;veis. Empreiteiros que desaparecem ap&oacute;s o pagamento recebem as piores avalia&ccedil;&otilde;es. O p&oacute;s-servi&ccedil;o &eacute; o maior diferencial poss&iacute;vel.</p>
+                    <div class="gap-opportunity">Oportunidade: follow-up 30/90/180 dias com inspe&ccedil;&atilde;o de cortesia.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ==================== INSIGHTS PARA COMUNICAÇÃO ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Pilar 8 &mdash; Intelig&ecirc;ncia para Comunica&ccedil;&atilde;o</span>
+                <h2 class="section-title">10 Insights para An&uacute;ncios e Conte&uacute;do da CAFF</h2>
+                <p class="section-desc">Diretrizes de comunica&ccedil;&atilde;o extra&iacute;das diretamente da an&aacute;lise dos livros, reviews e reclama&ccedil;&otilde;es.</p>
+            </div>
+
+            <div class="insights-grid">
+
+                <div class="insight-card">
+                    <div class="insight-number">01</div>
+                    <h3>Lidere com o Medo, Resolva com Confian&ccedil;a</h3>
+                    <p>O cliente n&atilde;o compra impermeabiliza&ccedil;&atilde;o &mdash; ele compra <span class="highlight">fim da ang&uacute;stia</span>. Headline: &ldquo;Cansado de ver a infiltra&ccedil;&atilde;o voltar? A CAFF resolve de vez.&rdquo;</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">02</div>
+                    <h3>Use o Princ&iacute;pio 90/1%</h3>
+                    <p>&ldquo;90% dos vazamentos v&ecirc;m de apenas 1% do seu im&oacute;vel. <span class="highlight">N&oacute;s sabemos exatamente onde est&aacute; esse 1%.</span>&rdquo; Dado t&eacute;cnico que impressiona e gera autoridade instant&acirc;nea.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">03</div>
+                    <h3>Mostre o Custo da Inação</h3>
+                    <p>&ldquo;Impermeabilizar agora custa R$ X. <span class="highlight">Consertar depois custa at&eacute; 15x mais.</span>&rdquo; Dado real de estudos acad&ecirc;micos que cria urg&ecirc;ncia leg&iacute;tima.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">04</div>
+                    <h3>Antes e Depois &Eacute; a Prova Social Suprema</h3>
+                    <p>Leitores de livros querem ver <span class="highlight">resultados reais</span>. Fotos de obras, v&iacute;deos do processo e depoimentos de clientes reais superam qualquer argumento t&eacute;cnico.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">05</div>
+                    <h3>Transpar&ecirc;ncia Vence Pre&ccedil;o</h3>
+                    <p>O review mais elogiado da Amazon: autor que responde d&uacute;vidas pessoalmente. <span class="highlight">Atendimento transparente &eacute; mais valioso que pre&ccedil;o baixo.</span> Mostre o processo, explique as escolhas.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">06</div>
+                    <h3>Ataque o &ldquo;Fa&ccedil;a Voc&ecirc; Mesmo&rdquo;</h3>
+                    <p>Guias de DIY vendem bem, mas geram problemas. <span class="highlight">&ldquo;O passo a passo n&atilde;o substitui o diagn&oacute;stico profissional.&rdquo;</span> Posicione a CAFF como quem diagnostica, n&atilde;o s&oacute; executa.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">07</div>
+                    <h3>Garantia Como Diferencial Central</h3>
+                    <p>O maior medo &eacute; &ldquo;e se n&atilde;o funcionar?&rdquo;. <span class="highlight">Ofere&ccedil;a garantia documentada com inspe&ccedil;&atilde;o anual.</span> Isso sozinho elimina a principal obje&ccedil;&atilde;o de compra.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">08</div>
+                    <h3>Sa&uacute;de da Fam&iacute;lia Como Gatilho</h3>
+                    <p>Mofo causa asma, alergias e problemas respirat&oacute;rios, especialmente em <span class="highlight">crian&ccedil;as e idosos</span>. &ldquo;Sua fam&iacute;lia merece um lar sem mofo&rdquo; &eacute; mais poderoso que qualquer argumento t&eacute;cnico.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">09</div>
+                    <h3>Posicione-se Como Especialista Regional</h3>
+                    <p>Nenhum concorrente fala sobre o <span class="highlight">clima e o solo espec&iacute;fico do interior da Bahia</span>. &ldquo;Especialistas em impermeabiliza&ccedil;&atilde;o para o nosso clima&rdquo; cria diferencia&ccedil;&atilde;o instant&acirc;nea.</p>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-number">10</div>
+                    <h3>Or&ccedil;amento Educativo = Convers&atilde;o</h3>
+                    <p>Em vez de enviar um n&uacute;mero, envie um <span class="highlight">or&ccedil;amento que explica por que cada item &eacute; necess&aacute;rio</span>. O cliente que entende, compra. O que n&atilde;o entende, desconfia.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ==================== NORMAS TÉCNICAS ==================== -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-label">Refer&ecirc;ncia T&eacute;cnica</span>
+                <h2 class="section-title">Normas Brasileiras de Impermeabiliza&ccedil;&atilde;o</h2>
+                <p class="section-desc">Normas citadas nos livros analisados. Citar normas na comunica&ccedil;&atilde;o refor&ccedil;a autoridade t&eacute;cnica.</p>
+            </div>
+
+            <div class="desires-grid">
+                <div class="desire-item" style="text-align:left;">
+                    <div class="desire-number" style="font-size:1.2rem;">NBR 9574</div>
+                    <div class="desire-text">Execu&ccedil;&atilde;o de Impermeabiliza&ccedil;&atilde;o</div>
+                    <div class="desire-sub">Sistematiza os processos de execu&ccedil;&atilde;o e exig&ecirc;ncias m&iacute;nimas para desempenho (2008)</div>
+                </div>
+                <div class="desire-item" style="text-align:left;">
+                    <div class="desire-number" style="font-size:1.2rem;">NBR 9575</div>
+                    <div class="desire-text">Sele&ccedil;&atilde;o e Projeto de Impermeabiliza&ccedil;&atilde;o</div>
+                    <div class="desire-sub">Define termos t&eacute;cnicos, especifica&ccedil;&otilde;es e exig&ecirc;ncias de projeto (2010)</div>
+                </div>
+                <div class="desire-item" style="text-align:left;">
+                    <div class="desire-number" style="font-size:1.2rem;">NBR 16747</div>
+                    <div class="desire-text">Inspe&ccedil;&atilde;o Predial</div>
+                    <div class="desire-sub">Diretrizes para inspe&ccedil;&atilde;o predial com metodologia padronizada (2018)</div>
+                </div>
+                <div class="desire-item" style="text-align:left;">
+                    <div class="desire-number" style="font-size:1.2rem;">72h</div>
+                    <div class="desire-text">Ensaio de Estanqueidade</div>
+                    <div class="desire-sub">Per&iacute;odo m&iacute;nimo do teste com &aacute;gua limpa para comprovar efici&ecirc;ncia da impermeabiliza&ccedil;&atilde;o</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-text">
+            <span class="footer-brand">ADS Company</span> &mdash; Pesquisa de Mercado
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-sub">CAFF Engenharia &mdash; An&aacute;lise de Livros Amazon &mdash; Maio 2026</div>
+        <div class="footer-sub" style="margin-top:0.25rem;">14 livros analisados &bull; 2 pa&iacute;ses pesquisados &bull; 8 dores mapeadas &bull; 10 insights para comunica&ccedil;&atilde;o</div>
+    </footer>
+
+</body>
+</html>

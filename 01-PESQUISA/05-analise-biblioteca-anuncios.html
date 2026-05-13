@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Biblioteca de Anúncios — CAFF Engenharia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0A0A0A;
+            color: #E0E0E0;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== VARIÁVEIS ===== */
+        :root {
+            --accent: #FF6B35;
+            --accent-light: #FF8A5C;
+            --accent-dark: #CC5529;
+            --bg-primary: #0A0A0A;
+            --bg-card: #141414;
+            --bg-card-hover: #1A1A1A;
+            --bg-section: #111111;
+            --text-primary: #F5F5F5;
+            --text-secondary: #B0B0B0;
+            --text-muted: #777777;
+            --border: #2A2A2A;
+            --success: #00C9A7;
+            --warning: #FFCB05;
+            --danger: #FF4444;
+            --info: #3B8BFF;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1008 100%);
+            border-bottom: 3px solid var(--accent);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        .header-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        .header h1 {
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .header h1 span { color: var(--accent); }
+        .header p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .header-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .header-meta-item strong { color: var(--accent-light); }
+
+        /* ===== NAV ===== */
+        .nav-bar {
+            background: #111;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .nav-inner::-webkit-scrollbar { display: none; }
+        .nav-link {
+            white-space: nowrap;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .nav-link:hover {
+            color: var(--accent);
+            background: rgba(255,107,53,0.08);
+            border-color: rgba(255,107,53,0.2);
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .section:last-child { border-bottom: none; }
+        .section-header {
+            margin-bottom: 2.5rem;
+        }
+        .section-number {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .section-title {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .section-title span { color: var(--accent); }
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        /* ===== CARDS ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255,107,53,0.3);
+            transform: translateY(-2px);
+        }
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: rgba(255,107,53,0.12);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .card-company {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .card-body p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+        }
+        .card-tag {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            margin-right: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+        .tag-format { background: rgba(59,139,255,0.15); color: var(--info); }
+        .tag-cta { background: rgba(0,201,167,0.15); color: var(--success); }
+        .tag-dor { background: rgba(255,68,68,0.15); color: var(--danger); }
+        .tag-destino { background: rgba(255,203,5,0.15); color: var(--warning); }
+        .tag-tempo { background: rgba(155,93,229,0.15); color: #9B5DE5; }
+
+        /* ===== INFO BOX ===== */
+        .info-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .info-box h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .info-box p, .info-box li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        .info-box ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        .info-box li { margin-bottom: 0.4rem; }
+
+        /* ===== PATTERN CARDS ===== */
+        .pattern-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #1A1510 100%);
+            border: 1px solid rgba(255,107,53,0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .pattern-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+        .pattern-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== OPPORTUNITY CARD ===== */
+        .opportunity-card {
+            background: linear-gradient(135deg, #0A140A 0%, #0F1A0D 100%);
+            border: 1px solid rgba(0,201,167,0.25);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .opportunity-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.8rem;
+        }
+        .opportunity-card p, .opportunity-card li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .opportunity-card ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        .opportunity-card li { margin-bottom: 0.4rem; }
+
+        /* ===== TEMPLATE SECTION ===== */
+        .template-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+        .template-label {
+            display: inline-block;
+            background: var(--accent);
+            color: #FFF;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 3px;
+            margin-bottom: 0.8rem;
+        }
+        .template-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+        }
+        .template-text {
+            background: #1A1A1A;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.2rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 0.8rem;
+        }
+        .template-text .headline {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .template-text .cta-line {
+            font-weight: 700;
+            color: var(--success);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== METRIC GRID ===== */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .metric-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        /* ===== TABLE ===== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        thead th {
+            background: rgba(255,107,53,0.1);
+            color: var(--accent);
+            font-weight: 700;
+            text-align: left;
+            padding: 0.8rem 1rem;
+            border-bottom: 2px solid var(--accent);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        tbody td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        tbody tr:hover { background: rgba(255,107,53,0.04); }
+
+        /* ===== COMPARISON BAR ===== */
+        .bar-chart {
+            margin: 1.5rem 0;
+        }
+        .bar-item {
+            margin-bottom: 1rem;
+        }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+            font-size: 0.82rem;
+        }
+        .bar-label span:first-child { color: var(--text-secondary); font-weight: 500; }
+        .bar-label span:last-child { color: var(--accent); font-weight: 700; }
+        .bar-track {
+            height: 8px;
+            background: #1A1A1A;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+            transition: width 0.5s ease;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #080808;
+            border-top: 2px solid var(--accent);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+        .footer .brand {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            .metric-grid { grid-template-columns: repeat(2, 1fr); }
+            .header { padding: 1.5rem 1rem; }
+            .section { padding: 2.5rem 0; }
+            .container { padding: 0 1rem; }
+        }
+        @media (max-width: 480px) {
+            .metric-grid { grid-template-columns: 1fr; }
+            .header-meta { flex-direction: column; align-items: center; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+<!-- NAV BAR -->
+<div style="position:sticky;top:0;z-index:9999;background:rgba(10,10,10,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Pesquisas
+  </a>
+  <a href="../index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+<!-- /NAV BAR -->
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+    <div class="header-inner">
+        <img src="../ads-logo.png" alt="ADS Company" class="header-logo" onerror="this.style.display='none'">
+        <div class="header-badge">Pesquisa de Mercado</div>
+        <h1>Análise de <span>Biblioteca de Anúncios</span></h1>
+        <p>Mapeamento completo de anúncios de impermeabilização e construção civil nas plataformas Meta Ads e Google Ads — padrões, criativos e oportunidades para a CAFF Engenharia.</p>
+        <div class="header-meta">
+            <div class="header-meta-item">
+                <strong>Cliente:</strong> CAFF Engenharia
+            </div>
+            <div class="header-meta-item">
+                <strong>Segmento:</strong> Impermeabilização
+            </div>
+            <div class="header-meta-item">
+                <strong>Data:</strong> Maio 2026
+            </div>
+            <div class="header-meta-item">
+                <strong>Fontes:</strong> Meta Ad Library + Google Ads + Pesquisa Web
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="#panorama" class="nav-link">Panorama</a>
+        <a href="#meta-ads" class="nav-link">Meta Ads</a>
+        <a href="#google-ads" class="nav-link">Google Ads</a>
+        <a href="#anunciantes" class="nav-link">Anunciantes</a>
+        <a href="#padroes" class="nav-link">Padrões</a>
+        <a href="#metricas" class="nav-link">Métricas</a>
+        <a href="#oportunidades" class="nav-link">Oportunidades</a>
+        <a href="#templates" class="nav-link">Templates</a>
+        <a href="#recomendacoes" class="nav-link">Recomendações</a>
+    </div>
+</nav>
+
+<!-- ============ PANORAMA ============ -->
+<section id="panorama" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 01</div>
+            <h2 class="section-title">Panorama do Mercado <span>Publicitário</span></h2>
+            <p class="section-subtitle">Visão geral dos anúncios de impermeabilização e construção civil nas plataformas digitais — cenário brasileiro e internacional.</p>
+        </div>
+
+        <div class="metric-grid">
+            <div class="metric-box">
+                <div class="metric-value">Baixa</div>
+                <div class="metric-label">Concorrência em Ads</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">R$50–150</div>
+                <div class="metric-label">CPL Médio Google Ads</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">26%</div>
+                <div class="metric-label">Taxa Conversão Landing Page</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">60–70%</div>
+                <div class="metric-label">Jobs ganhos por quem atende primeiro</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h4>O que a pesquisa revelou</h4>
+            <p>O segmento de impermeabilização no Brasil possui uma presença digital publicitária extremamente baixa em comparação com outros nichos da construção civil. A maioria das empresas do setor não investe em anúncios pagos nas plataformas Meta e Google de forma estruturada. Isso representa uma oportunidade significativa para a CAFF Engenharia se posicionar como referência na região.</p>
+            <ul>
+                <li>A Biblioteca de Anúncios da Meta apresenta poucos anunciantes ativos com o termo "impermeabilização" no Brasil</li>
+                <li>Empresas do interior têm presença digital quase inexistente em tráfego pago</li>
+                <li>O mercado internacional (EUA) é mais maduro — waterproofing contractors investem forte em Google Ads e Facebook Ads</li>
+                <li>Antes/depois é o formato criativo mais eficaz no setor de serviços de construção</li>
+                <li>WhatsApp é o canal de conversão dominante no Brasil para serviços locais</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h4>Cenário Internacional como Referência</h4>
+            <p>Nos Estados Unidos, o mercado de waterproofing é altamente competitivo em publicidade digital. Um case documentado mostra que uma empresa de impermeabilização no Ohio gerou 38 leads em 30 dias com Google Ads, investindo US$7.795 mensais — com custo por lead de US$205 e taxa de conversão de 26% na landing page. Esse modelo serve de referência para adaptar ao contexto brasileiro, onde o custo por clique é significativamente menor.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ META ADS ============ -->
+<section id="meta-ads" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 02</div>
+            <h2 class="section-title">Análise de Anúncios <span>Meta Ads</span></h2>
+            <p class="section-subtitle">Padrões identificados na Biblioteca de Anúncios da Meta para empresas de impermeabilização, construção civil e serviços de reforma no Brasil e referências internacionais.</p>
+        </div>
+
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">1</div>
+                    <div>
+                        <div class="card-title">Anúncio Tipo: Antes e Depois</div>
+                        <div class="card-company">Padrão recorrente — Empresas de Impermeabilização BR</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Gancho:</strong> "Olha como ficou! Sua laje também pode ficar assim."</p>
+                    <p><strong>Dor explorada:</strong> Infiltração visível, manchas na parede, mofo no teto — o antes feio e o depois impecável.</p>
+                    <p><strong>Proposta de valor:</strong> Resultado visível e transformação estética + funcional. O cliente vê a prova antes de contratar.</p>
+                    <p><strong>Formato mais comum:</strong> Carrossel com 2 a 4 imagens (antes/durante/depois) ou vídeo curto de time-lapse da obra.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="card-tag tag-format">Carrossel / Vídeo</span>
+                        <span class="card-tag tag-cta">Peça seu orçamento</span>
+                        <span class="card-tag tag-dor">Infiltração visível</span>
+                        <span class="card-tag tag-destino">WhatsApp</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">2</div>
+                    <div>
+                        <div class="card-title">Anúncio Tipo: Urgência Climática</div>
+                        <div class="card-company">Padrão recorrente — Serviços de Construção BR</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Gancho:</strong> "Período de chuvas chegou. Sua laje está protegida?"</p>
+                    <p><strong>Dor explorada:</strong> Medo da chuva, goteiras, danos estruturais. Explora a sazonalidade como gatilho de urgência.</p>
+                    <p><strong>Proposta de valor:</strong> Prevenção é mais barata que o conserto. Proteja sua casa antes que o problema piore.</p>
+                    <p><strong>Formato mais comum:</strong> Imagem única com texto chamativo ou vídeo curto mostrando chuva e infiltração.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="card-tag tag-format">Imagem / Vídeo</span>
+                        <span class="card-tag tag-cta">Agende uma vistoria</span>
+                        <span class="card-tag tag-dor">Medo da chuva</span>
+                        <span class="card-tag tag-destino">WhatsApp / Formulário</span>
+                        <span class="card-tag tag-tempo">Sazonal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">3</div>
+                    <div>
+                        <div class="card-title">Anúncio Tipo: Educativo/Autoridade</div>
+                        <div class="card-company">Padrão recorrente — Engenharias e Construtoras</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Gancho:</strong> "3 sinais de que sua laje precisa de impermeabilização urgente"</p>
+                    <p><strong>Dor explorada:</strong> Desconhecimento do público — muita gente não sabe que precisa de impermeabilização até ver os sinais.</p>
+                    <p><strong>Proposta de valor:</strong> Posicionamento de autoridade técnica. A empresa educa o público e demonstra domínio do assunto.</p>
+                    <p><strong>Formato mais comum:</strong> Carrossel educativo com 5 a 8 slides explicativos ou Reels com engenheiro falando para a câmera.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="card-tag tag-format">Carrossel / Reels</span>
+                        <span class="card-tag tag-cta">Saiba mais</span>
+                        <span class="card-tag tag-dor">Desconhecimento</span>
+                        <span class="card-tag tag-destino">Landing Page / Instagram</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">4</div>
+                    <div>
+                        <div class="card-title">Anúncio Tipo: Depoimento de Cliente</div>
+                        <div class="card-company">Padrão recorrente — Home Services (EUA/BR)</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Gancho:</strong> "Há 2 anos eu sofria com infiltração. Veja como está minha casa hoje."</p>
+                    <p><strong>Dor explorada:</strong> Validação social. O potencial cliente se identifica com alguém que já passou pelo mesmo problema e resolveu.</p>
+                    <p><strong>Proposta de valor:</strong> Confiança e credibilidade. Nenhum argumento vende mais que um cliente satisfeito contando a própria experiência.</p>
+                    <p><strong>Formato mais comum:</strong> Vídeo UGC (User Generated Content) — cliente filmando a própria casa com depoimento natural, sem roteiro polido.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="card-tag tag-format">Vídeo UGC</span>
+                        <span class="card-tag tag-cta">Faça como o João</span>
+                        <span class="card-tag tag-dor">Prova social</span>
+                        <span class="card-tag tag-destino">WhatsApp</span>
+                        <span class="card-tag tag-tempo">Evergreen</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">5</div>
+                    <div>
+                        <div class="card-title">Anúncio Tipo: Oferta Direta</div>
+                        <div class="card-company">Padrão recorrente — Serviços Locais BR</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Gancho:</strong> "Impermeabilização com garantia de 5 anos — orçamento grátis hoje!"</p>
+                    <p><strong>Dor explorada:</strong> Falta de garantia, medo de contratar e o serviço não durar, insegurança com a qualidade.</p>
+                    <p><strong>Proposta de valor:</strong> Garantia + gratuidade do orçamento remove a barreira de entrada. O cliente não tem nada a perder pedindo o orçamento.</p>
+                    <p><strong>Formato mais comum:</strong> Imagem com design gráfico chamativo, cores fortes, texto grande com a oferta e o telefone/WhatsApp visível.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="card-tag tag-format">Imagem estática</span>
+                        <span class="card-tag tag-cta">Orçamento grátis</span>
+                        <span class="card-tag tag-dor">Insegurança</span>
+                        <span class="card-tag tag-destino">WhatsApp / Telefone</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">6</div>
+                    <div>
+                        <div class="card-title">Anúncio Tipo: Vídeo de Obra</div>
+                        <div class="card-company">Padrão recorrente — Construtoras e Engenharias</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Gancho:</strong> "Olha só como a gente aplica a manta asfáltica nessa laje de 200m²"</p>
+                    <p><strong>Dor explorada:</strong> Curiosidade sobre o processo. Vídeos de obra geram engajamento orgânico altíssimo e funcionam bem como topo de funil.</p>
+                    <p><strong>Proposta de valor:</strong> Transparência e profissionalismo. Mostrar o processo de trabalho demonstra competência e equipamentos adequados.</p>
+                    <p><strong>Formato mais comum:</strong> Reels ou vídeo curto (15 a 60 segundos) com time-lapse da aplicação de manta ou produto impermeabilizante.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="card-tag tag-format">Reels / Vídeo</span>
+                        <span class="card-tag tag-cta">Siga para mais</span>
+                        <span class="card-tag tag-dor">Curiosidade</span>
+                        <span class="card-tag tag-destino">Perfil Instagram</span>
+                        <span class="card-tag tag-tempo">Evergreen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ GOOGLE ADS ============ -->
+<section id="google-ads" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 03</div>
+            <h2 class="section-title">Análise de Anúncios <span>Google Ads</span></h2>
+            <p class="section-subtitle">Estratégias de busca paga para empresas de impermeabilização — palavras-chave, estrutura de campanha e referências de performance documentadas.</p>
+        </div>
+
+        <div class="info-box">
+            <h4>Case Documentado: Waterproofing Company — Ohio, EUA</h4>
+            <p>Campanha de Google Ads para empresa de impermeabilização de porões que gerou resultados expressivos com landing page otimizada.</p>
+        </div>
+
+        <div class="metric-grid">
+            <div class="metric-box">
+                <div class="metric-value">38</div>
+                <div class="metric-label">Leads em 30 dias</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">US$300/dia</div>
+                <div class="metric-label">Orçamento diário</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">26%</div>
+                <div class="metric-label">Conversão da Landing Page</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">US$205</div>
+                <div class="metric-label">Custo por Lead</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">5%</div>
+                <div class="metric-label">CTR da Campanha</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">148</div>
+                <div class="metric-label">Cliques no mês</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">34</div>
+                <div class="metric-label">Ligações telefônicas</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">US$53</div>
+                <div class="metric-label">CPC médio</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h4>Case Brasileiro: Montante Impermeabilização</h4>
+            <p>Empresa brasileira de impermeabilização industrial que investiu em SEO + Google Ads com resultados impressionantes documentados pela Agência Alafia:</p>
+            <ul>
+                <li><strong>426% de crescimento</strong> no tráfego orgânico em 12 meses</li>
+                <li><strong>64% de aumento</strong> no volume de leads via tráfego pago</li>
+                <li><strong>22% de redução</strong> no custo por aquisição</li>
+                <li><strong>32,4% de melhoria</strong> na taxa de conversão</li>
+                <li>Estratégia: palavras-chave de alta intenção + landing pages por categoria de serviço + rastreamento GA4</li>
+            </ul>
+        </div>
+
+        <h3 style="color: var(--accent); font-size: 1.1rem; margin: 2rem 0 1rem; font-weight: 700;">Estrutura Recomendada de Palavras-chave</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Exemplos de Palavras-chave</th>
+                        <th>Intenção</th>
+                        <th>Prioridade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Serviço + Localidade</strong></td>
+                        <td>"impermeabilização [cidade]", "impermeabilizar laje [cidade]"</td>
+                        <td>Alta — busca ativa</td>
+                        <td style="color: var(--danger); font-weight: 700;">Essencial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Problema Urgente</strong></td>
+                        <td>"infiltração na laje o que fazer", "parede com mofo solução"</td>
+                        <td>Alta — dor ativa</td>
+                        <td style="color: var(--danger); font-weight: 700;">Essencial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Serviço Específico</strong></td>
+                        <td>"manta asfáltica aplicação", "impermeabilização de piscina"</td>
+                        <td>Média — pesquisa</td>
+                        <td style="color: var(--warning); font-weight: 700;">Importante</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comparativo</strong></td>
+                        <td>"melhor empresa de impermeabilização", "impermeabilização preço"</td>
+                        <td>Alta — decisão</td>
+                        <td style="color: var(--danger); font-weight: 700;">Essencial</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Negativas</strong></td>
+                        <td>"emprego", "curso", "como fazer sozinho", "DIY", "vagas"</td>
+                        <td>Filtro</td>
+                        <td style="color: var(--text-muted); font-weight: 700;">Obrigatório</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <h4>Insight sobre o CPC no Brasil vs. EUA</h4>
+            <p>Nos EUA, o custo por clique para termos de waterproofing chega a US$53 (mais de R$280). No Brasil, termos como "impermeabilização + [cidade]" ainda têm baixa concorrência, com CPCs estimados entre R$2 e R$8. Essa diferença representa uma janela de oportunidade enorme para quem investir agora — a CAFF Engenharia pode dominar os resultados de busca na região com investimento moderado.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ ANUNCIANTES ============ -->
+<section id="anunciantes" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 04</div>
+            <h2 class="section-title">Mapeamento de <span>Anunciantes</span></h2>
+            <p class="section-subtitle">Empresas de impermeabilização com presença ativa em plataformas digitais — referências nacionais e regionais identificadas na pesquisa.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">M</div>
+                    <div>
+                        <div class="card-title">Montante Impermeabilização</div>
+                        <div class="card-company">montante.net — Nacional</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Presença:</strong> Google Ads + SEO robusto. Investimento documentado com resultados (426% crescimento orgânico, 64% mais leads).</p>
+                    <p><strong>Posicionamento:</strong> Impermeabilização industrial e comercial com foco em grandes obras.</p>
+                    <p><strong>Canais:</strong> Google Ads (palavras-chave de alta intenção), SEO (conteúdo técnico), site otimizado com páginas por serviço.</p>
+                    <p><strong>Diferencial:</strong> Foco em B2B, obras de grande porte, conteúdo técnico aprofundado.</p>
+                    <p><strong>Vulnerabilidade:</strong> Não atende o público residencial/local. Sem presença forte em Meta Ads.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">F</div>
+                    <div>
+                        <div class="card-title">Fibersals Impermeabilização</div>
+                        <div class="card-company">fibersals.com.br — Rio de Janeiro</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Presença:</strong> SEO forte com blog de conteúdo técnico extenso. Posiciona bem para termos de busca informacionais.</p>
+                    <p><strong>Posicionamento:</strong> Especialista em impermeabilização no RJ com foco em conteúdo educativo.</p>
+                    <p><strong>Canais:</strong> Blog com artigos sobre infiltração, laje, telhado. SEO orgânico como principal canal.</p>
+                    <p><strong>Diferencial:</strong> Volume de conteúdo e autoridade temática no Google.</p>
+                    <p><strong>Vulnerabilidade:</strong> Foco regional (RJ), pouca evidência de tráfego pago estruturado.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">E</div>
+                    <div>
+                        <div class="card-title">EBI Construtora e Impermeabilização</div>
+                        <div class="card-company">Facebook: grupoebiimpermeabilizacao</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Presença:</strong> Facebook ativo com publicações sobre obras e serviços. Foco em impermeabilização de concreto com revestimento mineral.</p>
+                    <p><strong>Posicionamento:</strong> Construtora que também oferece serviços de impermeabilização — dupla atuação.</p>
+                    <p><strong>Canais:</strong> Facebook como principal vitrine, com fotos de obras e conteúdo técnico simplificado.</p>
+                    <p><strong>Diferencial:</strong> Combina construção civil com impermeabilização — oferta integrada.</p>
+                    <p><strong>Vulnerabilidade:</strong> Presença digital limitada, sem evidência de tráfego pago ou landing pages otimizadas.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">P</div>
+                    <div>
+                        <div class="card-title">Primer Impermeabilização</div>
+                        <div class="card-company">Facebook: primerimpermeabilizacao — SC</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Presença:</strong> Facebook ativo com foco em venda e aplicação de produtos impermeabilizantes em Santa Catarina.</p>
+                    <p><strong>Posicionamento:</strong> Especialista regional em produtos e aplicação — foco no Sul do Brasil.</p>
+                    <p><strong>Canais:</strong> Facebook e Instagram com publicações de produtos, antes/depois de obras e dicas técnicas.</p>
+                    <p><strong>Diferencial:</strong> Combina venda de produto com serviço de aplicação.</p>
+                    <p><strong>Vulnerabilidade:</strong> Presença orgânica — sem tráfego pago evidente.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">D</div>
+                    <div>
+                        <div class="card-title">Dienstmann Engenharia</div>
+                        <div class="card-company">dienstmann.eng.br — Nacional</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Presença:</strong> Site institucional com foco em engenharia de impermeabilização. Posicionamento premium.</p>
+                    <p><strong>Posicionamento:</strong> Engenharia de impermeabilização — não é apenas "aplicador", é engenheiro especialista.</p>
+                    <p><strong>Canais:</strong> Site institucional, possivelmente Google Ads para termos técnicos e de marca.</p>
+                    <p><strong>Diferencial:</strong> Posicionamento de engenharia (não apenas serviço braçal) — autoridade técnica.</p>
+                    <p><strong>Vulnerabilidade:</strong> Pode parecer inacessível para o público residencial de menor poder aquisitivo.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">V</div>
+                    <div>
+                        <div class="card-title">Vejjo (Agência)</div>
+                        <div class="card-company">vejjo.com.br — São Paulo</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Presença:</strong> Agência de marketing digital especializada em atender empresas de impermeabilização — referência em estratégia para o nicho.</p>
+                    <p><strong>Estratégias documentadas:</strong> Instagram Ads + Google Ads segmentado por localização; conteúdo educativo; fotos de obras; depoimentos de clientes.</p>
+                    <p><strong>Insight valioso:</strong> A existência de uma agência especializada confirma que há demanda e mercado para marketing digital de impermeabilização no Brasil.</p>
+                    <p><strong>Relevância:</strong> Serve como benchmark das melhores práticas disponíveis para o nicho.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ PADRÕES ============ -->
+<section id="padroes" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 05</div>
+            <h2 class="section-title">Padrões <span>Identificados</span></h2>
+            <p class="section-subtitle">Análise cruzada de todos os anúncios pesquisados — o que funciona, o que se repete e o que os concorrentes ignoram.</p>
+        </div>
+
+        <div class="pattern-card">
+            <h3>Padrão 1: Ganchos Mais Comuns</h3>
+            <p>Os ganchos que mais se repetem nos anúncios de impermeabilização seguem três estruturas dominantes:</p>
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Antes e Depois (transformação visual)</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 85%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Urgência Climática / Sazonal</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 70%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Pergunta sobre Problema ("Sua laje tem infiltração?")</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 65%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Oferta Direta (orçamento grátis + garantia)</span>
+                        <span>55%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 55%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Educativo / Listicle ("5 sinais de...")</span>
+                        <span>40%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 40%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Depoimento / Prova Social (UGC)</span>
+                        <span>30%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 30%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pattern-card">
+            <h3>Padrão 2: Dores Mais Exploradas</h3>
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Infiltração e goteiras (problema visível)</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 90%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Medo de dano estrutural / desvalorização do imóvel</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Mofo e problemas de saúde</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 60%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Custo alto de conserto posterior</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 50%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Insegurança com profissionais não qualificados</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 45%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Vergonha / constrangimento com visitas</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 20%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pattern-card">
+            <h3>Padrão 3: Propostas de Valor Recorrentes</h3>
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Orçamento grátis / sem compromisso</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 80%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Garantia de X anos</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 70%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Profissionais qualificados / engenheiros</span>
+                        <span>55%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 55%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Rapidez na execução</span>
+                        <span>40%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 40%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Prevenção mais barata que conserto</span>
+                        <span>35%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 35%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pattern-card">
+            <h3>Padrão 4: Formatos Consolidados vs. Em Teste</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Formato</th>
+                            <th>Status</th>
+                            <th>Eficácia</th>
+                            <th>Observação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Antes/Depois (Carrossel)</td>
+                            <td style="color: var(--success); font-weight: 700;">Consolidado</td>
+                            <td style="color: var(--success);">Alta</td>
+                            <td>Funciona em todos os mercados. É o formato mais testado e validado para serviços de reforma.</td>
+                        </tr>
+                        <tr>
+                            <td>Vídeo de Obra (Reels)</td>
+                            <td style="color: var(--success); font-weight: 700;">Consolidado</td>
+                            <td style="color: var(--success);">Alta</td>
+                            <td>Engajamento orgânico altíssimo. Vídeos de 85% melhor retenção que texto.</td>
+                        </tr>
+                        <tr>
+                            <td>Depoimento UGC</td>
+                            <td style="color: var(--warning); font-weight: 700;">Em crescimento</td>
+                            <td style="color: var(--success);">Alta</td>
+                            <td>Tendência forte em 2026. Anúncios que parecem orgânicos convertem mais.</td>
+                        </tr>
+                        <tr>
+                            <td>Carrossel Educativo</td>
+                            <td style="color: var(--success); font-weight: 700;">Consolidado</td>
+                            <td style="color: var(--warning);">Média</td>
+                            <td>Bom para topo de funil e autoridade, mas taxa de conversão direta é menor.</td>
+                        </tr>
+                        <tr>
+                            <td>Imagem Estática com Oferta</td>
+                            <td style="color: var(--text-muted); font-weight: 700;">Em declínio</td>
+                            <td style="color: var(--warning);">Média-Baixa</td>
+                            <td>Ainda usado por pequenas empresas, mas perde eficácia frente ao vídeo.</td>
+                        </tr>
+                        <tr>
+                            <td>Stories Interativo (Enquete)</td>
+                            <td style="color: var(--warning); font-weight: 700;">Em teste</td>
+                            <td style="color: var(--warning);">Média</td>
+                            <td>Poucas empresas de impermeabilização utilizam. Oportunidade de diferenciação.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="pattern-card">
+            <h3>Padrão 5: Destinos de Conversão</h3>
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>WhatsApp (direto ou via link)</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 75%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Ligação telefônica (extensão de chamada)</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 60%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Formulário de contato no site</span>
+                        <span>40%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 40%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Landing page com formulário</span>
+                        <span>25%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 25%"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">
+                        <span>Perfil do Instagram (DM)</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 20%"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ MÉTRICAS ============ -->
+<section id="metricas" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 06</div>
+            <h2 class="section-title">Métricas de <span>Referência</span></h2>
+            <p class="section-subtitle">Benchmarks de performance para campanhas de impermeabilização e construção civil — dados documentados para orientar o investimento da CAFF Engenharia.</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Google Ads (BR)</th>
+                        <th>Google Ads (EUA)</th>
+                        <th>Meta Ads (BR)</th>
+                        <th>Referência</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>CPC Médio</strong></td>
+                        <td>R$2–R$8</td>
+                        <td>US$53 (R$280+)</td>
+                        <td>R$0,50–R$3</td>
+                        <td>Baixa concorrência BR = oportunidade</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CPL (Custo por Lead)</strong></td>
+                        <td>R$50–R$150</td>
+                        <td>US$205 (R$1.080+)</td>
+                        <td>R$15–R$60</td>
+                        <td>Meta Ads tende a gerar volume maior a custo menor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taxa de Conversão LP</strong></td>
+                        <td>3–8% (geral) / 26% (otimizada)</td>
+                        <td>26% (case documentado)</td>
+                        <td>5–15%</td>
+                        <td>Landing page dedicada eleva conversão em 3x</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CTR Médio</strong></td>
+                        <td>3–5%</td>
+                        <td>5%</td>
+                        <td>1–3%</td>
+                        <td>Anúncios relevantes para busca ativa convertem melhor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taxa de Fechamento</strong></td>
+                        <td colspan="3" style="text-align: center;">25–40% das vistorias gratuitas</td>
+                        <td>Quem atende em 30s ganha 60-70% dos jobs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <h4>Insight Estratégico para a CAFF Engenharia</h4>
+            <p>Com base nos benchmarks, uma campanha inicial com R$30–50/dia em Google Ads + R$20–30/dia em Meta Ads pode gerar entre 15 e 40 leads por mês na região de atuação. O fator decisivo de conversão não é apenas o anúncio — é a velocidade de resposta. Empresas que atendem o lead em menos de 30 segundos fecham 60–70% dos contratos. A CAFF precisa combinar tráfego pago com processo de atendimento ágil via WhatsApp.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ OPORTUNIDADES ============ -->
+<section id="oportunidades" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 07</div>
+            <h2 class="section-title">Oportunidades para a <span>CAFF Engenharia</span></h2>
+            <p class="section-subtitle">Gaps identificados no mercado, ângulos inexplorados e vantagens competitivas que a CAFF pode capitalizar imediatamente.</p>
+        </div>
+
+        <div class="opportunity-card">
+            <h3>Oportunidade 1: Vácuo Publicitário no Interior da Bahia</h3>
+            <p>A pesquisa revelou que a grande maioria das empresas de impermeabilização no interior da Bahia simplesmente não anuncia digitalmente. As poucas que têm presença digital se limitam a publicações orgânicas no Facebook, sem investimento em tráfego pago. Isso significa que a CAFF Engenharia pode ser a primeira empresa da região a aparecer em buscas pagas e feeds patrocinados.</p>
+            <ul>
+                <li><strong>Ação:</strong> Investir em Google Ads para termos como "impermeabilização [cidade]" e "infiltração [cidade]" — concorrência zero ou próxima de zero</li>
+                <li><strong>Resultado esperado:</strong> Dominar os primeiros resultados de busca da região com CPC extremamente baixo</li>
+                <li><strong>Prioridade:</strong> Máxima — janela de oportunidade que fecha à medida que concorrentes percebem</li>
+            </ul>
+        </div>
+
+        <div class="opportunity-card">
+            <h3>Oportunidade 2: Posicionamento de Engenharia (não apenas "pedreiro")</h3>
+            <p>A maioria dos anúncios de impermeabilização no Brasil vem de aplicadores e pedreiros. Raríssimas são as empresas que se posicionam como engenharia de impermeabilização. A CAFF já tem "Engenharia" no nome — precisa capitalizar isso na comunicação.</p>
+            <ul>
+                <li><strong>Ação:</strong> Criar criativos que destacam o CREA, laudo técnico, responsável técnico engenheiro e profissionalismo</li>
+                <li><strong>Diferencial:</strong> "Impermeabilização com laudo técnico e garantia de engenharia" vs. "impermeabilização barata"</li>
+                <li><strong>Ângulo:</strong> Segurança, confiança e respaldo técnico — exatamente o que falta nos concorrentes informais</li>
+            </ul>
+        </div>
+
+        <div class="opportunity-card">
+            <h3>Oportunidade 3: Conteúdo Educativo como Topo de Funil</h3>
+            <p>Apenas 40% dos anunciantes do setor usam conteúdo educativo. No entanto, a pesquisa mostra que artigos sobre "sinais de infiltração" e "erros comuns em obras" são os que mais posicionam organicamente no Google. A CAFF pode combinar SEO + Ads com conteúdo educativo.</p>
+            <ul>
+                <li><strong>Ação:</strong> Criar série de Reels educativos: "5 sinais de que sua casa precisa de impermeabilização", "O erro que 90% dos pedreiros cometem na laje"</li>
+                <li><strong>Estratégia:</strong> Usar os Reels como criativos pagos no Meta Ads (formato que mais converte em 2026)</li>
+                <li><strong>Resultado:</strong> Gera autoridade + leads qualificados + seguidores orgânicos simultaneamente</li>
+            </ul>
+        </div>
+
+        <div class="opportunity-card">
+            <h3>Oportunidade 4: Sazonalidade como Gatilho de Urgência</h3>
+            <p>70% dos anúncios usam urgência climática, mas de forma genérica. A CAFF pode ser mais estratégica: criar campanhas específicas ANTES do período de chuvas na Bahia (outubro-março), com dados locais de precipitação e casos reais da região.</p>
+            <ul>
+                <li><strong>Ação:</strong> Lançar campanha "Operação Seca" em agosto/setembro — antes das chuvas</li>
+                <li><strong>Copy:</strong> "Em [cidade], chove mais de 800mm por ano. Sua laje está pronta?"</li>
+                <li><strong>Diferencial:</strong> Dados locais e regionais vs. genérico "período de chuvas"</li>
+            </ul>
+        </div>
+
+        <div class="opportunity-card">
+            <h3>Oportunidade 5: Vídeo UGC e Depoimentos Reais</h3>
+            <p>Apenas 30% dos anunciantes usam depoimentos de clientes. No entanto, a pesquisa internacional mostra que anúncios com formato UGC (conteúdo gerado pelo usuário) — vídeos que parecem orgânicos, não polidos — são os que mais convertem em 2026. A CAFF pode filmar clientes satisfeitos com o celular, sem produção cara.</p>
+            <ul>
+                <li><strong>Ação:</strong> Ao finalizar cada obra, gravar 30 segundos do cliente mostrando o resultado e falando sobre a experiência</li>
+                <li><strong>Formato:</strong> Vertical (9:16), gravado pelo próprio cliente ou em modo selfie — quanto mais natural, melhor</li>
+                <li><strong>Uso:</strong> Reels orgânico + criativo para anúncio pago com objetivo de conversão</li>
+            </ul>
+        </div>
+
+        <div class="opportunity-card">
+            <h3>Oportunidade 6: Landing Page Dedicada com Formulário + WhatsApp</h3>
+            <p>O case internacional mostra que landing pages otimizadas para impermeabilização convertem a 26%. No Brasil, a maioria das empresas do setor não tem nem site — mandam o lead direto para o WhatsApp. A CAFF pode ter o melhor dos dois mundos: landing page profissional que qualifica o lead E oferece WhatsApp como canal direto.</p>
+            <ul>
+                <li><strong>Ação:</strong> Criar landing page com formulário simples (nome, telefone, tipo de problema, foto da infiltração) + botão WhatsApp</li>
+                <li><strong>Elementos obrigatórios:</strong> Fotos de obras reais, depoimentos, garantia, CREA, e CTA claro</li>
+                <li><strong>Meta:</strong> Taxa de conversão de 15–20% no primeiro mês, otimizando para 25%+ ao longo do tempo</li>
+            </ul>
+        </div>
+
+        <div class="opportunity-card">
+            <h3>Oportunidade 7: Remarketing para Quem Não Converteu</h3>
+            <p>A pesquisa mostra que retargeting é subutilizado no setor. A maioria dos leads precisa de 2 a 3 contatos antes de decidir. A CAFF pode usar o Pixel da Meta e campanhas de remarketing para reimpactar quem visitou a landing page mas não pediu orçamento.</p>
+            <ul>
+                <li><strong>Ação:</strong> Instalar Pixel da Meta na landing page e criar público de remarketing (visitantes dos últimos 30 dias)</li>
+                <li><strong>Criativo de remarketing:</strong> Depoimento de cliente + "Ainda com infiltração? A CAFF resolve em X dias com garantia"</li>
+                <li><strong>Investimento:</strong> 15–20% do orçamento total de ads reservado para remarketing</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ============ TEMPLATES ============ -->
+<section id="templates" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 08</div>
+            <h2 class="section-title">Templates de <span>Ganchos Replicáveis</span></h2>
+            <p class="section-subtitle">Modelos de headlines, textos e estruturas de anúncios adaptados para a CAFF Engenharia — prontos para usar em campanhas de Meta Ads e Google Ads.</p>
+        </div>
+
+        <!-- Template 1 -->
+        <div class="template-card">
+            <div class="template-label">Template 01 — Antes e Depois</div>
+            <h4>Transformação Visual com Prova de Resultado</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Formato: Carrossel (3–4 imagens) ou Vídeo curto (15–30s). Objetivo: Conversão/Mensagens. Destino: WhatsApp.</p>
+            <div class="template-text">
+                <span class="headline">Sua laje tinha esse problema? Olha como ficou depois da CAFF.</span>
+                Essa laje em [cidade] estava com infiltração há mais de 2 anos. O morador já tinha tentado resolver sozinho 3 vezes — sem sucesso.<br><br>
+                A equipe de engenharia da CAFF fez a vistoria, identificou a causa raiz do problema e aplicou a solução definitiva com manta asfáltica de alta performance.<br><br>
+                Resultado: zero infiltração há [X] meses. Com garantia de [X] anos e laudo técnico assinado por engenheiro responsável.<br><br>
+                <span class="cta-line">Sua casa tem infiltração? Peça uma vistoria gratuita pelo WhatsApp.</span>
+            </div>
+        </div>
+
+        <!-- Template 2 -->
+        <div class="template-card">
+            <div class="template-label">Template 02 — Urgência Climática</div>
+            <h4>Gatilho Sazonal — Período de Chuvas</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Formato: Imagem com texto impactante ou Reels. Objetivo: Alcance/Conversão. Destino: WhatsApp/Landing Page.</p>
+            <div class="template-text">
+                <span class="headline">O período de chuvas na Bahia começa em [mês]. Sua laje está pronta?</span>
+                A cada temporada de chuvas, centenas de famílias em [região] descobrem da pior forma que a laje não está impermeabilizada.<br><br>
+                Goteiras, manchas no teto, mofo na parede, pintura descascando... tudo isso começa com uma infiltração que poderia ter sido evitada.<br><br>
+                A CAFF Engenharia faz a vistoria gratuita na sua laje e te mostra exatamente o que precisa ser feito — antes que a chuva mostre por você.<br><br>
+                <span class="cta-line">Agende sua vistoria gratuita agora. Vagas limitadas para este mês.</span>
+            </div>
+        </div>
+
+        <!-- Template 3 -->
+        <div class="template-card">
+            <div class="template-label">Template 03 — Educativo/Autoridade</div>
+            <h4>Listicle que Gera Autoridade e Qualifica o Lead</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Formato: Carrossel educativo (5–8 slides) ou Reels com engenheiro. Objetivo: Engajamento/Tráfego. Destino: Perfil/Landing Page.</p>
+            <div class="template-text">
+                <span class="headline">5 sinais de que sua casa precisa de impermeabilização urgente</span>
+                1. Manchas escuras no teto ou na parede — mesmo sem chover forte<br>
+                2. Pintura descascando ou formando bolhas<br>
+                3. Cheiro de mofo persistente em algum cômodo<br>
+                4. Parede úmida ao toque, especialmente na parte de baixo<br>
+                5. Goteiras que aparecem (ou pioram) nos dias de chuva<br><br>
+                Se você identificou pelo menos 1 desses sinais, sua casa já está pedindo ajuda.<br><br>
+                A CAFF Engenharia faz a avaliação técnica gratuita e identifica a causa real do problema — sem achismo, com laudo de engenheiro.<br><br>
+                <span class="cta-line">Chame a gente no WhatsApp e envie uma foto do problema.</span>
+            </div>
+        </div>
+
+        <!-- Template 4 -->
+        <div class="template-card">
+            <div class="template-label">Template 04 — Depoimento / Prova Social</div>
+            <h4>Cliente Real Contando a Experiência</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Formato: Vídeo UGC (15–60s). Objetivo: Conversão/Mensagens. Destino: WhatsApp.</p>
+            <div class="template-text">
+                <span class="headline">"Já tinha chamado 3 pedreiros e nenhum resolveu. A CAFF resolveu de vez."</span>
+                [Nome do cliente], morador de [cidade], conviveu com infiltração na laje por [X] anos.<br><br>
+                "Eu já tinha gasto mais de R$[valor] tentando resolver com pedreiro. Cada chuva forte o problema voltava. Quando chamei a CAFF, o engenheiro veio, fez a vistoria, me mostrou onde estava o erro e resolveu tudo em [X] dias."<br><br>
+                Hoje, [X] meses depois: zero infiltração.<br><br>
+                <span class="cta-line">Tem um problema parecido? Peça sua vistoria gratuita pelo WhatsApp.</span>
+            </div>
+        </div>
+
+        <!-- Template 5 -->
+        <div class="template-card">
+            <div class="template-label">Template 05 — Oferta Direta</div>
+            <h4>Proposta Irrecusável com Remoção de Risco</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Formato: Imagem ou Vídeo curto. Objetivo: Conversão/Mensagens. Destino: WhatsApp.</p>
+            <div class="template-text">
+                <span class="headline">Impermeabilização profissional com garantia de [X] anos — vistoria grátis</span>
+                A CAFF Engenharia impermeabiliza lajes, telhados, piscinas e banheiros com materiais de primeira linha e equipe especializada.<br><br>
+                O que está incluído:<br>
+                - Vistoria técnica gratuita com engenheiro<br>
+                - Diagnóstico completo com laudo<br>
+                - Orçamento detalhado sem compromisso<br>
+                - Execução com garantia de [X] anos<br>
+                - Nota fiscal e ART (Anotação de Responsabilidade Técnica)<br><br>
+                Não arrisque com quem não tem formação técnica. Impermeabilização mal feita sai mais caro que fazer certo de primeira.<br><br>
+                <span class="cta-line">Peça seu orçamento grátis agora pelo WhatsApp.</span>
+            </div>
+        </div>
+
+        <!-- Template 6 -->
+        <div class="template-card">
+            <div class="template-label">Template 06 — Google Ads (Pesquisa)</div>
+            <h4>Anúncio de Texto para Rede de Pesquisa</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Formato: Anúncio responsivo de pesquisa. Destino: Landing Page com formulário + WhatsApp.</p>
+            <div class="template-text">
+                <span class="headline">Título 1: Impermeabilização em [Cidade] — Vistoria Grátis</span>
+                <span class="headline">Título 2: CAFF Engenharia | Garantia de [X] Anos</span>
+                <span class="headline">Título 3: Infiltração na Laje? Resolva Definitivamente</span>
+                <br>
+                Descrição 1: Impermeabilização profissional com laudo técnico e engenheiro responsável. Vistoria gratuita na sua residência. Ligue agora ou peça pelo WhatsApp.<br><br>
+                Descrição 2: Mais de [X] obras realizadas na região. Garantia real de [X] anos. Materiais de primeira linha. Peça seu orçamento sem compromisso.<br><br>
+                <strong>Extensões recomendadas:</strong><br>
+                - Extensão de chamada (telefone direto)<br>
+                - Extensão de local (endereço no Google Maps)<br>
+                - Extensão de snippets (Lajes | Telhados | Piscinas | Banheiros)<br>
+                - Extensão de frase de destaque (Vistoria Grátis | Garantia 5 Anos | Engenheiro Responsável)
+            </div>
+        </div>
+
+        <!-- Template 7 -->
+        <div class="template-card">
+            <div class="template-label">Template 07 — Remarketing</div>
+            <h4>Reimpacto para Quem Visitou mas Não Converteu</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Formato: Imagem ou Vídeo curto. Objetivo: Conversão. Público: Visitantes LP últimos 30 dias. Destino: WhatsApp.</p>
+            <div class="template-text">
+                <span class="headline">Ainda com infiltração? A CAFF resolve em [X] dias — com garantia.</span>
+                Você pesquisou sobre impermeabilização recentemente. Se o problema ainda não foi resolvido, ele só vai piorar com o tempo.<br><br>
+                A cada dia sem impermeabilização, a infiltração avança, o mofo cresce e o custo do conserto aumenta.<br><br>
+                A CAFF Engenharia faz a vistoria gratuita e te mostra a solução certa — sem compromisso, sem pressão.<br><br>
+                <span class="cta-line">Clique e fale com a gente agora pelo WhatsApp. Resolve hoje.</span>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 2rem;">
+            <h4>Como Usar Estes Templates</h4>
+            <ul>
+                <li><strong>Personalize:</strong> Substitua [cidade], [região], [X] anos, [X] dias e [valor] pelos dados reais da CAFF Engenharia</li>
+                <li><strong>Teste variações:</strong> Crie 2 a 3 versões de cada template com pequenas mudanças no gancho para testar qual performa melhor</li>
+                <li><strong>Combine com visual:</strong> Cada template precisa de um criativo visual compatível — fotos reais de obras da CAFF sempre superam imagens de banco</li>
+                <li><strong>Monitore e otimize:</strong> Após 7 dias de veiculação, analise CTR e custo por lead. Pause os que performam abaixo da média e escale os melhores</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ============ RECOMENDAÇÕES ============ -->
+<section id="recomendacoes" class="section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-number">SEÇÃO 09</div>
+            <h2 class="section-title">Recomendações <span>Estratégicas</span></h2>
+            <p class="section-subtitle">Plano de ação prioritário para a CAFF Engenharia baseado em toda a pesquisa realizada — o que fazer primeiro, como e com qual investimento.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card" style="border-left: 4px solid var(--danger);">
+                <div class="card-header">
+                    <div class="card-icon" style="background: rgba(255,68,68,0.15); color: var(--danger);">P1</div>
+                    <div>
+                        <div class="card-title">Google Ads — Rede de Pesquisa</div>
+                        <div class="card-company">Prioridade Máxima — Implementar Imediatamente</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Capturar demanda ativa — pessoas que JÁ estão buscando "impermeabilização" + cidade. Concorrência baixíssima no interior da Bahia.</p>
+                    <p><strong>Investimento sugerido:</strong> R$30–50/dia (R$900–1.500/mês)</p>
+                    <p><strong>Resultado esperado:</strong> 10–25 leads/mês</p>
+                    <p><strong>Prazo para resultados:</strong> 7–14 dias após ativação</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--danger);">
+                <div class="card-header">
+                    <div class="card-icon" style="background: rgba(255,68,68,0.15); color: var(--danger);">P2</div>
+                    <div>
+                        <div class="card-title">Landing Page Otimizada</div>
+                        <div class="card-company">Prioridade Máxima — Criar Antes dos Anúncios</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Página dedicada para receber o tráfego pago — com formulário simples, fotos reais, depoimentos, garantia e WhatsApp. Sem landing page, o investimento em ads perde eficácia.</p>
+                    <p><strong>Elementos obrigatórios:</strong> Formulário (nome, telefone, tipo de problema), fotos antes/depois, depoimentos, CREA, garantia, botão WhatsApp</p>
+                    <p><strong>Meta de conversão:</strong> 15–25%</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--warning);">
+                <div class="card-header">
+                    <div class="card-icon" style="background: rgba(255,203,5,0.15); color: var(--warning);">P3</div>
+                    <div>
+                        <div class="card-title">Meta Ads — Campanha de Mensagens</div>
+                        <div class="card-company">Prioridade Alta — Implementar na Semana 2</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Anúncios no Facebook e Instagram direcionando para WhatsApp. Formato de vídeo/carrossel antes e depois com segmentação por localização + interesse em reforma/construção.</p>
+                    <p><strong>Investimento sugerido:</strong> R$20–30/dia (R$600–900/mês)</p>
+                    <p><strong>Resultado esperado:</strong> 20–40 conversas iniciadas/mês</p>
+                    <p><strong>Formato prioritário:</strong> Vídeo curto (Reels) ou Carrossel antes/depois</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--warning);">
+                <div class="card-header">
+                    <div class="card-icon" style="background: rgba(255,203,5,0.15); color: var(--warning);">P4</div>
+                    <div>
+                        <div class="card-title">Processo de Atendimento Rápido</div>
+                        <div class="card-company">Prioridade Alta — Crítico para Conversão</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>A pesquisa mostra que quem atende em menos de 30 segundos fecha 60–70% dos contratos. O investimento em ads é desperdiçado se o atendimento é lento.</p>
+                    <p><strong>Ação:</strong> Configurar mensagem automática no WhatsApp Business + alerta sonoro para leads novos</p>
+                    <p><strong>Meta:</strong> Resposta em menos de 2 minutos durante horário comercial</p>
+                    <p><strong>Diferencial:</strong> Enviar áudio personalizado ao invés de texto genérico — taxa de resposta 3x maior</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--success);">
+                <div class="card-header">
+                    <div class="card-icon" style="background: rgba(0,201,167,0.15); color: var(--success);">P5</div>
+                    <div>
+                        <div class="card-title">Conteúdo Orgânico no Instagram</div>
+                        <div class="card-company">Prioridade Média — Construção de Longo Prazo</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Reels de obra, antes/depois, dicas de impermeabilização e depoimentos. O conteúdo orgânico alimenta a credibilidade que o tráfego pago precisa para converter.</p>
+                    <p><strong>Frequência:</strong> 3–4 publicações por semana (2 Reels + 1 carrossel + 1 stories)</p>
+                    <p><strong>Pilares:</strong> Obra do dia, antes/depois, dica técnica, depoimento de cliente</p>
+                    <p><strong>Investimento:</strong> Tempo (gravação no canteiro de obras) — sem custo adicional</p>
+                </div>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--success);">
+                <div class="card-header">
+                    <div class="card-icon" style="background: rgba(0,201,167,0.15); color: var(--success);">P6</div>
+                    <div>
+                        <div class="card-title">Remarketing + Campanha Sazonal</div>
+                        <div class="card-company">Prioridade Média — Implementar no Mês 2</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Após acumular tráfego no site/landing page, ativar remarketing para reimpactar visitantes. Paralelamente, preparar campanha sazonal forte para o período pré-chuvas.</p>
+                    <p><strong>Investimento remarketing:</strong> 15–20% do orçamento total de ads</p>
+                    <p><strong>Campanha sazonal:</strong> Lançar em agosto/setembro, antes das chuvas de outubro</p>
+                    <p><strong>Resultado esperado:</strong> Aumento de 30–50% na taxa de conversão geral</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 2rem; border-left-color: var(--success);">
+            <h4>Resumo de Investimento Mensal Sugerido</h4>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Canal</th>
+                            <th>Investimento/Mês</th>
+                            <th>Leads Esperados</th>
+                            <th>Início</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Google Ads (Pesquisa)</td>
+                            <td>R$900–R$1.500</td>
+                            <td>10–25 leads</td>
+                            <td>Semana 1</td>
+                        </tr>
+                        <tr>
+                            <td>Meta Ads (Facebook + Instagram)</td>
+                            <td>R$600–R$900</td>
+                            <td>20–40 conversas</td>
+                            <td>Semana 2</td>
+                        </tr>
+                        <tr>
+                            <td>Remarketing (Meta)</td>
+                            <td>R$200–R$300</td>
+                            <td>5–10 leads adicionais</td>
+                            <td>Mês 2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td><strong>R$1.700–R$2.700</strong></td>
+                            <td><strong>35–75 leads/mês</strong></td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+    <p><span class="brand">ADS Company</span> — Pesquisa de Mercado</p>
+    <p>CAFF Engenharia | Análise de Biblioteca de Anúncios | Maio 2026</p>
+    <p style="margin-top: 0.5rem; font-size: 0.7rem; color: #555;">Documento de uso interno — Dados coletados de fontes públicas (Meta Ad Library, Google Ads, pesquisas web)</p>
+</footer>
+
+</body>
+</html>

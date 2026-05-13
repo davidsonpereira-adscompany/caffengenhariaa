@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing Completo &mdash; CAFF Engenharia | ADS Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --laranja: #FF5C00;
+    --preto: #0A0A0A;
+    --cinza-escuro: #1A1A1A;
+    --cinza-medio: #2A2A2A;
+    --cinza-claro: #888;
+    --cinza-border: rgba(255,255,255,0.08);
+    --branco: #FFFFFF;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media print {
+    @page { margin: 15mm 14mm; }
+    body {
+      background: #fff !important;
+      color: #111 !important;
+      padding: 0 !important;
+      font-size: 12px !important;
+      max-width: 100% !important;
+    }
+    .no-print { display: none !important; }
+    .header { border-bottom-color: #ddd !important; }
+    .header-tag { color: #FF5C00 !important; }
+    .header h1 { color: #111 !important; }
+    .header h1 em { color: #FF5C00 !important; }
+    .header p { color: #555 !important; }
+    .header-line { background: #FF5C00 !important; }
+    .header > div[style*="font-family"] { color: #111 !important; }
+    .header > div[style*="font-family"] em { color: #FF5C00 !important; }
+    .section-tag { color: #FF5C00 !important; }
+    .section h2 { color: #111 !important; }
+    .section h2 em { color: #FF5C00 !important; }
+    .field-label { color: #555 !important; }
+    .field-value {
+      background: #f5f5f5 !important;
+      color: #111 !important;
+      border-color: #ccc !important;
+    }
+    .divider { background: linear-gradient(90deg, #FF5C00, rgba(255,92,0,0.1)) !important; }
+    .obj-table th { background: #eee !important; color: #333 !important; }
+    .obj-table td { color: #111 !important; border-bottom-color: #ddd !important; }
+    .scale-label { color: #333 !important; }
+    .scale-track { background: #e0e0e0 !important; }
+    .scale-fill { background: #FF5C00 !important; }
+    .level-option { background: #f9f9f9 !important; border-color: #ddd !important; }
+    .level-option .lo-label { color: #111 !important; }
+    .level-option .lo-desc { color: #666 !important; }
+    .badge-status { background: #eee !important; color: #333 !important; }
+  }
+
+  /* Header */
+  .header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--cinza-border); text-align: center; }
+  .header img { height: 80px; margin-bottom: 6px; }
+  .header-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--laranja); margin-bottom: 12px; }
+  .header h1 { font-family: var(--serif); font-size: 2rem; font-weight: 400; line-height: 1.2; margin-bottom: 8px; }
+  .header h1 em { font-style: italic; color: var(--laranja); }
+  .header-line { width: 60px; height: 2px; background: var(--laranja); margin: 16px auto; }
+  .header p { font-size: 0.88rem; color: var(--cinza-claro); font-weight: 300; max-width: 560px; margin: 0 auto; }
+
+  /* Badge */
+  .badge-status {
+    display: inline-block;
+    background: rgba(255,92,0,0.12);
+    color: var(--laranja);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-top: 12px;
+  }
+
+  /* Meta info */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  .meta-item { background: var(--cinza-escuro); padding: 12px 16px; border: 1px solid var(--cinza-border); }
+  .meta-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cinza-claro); margin-bottom: 4px; }
+  .meta-value { font-size: 0.88rem; font-weight: 400; color: var(--branco); }
+
+  /* Section */
+  .section { margin-bottom: 40px; }
+  .section-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--laranja); margin-bottom: 10px; }
+  .section h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 20px; }
+  .section h2 em { font-style: italic; color: var(--laranja); }
+
+  /* Fields */
+  .field { margin-bottom: 16px; }
+  .field-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cinza-claro); margin-bottom: 6px; }
+  .field-value {
+    width: 100%;
+    background: var(--cinza-escuro);
+    border: 1px solid var(--cinza-border);
+    padding: 14px 16px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--branco);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .field-value.tall { min-height: 80px; }
+
+  /* Grid */
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .field-grid { grid-template-columns: 1fr; } }
+
+  /* Table */
+  .obj-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .obj-table th { background: var(--cinza-medio); padding: 10px 14px; text-align: left; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cinza-claro); }
+  .obj-table td { padding: 10px 14px; border-bottom: 1px solid var(--cinza-border); font-size: 0.85rem; font-weight: 300; line-height: 1.5; }
+  .obj-table td:first-child { width: 36px; text-align: center; color: var(--laranja); font-weight: 600; font-size: 0.85rem; }
+
+  /* Scale */
+  .scale-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .scale-label { width: 180px; font-size: 0.85rem; color: rgba(255,255,255,0.7); flex-shrink: 0; }
+  .scale-track { flex: 1; height: 6px; background: var(--cinza-medio); position: relative; }
+  .scale-fill { height: 100%; background: var(--laranja); transition: width 0.3s; }
+  .scale-val { width: 56px; font-size: 0.82rem; color: var(--laranja); font-weight: 600; text-align: center; }
+
+  /* Radio level */
+  .level-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .level-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; background: var(--cinza-escuro);
+    border: 1px solid var(--cinza-border);
+  }
+  .level-option.active { border-color: var(--laranja); background: rgba(255,92,0,0.06); }
+  .level-option .lo-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--cinza-claro); flex-shrink: 0; }
+  .level-option.active .lo-dot { border-color: var(--laranja); background: var(--laranja); box-shadow: inset 0 0 0 3px var(--cinza-escuro); }
+  .level-option .lo-label { font-size: 0.85rem; font-weight: 500; color: var(--branco); }
+  .level-option .lo-desc { font-size: 0.8rem; color: var(--cinza-claro); font-weight: 300; margin-left: auto; }
+
+  /* Divider */
+  .divider { width: 100%; height: 1px; background: linear-gradient(90deg, var(--laranja), rgba(255,92,0,0.05)); margin: 40px 0; }
+
+  /* Insight box */
+  .insight-box {
+    background: rgba(255,92,0,0.05);
+    border-left: 3px solid var(--laranja);
+    padding: 16px 20px;
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .insight-box strong { color: var(--laranja); font-weight: 600; }
+
+  /* Buttons */
+  .btn-bar { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .btn {
+    display: inline-block; padding: 14px 36px;
+    font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: opacity 0.2s;
+    text-decoration: none;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--laranja); color: var(--preto); }
+  .btn-outline { background: transparent; color: var(--laranja); border: 1px solid var(--laranja); }
+
+  /* ===== RESPONSIVE MOBILE ===== */
+  @media (max-width: 768px) {
+    body { padding: 32px 16px; font-size: 14px; }
+    .header h1 { font-size: 1.6rem; }
+    .header p { font-size: 0.82rem; }
+    .meta-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .meta-item { padding: 10px 12px; }
+    .meta-label { font-size: 0.6rem; }
+    .meta-value { font-size: 0.8rem; }
+    .section h2 { font-size: 1.15rem; }
+    .field-value { font-size: 0.85rem; padding: 12px 14px; }
+    .insight-box { padding: 14px 16px; font-size: 0.78rem; }
+    .divider { margin: 28px 0; }
+
+    /* Tabelas responsivas */
+    .obj-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .obj-table th { font-size: 0.6rem; padding: 8px 10px; white-space: nowrap; }
+    .obj-table td { font-size: 0.78rem; padding: 8px 10px; min-width: 120px; }
+
+    /* Escala de tom */
+    .scale-row { flex-wrap: wrap; gap: 8px; }
+    .scale-label { width: 100%; font-size: 0.8rem; }
+
+    /* Level options */
+    .level-option { padding: 10px 12px; gap: 10px; }
+    .level-option .lo-label { font-size: 0.8rem; }
+    .level-option .lo-desc { font-size: 0.7rem; }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 24px 12px; }
+    .header img { height: 56px; }
+    .header h1 { font-size: 1.4rem; }
+    .meta-grid { grid-template-columns: 1fr; }
+    .section-tag { font-size: 9px; }
+    .section h2 { font-size: 1.05rem; }
+    .field-label { font-size: 0.68rem; }
+    .field-value { font-size: 0.82rem; padding: 10px 12px; }
+    .obj-table td:first-child { width: 28px; padding: 6px; }
+    .level-option .lo-desc { display: none; }
+    .badge-status { font-size: 0.6rem; padding: 5px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV BAR -->
+<div style="position:sticky;top:0;z-index:9999;background:rgba(10,10,10,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+<!-- /NAV BAR -->
+
+<div class="header">
+  <img src="ads-logo.png" alt="ADS Company">
+  <div style="font-family:var(--serif); font-size:1.1rem; font-weight:400; letter-spacing:0.18em; text-transform:uppercase; color:var(--branco); margin-bottom:4px; margin-top:-8px;">ADS <em style="font-style:italic; color:var(--laranja);">Company</em></div>
+  <div class="header-tag">Briefing Estrat&eacute;gico Completo</div>
+  <h1>CAFF <em>Engenharia</em></h1>
+  <div class="header-line"></div>
+  <p>Impermeabiliza&ccedil;&atilde;o Alto Padr&atilde;o &mdash; Briefing completo para estrat&eacute;gia de tr&aacute;fego pago, presen&ccedil;a digital e capta&ccedil;&atilde;o de clientes.</p>
+  <div class="badge-status">Briefing Aprovado &mdash; 13/05/2026</div>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="meta-label">Cliente</div>
+      <div class="meta-value">Austry F. Filho</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Respons&aacute;vel ADS</div>
+      <div class="meta-value">Davidson Pereira</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Regi&atilde;o</div>
+      <div class="meta-value">Barreiras e Lu&iacute;s Eduardo &mdash; BA</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Data da Reuni&atilde;o</div>
+      <div class="meta-value">13 de maio de 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 01. VISÃO GERAL -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">01 &mdash; Vis&atilde;o Geral</div>
+  <h2>Sobre o <em>projeto</em></h2>
+
+  <div class="field">
+    <div class="field-label">Nome do projeto</div>
+    <div class="field-value">CAFF Engenharia &mdash; Impermeabiliza&ccedil;&atilde;o Alto Padr&atilde;o</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">O que &eacute;</div>
+    <div class="field-value">Servi&ccedil;o especializado de impermeabiliza&ccedil;&atilde;o com membrana de poliuretano de origem italiana (multinacional com mais de 80 anos de mercado). Foco em durabilidade e efici&ecirc;ncia para constru&ccedil;&otilde;es de m&eacute;dio e alto padr&atilde;o na regi&atilde;o de Barreiras e Lu&iacute;s Eduardo Magalh&atilde;es, Bahia.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Resultado que entrega</div>
+    <div class="field-value">Solu&ccedil;&atilde;o definitiva para evitar infiltra&ccedil;&otilde;es, danos em forros, vazamentos e dores de cabe&ccedil;a p&oacute;s-obra. Elimina a necessidade de refazer o servi&ccedil;o e oferece at&eacute; 25 anos de vida &uacute;til certificada, com garantia t&eacute;cnica de 6 anos (acima dos 5 exigidos por norma).</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Formato</div>
+    <div class="field-value">Servi&ccedil;o completo entregue ao cliente &mdash; inclui material de alta performance, m&atilde;o de obra qualificada, responsabilidade t&eacute;cnica (ART) e garantia formal. Tudo em um &uacute;nico servi&ccedil;o, sem subcontrata&ccedil;&otilde;es.</div>
+  </div>
+
+  <div class="insight-box">
+    <strong>Insight da pesquisa:</strong> O mercado de impermeabiliza&ccedil;&atilde;o no interior da Bahia &eacute; dominado por profissionais informais que oferecem apenas m&atilde;o de obra ou manta l&iacute;quida. N&atilde;o existe nenhuma empresa na regi&atilde;o com posicionamento de alto padr&atilde;o, represent&atilde;o de multinacional e presen&ccedil;a digital ativa. A CAFF tem a oportunidade de ser a primeira refer&ecirc;ncia regional.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 02. PÚBLICO-ALVO -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">02 &mdash; P&uacute;blico-Alvo</div>
+  <h2>Quem &eacute; o <em>cliente ideal</em></h2>
+
+  <div class="field-grid">
+    <div class="field">
+      <div class="field-label">Cliente ideal</div>
+      <div class="field-value">Dono de obra em constru&ccedil;&atilde;o de m&eacute;dio/alto padr&atilde;o, empres&aacute;rios, institui&ccedil;&otilde;es p&uacute;blicas e privadas, condom&iacute;nios, faculdades e s&iacute;ndicos. Faixa et&aacute;ria: 30&ndash;55 anos, classes B e C1.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Profiss&atilde;o / perfil</div>
+      <div class="field-value">Empres&aacute;rio, propriet&aacute;rio de im&oacute;vel ou s&iacute;ndico com poder de decis&atilde;o. Pessoa que valoriza qualidade e n&atilde;o quer ter retrabalho. Busca um profissional de confian&ccedil;a e consulta o engenheiro antes de contratar.</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Dor principal</div>
+    <div class="field-value tall">A falta de um produto eficiente e duradouro &eacute; a dor n&uacute;mero um. Em segundo plano, a escassez de m&atilde;o de obra qualificada para impermeabiliza&ccedil;&atilde;o na regi&atilde;o agrava o problema &mdash; muitos j&aacute; tiveram experi&ecirc;ncias ruins com servi&ccedil;os informais que falharam em pouco tempo. A infiltra&ccedil;&atilde;o gera mofo, problemas de sa&uacute;de (rinite, bronquite, asma), desvaloriza o im&oacute;vel e causa preju&iacute;zo financeiro com reparos que custam at&eacute; 15 vezes mais que a impermeabiliza&ccedil;&atilde;o preventiva.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Desejo mais forte</div>
+    <div class="field-value tall">Que a impermeabiliza&ccedil;&atilde;o seja duradoura e n&atilde;o gere dor de cabe&ccedil;a. O cliente quer fazer uma vez e esquecer &mdash; sem manuten&ccedil;&atilde;o recorrente, sem retrabalho, sem surpresas. Deseja uma cobertura que dure anos com seguran&ccedil;a e que possa explorar o espa&ccedil;o (laje, terra&ccedil;o) livremente ap&oacute;s a finaliza&ccedil;&atilde;o.</div>
+  </div>
+
+  <div class="field-grid">
+    <div class="field">
+      <div class="field-label">Situa&ccedil;&atilde;o atual</div>
+      <div class="field-value tall">Em obras novas, enfrentando o desafio de encontrar uma impermeabiliza&ccedil;&atilde;o de qualidade na regi&atilde;o. Muitos conhecem apenas manta asf&aacute;ltica ou manta l&iacute;quida, solu&ccedil;&otilde;es inferiores. Alguns j&aacute; sofreram com infiltra&ccedil;&otilde;es e est&atilde;o c&eacute;ticos. Outros est&atilde;o construindo agora e querem fazer certo desde o in&iacute;cio.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Situa&ccedil;&atilde;o desejada</div>
+      <div class="field-value tall">Im&oacute;vel impermeabilizado com tecnologia de ponta, garantia formal, responsabilidade t&eacute;cnica e a tranquilidade de saber que n&atilde;o vai ter problema por anos. Poder usar a laje, o terra&ccedil;o ou a cobertura sem preocupa&ccedil;&atilde;o &mdash; inclusive para tr&aacute;fego de pedestres, sem necessidade de prote&ccedil;&atilde;o mec&acirc;nica.</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <strong>Estrat&eacute;gia de comunica&ccedil;&atilde;o definida na reuni&atilde;o:</strong> O foco &eacute; atingir o dono da obra (cliente final), para que ele identifique a solu&ccedil;&atilde;o e consulte o engenheiro de confian&ccedil;a. Evitar negociar diretamente com engenheiros, que podem ter resist&ecirc;ncia ao servi&ccedil;o. O cliente final &eacute; quem decide e paga &mdash; o engenheiro apenas valida.<br><br>
+    <strong>Dado da pesquisa:</strong> 70% das reclama&ccedil;&otilde;es de v&iacute;cios construtivos s&atilde;o sobre infiltra&ccedil;&otilde;es. Boca a boca &eacute; o canal n&uacute;mero 1 no interior da Bahia &mdash; depoimentos em v&iacute;deo e programa de indica&ccedil;&atilde;o s&atilde;o prioridade.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 03. OFERTA -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">03 &mdash; Oferta</div>
+  <h2>O que voc&ecirc; <em>vende</em></h2>
+
+  <div class="field">
+    <div class="field-label">Nome da oferta</div>
+    <div class="field-value">Impermeabiliza&ccedil;&atilde;o com Membrana de Poliuretano &mdash; Tecnologia Italiana</div>
+  </div>
+
+  <div class="field-grid">
+    <div class="field">
+      <div class="field-label">Pre&ccedil;o m&eacute;dio</div>
+      <div class="field-value">R$ 15.000 a R$ 20.000 (laje m&eacute;dia de 100 m&sup2;)</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Garantia</div>
+      <div class="field-value">6 anos de garantia t&eacute;cnica (norma exige apenas 5)</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">O que est&aacute; incluso</div>
+    <div class="field-value tall">Servi&ccedil;o completo finalizado: material de alta performance (membrana de poliuretano italiana), m&atilde;o de obra especializada, responsabilidade t&eacute;cnica (ART emitida pelo engenheiro civil respons&aacute;vel) e garantia formal de 6 anos. O cliente recebe tudo em um &uacute;nico pacote, sem precisar coordenar fornecedores separados.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Diferenciais e b&ocirc;nus</div>
+    <div class="field-value tall">&bull; Garantia de 6 anos (acima do m&iacute;nimo legal de 5 anos)<br>
+&bull; Est&eacute;tica de alto padr&atilde;o &mdash; acabamento superior vis&iacute;vel<br>
+&bull; Livre para tr&aacute;fego de pedestres sem necessidade de prote&ccedil;&atilde;o mec&acirc;nica<br>
+&bull; Representante oficial de multinacional italiana com mais de 80 anos de mercado<br>
+&bull; Resist&ecirc;ncia t&eacute;rmica: -40&deg;C a +80&deg;C<br>
+&bull; Alongamento de at&eacute; 400% (acompanha movimenta&ccedil;&otilde;es estruturais sem trincar)<br>
+&bull; Vida &uacute;til certificada de at&eacute; 25 anos<br>
+&bull; Compat&iacute;vel com todos os substratos: concreto, metal, madeira, etc.<br>
+&bull; ART inclusa &mdash; responsabilidade t&eacute;cnica formal do engenheiro</div>
+  </div>
+
+  <div class="insight-box">
+    <strong>Insight da pesquisa:</strong> O pre&ccedil;o de refer&ecirc;ncia nacional para impermeabiliza&ccedil;&atilde;o varia de R$ 25 a R$ 120/m&sup2; dependendo do tipo de superf&iacute;cie e material. O posicionamento da CAFF est&aacute; na faixa premium (R$ 150&ndash;200/m&sup2;), justificado pela tecnologia, garantia e responsabilidade t&eacute;cnica. Retrabalho com impermeabiliza&ccedil;&atilde;o custa at&eacute; 15x mais &mdash; argumento decisivo contra a obje&ccedil;&atilde;o de pre&ccedil;o.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 04. OBJEÇÕES -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">04 &mdash; Obje&ccedil;&otilde;es</div>
+  <h2>Por que <em>n&atilde;o</em> comprariam</h2>
+  <table class="obj-table">
+    <thead><tr><th>#</th><th>Obje&ccedil;&atilde;o</th><th>Resposta</th><th>Prova</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>Pre&ccedil;o alto</strong> &mdash; &ldquo;&Eacute; mais caro que manta l&iacute;quida&rdquo;</td>
+        <td>O pre&ccedil;o reflete a qualidade superior e a durabilidade. Com at&eacute; 25 anos de vida &uacute;til, o custo por ano &eacute; menor que qualquer alternativa. Retrabalho com solu&ccedil;&otilde;es baratas custa at&eacute; 15x mais.</td>
+        <td>Vida &uacute;til certificada de at&eacute; 25 anos. Garantia de 6 anos inclusa. Compara&ccedil;&atilde;o: manta l&iacute;quida tem durabilidade e qualidade inferiores e exige manuten&ccedil;&atilde;o frequente.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Durabilidade</strong> &mdash; &ldquo;Ser&aacute; que dura mesmo?&rdquo;</td>
+        <td>N&atilde;o trabalhamos com manta l&iacute;quida (que tem durabilidade e qualidade inferiores). Nosso produto &eacute; membrana de poliuretano italiana, com tecnologia comprovada em mais de 80 pa&iacute;ses.</td>
+        <td>Multinacional com 80+ anos de mercado. Certificados internacionais. Alongamento de 400% &mdash; acompanha as movimenta&ccedil;&otilde;es da estrutura sem trincar.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Prefer&ecirc;ncia por telhado</strong> &mdash; &ldquo;N&atilde;o gosto de laje, prefiro telhado&rdquo;</td>
+        <td>A impermeabiliza&ccedil;&atilde;o bem feita tem durabilidade superior ao telhado sem necessitar de manuten&ccedil;&atilde;o. Possibilita explorar novas obras em cima (terra&ccedil;o, &aacute;rea gourmet). O telhado pode ser danificado por terceiros, a impermeabiliza&ccedil;&atilde;o n&atilde;o.</td>
+        <td>Casas de alto padr&atilde;o modernas usam laje impermeabilizada para maximizar &aacute;rea &uacute;til. Terra&ccedil;os e coberturas valorizam o im&oacute;vel em at&eacute; 20%.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Temperatura</strong> &mdash; &ldquo;Com o calor de Barreiras, vai aguentar?&rdquo;</td>
+        <td>Nosso produto &eacute; resistente de -40&deg;C a +80&deg;C. Barreiras j&aacute; registrou 40,7&deg;C (recorde do ano na Bahia) e a regi&atilde;o do oeste baiano enfrenta umidade abaixo de 20% no per&iacute;odo seco. Mesmo nessas condi&ccedil;&otilde;es extremas, a superf&iacute;cie de uma laje pode chegar a 65&deg;C sob sol direto &mdash; ainda dentro da faixa de seguran&ccedil;a do produto, com folga de 15&deg;C.</td>
+        <td>Especifica&ccedil;&atilde;o t&eacute;cnica do fabricante italiano. Testes em condi&ccedil;&otilde;es extremas certificados internacionalmente. Produto projetado para suportar climas severos como o do cerrado do oeste baiano.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>Ader&ecirc;ncia</strong> &mdash; &ldquo;Funciona na minha superf&iacute;cie?&rdquo;</td>
+        <td>Compat&iacute;vel com todos os tipos de substratos: concreto, metal, madeira, cer&acirc;mica e outros. Adere perfeitamente independentemente do material da base.</td>
+        <td>Ficha t&eacute;cnica do produto com tabela de compatibilidade. Casos reais de aplica&ccedil;&atilde;o em diferentes substratos na regi&atilde;o.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight-box">
+    <strong>Obje&ccedil;&otilde;es adicionais identificadas na pesquisa:</strong><br>
+    &bull; &ldquo;Consigo fazer eu mesmo?&rdquo; &mdash; Resposta: aplica&ccedil;&atilde;o incorreta &eacute; a principal causa de falha. A t&eacute;cnica exige forma&ccedil;&atilde;o espec&iacute;fica.<br>
+    &bull; &ldquo;Quanto tempo leva?&rdquo; &mdash; Resposta: depende da &aacute;rea, mas a CAFF trabalha com cronograma definido e cumpre prazos.<br>
+    &bull; &ldquo;E se der problema dentro da garantia?&rdquo; &mdash; Resposta: garantia formal com ART. Engenheiro civil respons&aacute;vel responde t&eacute;cnica e juridicamente.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 05. CONCORRENTES -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">05 &mdash; Concorrentes</div>
+  <h2>Quem mais <em>resolve</em> esse problema</h2>
+  <table class="obj-table">
+    <thead><tr><th>#</th><th>Concorrente</th><th>O que faz bem</th><th>O que falta</th><th>Diferencial CAFF</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>HSI Impermeabiliza&ccedil;&otilde;es</strong></td>
+        <td>Trabalha com manta asf&aacute;ltica, pre&ccedil;o competitivo</td>
+        <td>N&atilde;o foca em im&oacute;veis residenciais de alto padr&atilde;o. Produto com durabilidade inferior (5&ndash;8 anos). Sem representa&ccedil;&atilde;o de marca internacional.</td>
+        <td>Foco espec&iacute;fico em im&oacute;veis de m&eacute;dio/alto padr&atilde;o. Tecnologia italiana com at&eacute; 25 anos de vida &uacute;til. Respons&aacute;vel t&eacute;cnico engenheiro civil.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Galv&atilde;o Impermeabiliza&ccedil;&atilde;o</strong></td>
+        <td>Oferece aplica&ccedil;&atilde;o de impermeabiliza&ccedil;&atilde;o na regi&atilde;o</td>
+        <td>Oferece apenas a aplica&ccedil;&atilde;o, sem representa&ccedil;&atilde;o de produto de alta qualidade. Sem respons&aacute;bilidade t&eacute;cnica formal. Sem garantia robusta.</td>
+        <td>Vende produto premium + m&atilde;o de obra + responsabilidade t&eacute;cnica, tudo em um &uacute;nico servi&ccedil;o completo. Garantia de 6 anos com ART.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Profissionais informais da regi&atilde;o</strong></td>
+        <td>Pre&ccedil;o baixo, disponibilidade imediata</td>
+        <td>Sem garantia, sem ART, sem produto de qualidade. Alta taxa de retrabalho. Nenhuma presen&ccedil;a digital. Sem credenciais t&eacute;cnicas.</td>
+        <td>Credibilidade (engenheiro civil p&oacute;s-graduado, perito credenciado TJ GO/BA e Caixa Econ&ocirc;mica Federal). Garantia formal. Tecnologia comprovada.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight-box">
+    <strong>Insight da pesquisa:</strong> Na biblioteca de an&uacute;ncios do Meta, o segmento de impermeabiliza&ccedil;&atilde;o no interior da Bahia praticamente n&atilde;o tem anunciantes. CPC estimado para termos locais: R$ 2 a R$ 8 (contra US$ 53 nos EUA). A CAFF pode dominar os resultados pagos da regi&atilde;o com investimento relativamente baixo.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 06. ÂNGULOS DE CAMPANHA -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">06 &mdash; &Acirc;ngulos de Campanha</div>
+  <h2>Formas de <em>abordar</em> o p&uacute;blico</h2>
+
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Dor</div>
+    <div class="field-value">&ldquo;Infiltra&ccedil;&atilde;o na laje &eacute; como cupim silencioso &mdash; quando voc&ecirc; percebe, o estrago j&aacute; &eacute; enorme. Forro danificado, mofo na parede, cheiro de umidade pela casa, m&oacute;veis estragados e problemas de sa&uacute;de na fam&iacute;lia. E o pior: refazer o servi&ccedil;o custa at&eacute; 15 vezes mais do que fazer certo da primeira vez.&rdquo;</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Desejo</div>
+    <div class="field-value">&ldquo;Imagine construir sua casa, impermeabilizar uma &uacute;nica vez e nunca mais se preocupar com isso. Sem goteira, sem forro manchado, sem dor de cabe&ccedil;a. Uma laje que vira terra&ccedil;o, &aacute;rea gourmet ou espa&ccedil;o de lazer &mdash; com seguran&ccedil;a para caminhar em cima sem prote&ccedil;&atilde;o mec&acirc;nica. Por at&eacute; 25 anos.&rdquo;</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Prova</div>
+    <div class="field-value">&ldquo;Engenheiro civil p&oacute;s-graduado, perito credenciado pelo TJ de Goi&aacute;s e Bahia, credenciado da Caixa Econ&ocirc;mica Federal, representante oficial de multinacional italiana com mais de 80 anos de mercado. 360 m&sup2; j&aacute; impermeabilizados na regi&atilde;o com zero reclama&ccedil;&otilde;es. Pergunte para a Odete e para a Andr&eacute;ia.&rdquo;</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Urg&ecirc;ncia</div>
+    <div class="field-value">&ldquo;O per&iacute;odo de chuvas em Barreiras e Lu&iacute;s Eduardo vai de novembro a abril. Cada dia sem impermeabiliza&ccedil;&atilde;o &eacute; um dia de infiltra&ccedil;&atilde;o silenciosa entrando na sua laje. E no per&iacute;odo seco, com temperaturas passando dos 40&deg;C e umidade abaixo de 20%, materiais de baixa qualidade ressecam e racham. Quando a primeira mancha aparece no forro, o problema j&aacute; tem semanas &mdash; e o reparo custa muito mais do que a preven&ccedil;&atilde;o.&rdquo;</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Curiosidade</div>
+    <div class="field-value">&ldquo;Existe uma tecnologia italiana usada em mais de 80 pa&iacute;ses que suporta -40&deg;C a +80&deg;C, estica at&eacute; 400% sem romper e dura at&eacute; 25 anos &mdash; e j&aacute; est&aacute; dispon&iacute;vel em Barreiras. Descubra por que as constru&ccedil;&otilde;es de alto padr&atilde;o est&atilde;o abandonando a manta l&iacute;quida.&rdquo;</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 07. PROMESSAS -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">07 &mdash; Promessas</div>
+  <h2>O que voc&ecirc; <em>promete</em></h2>
+
+  <div class="field">
+    <div class="field-label">Promessa central</div>
+    <div class="field-value tall">Qualidade, seguran&ccedil;a e durabilidade &mdash; impermeabiliza&ccedil;&atilde;o que voc&ecirc; faz uma vez e esquece por d&eacute;cadas. Com responsabilidade t&eacute;cnica de engenheiro civil, garantia formal de 6 anos e tecnologia italiana certificada para at&eacute; 25 anos de vida &uacute;til.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Sub-promessa 1</div>
+    <div class="field-value">At&eacute; 25 anos de vida &uacute;til certificada pelo fabricante italiano &mdash; a impermeabiliza&ccedil;&atilde;o mais duradoura dispon&iacute;vel na regi&atilde;o.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Sub-promessa 2</div>
+    <div class="field-value">Resist&ecirc;ncia de alongamento de at&eacute; 400% &mdash; a membrana acompanha as movimenta&ccedil;&otilde;es naturais da estrutura sem trincar, romper ou descolar.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Sub-promessa 3</div>
+    <div class="field-value">Resistente a temperaturas extremas (-40&deg;C a +80&deg;C) &mdash; perfeito para o clima de Barreiras e Lu&iacute;s Eduardo, onde as m&aacute;ximas ultrapassam 40&deg;C, a umidade cai abaixo de 20% e a superf&iacute;cie da laje pode ultrapassar 60&deg;C sob sol direto.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 08. PROVAS -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">08 &mdash; Provas</div>
+  <h2>Por que devem <em>acreditar</em></h2>
+
+  <div class="field">
+    <div class="field-label">Depoimentos de clientes</div>
+    <div class="field-value tall">&bull; <strong>Odete</strong> &mdash; cliente residencial (depoimento a ser gravado em v&iacute;deo)<br>
+&bull; <strong>Andr&eacute;ia</strong> &mdash; cliente residencial (depoimento a ser gravado em v&iacute;deo)<br><br>
+<em>A&ccedil;&atilde;o recomendada:</em> gravar depoimento em v&iacute;deo de ambas as clientes no local da obra, mostrando o antes/depois e o resultado final. V&iacute;deos de depoimento s&atilde;o o formato com maior convers&atilde;o para servi&ccedil;os de constru&ccedil;&atilde;o civil no Instagram.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Resultados num&eacute;ricos</div>
+    <div class="field-value">3 clientes atendidos com excel&ecirc;ncia. 360 m&sup2; de &aacute;rea impermeabilizada com zero reclama&ccedil;&otilde;es e zero retrabalho. 100% de satisfa&ccedil;&atilde;o at&eacute; o momento.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Credenciais do expert &mdash; Austry F. Filho</div>
+    <div class="field-value tall">&bull; Formado em Engenharia Civil<br>
+&bull; T&eacute;cnico em Edifica&ccedil;&otilde;es<br>
+&bull; P&oacute;s-graduado em Engenharia Diagn&oacute;stica, Avalia&ccedil;&atilde;o e Per&iacute;cia<br>
+&bull; Perito credenciado no Tribunal de Justi&ccedil;a de Goi&aacute;s (TJ-GO)<br>
+&bull; Perito credenciado no Tribunal de Justi&ccedil;a da Bahia (TJ-BA)<br>
+&bull; Credenciado da Caixa Econ&ocirc;mica Federal<br>
+&bull; Representante oficial de multinacional italiana de impermeabiliza&ccedil;&atilde;o (80+ anos de mercado)</div>
+  </div>
+
+  <div class="insight-box">
+    <strong>Insight da pesquisa (Amazon):</strong> Nos coment&aacute;rios de livros sobre impermeabiliza&ccedil;&atilde;o, os reviews mais elogiados s&atilde;o de autores que respondem d&uacute;vidas pessoalmente. Clientes compram livros para se proteger de empreiteiros desonestos. As credenciais de perito judicial e a p&oacute;s-gradua&ccedil;&atilde;o em per&iacute;cia s&atilde;o diferenciais poderosos &mdash; transmitem confian&ccedil;a e seguran&ccedil;a jur&iacute;dica que nenhum concorrente da regi&atilde;o oferece.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 09. MECANISMO ÚNICO -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">09 &mdash; Mecanismo &Uacute;nico</div>
+  <h2>O m&eacute;todo que <em>faz funcionar</em></h2>
+
+  <div class="field">
+    <div class="field-label">Nome do m&eacute;todo</div>
+    <div class="field-value">Impermeabiliza&ccedil;&atilde;o com Membrana de Poliuretano &mdash; Tecnologia Italiana<br><br><em>Sugest&otilde;es de nome comercial para campanha (a definir com o cliente):</em><br>
+&bull; M&eacute;todo Blindagem Total<br>
+&bull; Sistema Prote&ccedil;&atilde;o 25 Anos<br>
+&bull; Tecnologia Scu&ograve;do (escudo em italiano)<br>
+&bull; M&eacute;todo CAFF de Impermeabiliza&ccedil;&atilde;o Definitiva</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Por que funciona</div>
+    <div class="field-value tall">A combina&ccedil;&atilde;o de tr&ecirc;s fatores insepar&aacute;veis:<br><br>
+<strong>1. Mat&eacute;ria-prima premium:</strong> Membrana de poliuretano fabricada por multinacional italiana com 80+ anos de mercado e presen&ccedil;a em mais de 80 pa&iacute;ses. N&atilde;o &eacute; manta asf&aacute;ltica, n&atilde;o &eacute; manta l&iacute;quida &mdash; &eacute; tecnologia de ponta.<br><br>
+<strong>2. Aplica&ccedil;&atilde;o correta:</strong> A mat&eacute;ria-prima s&oacute; funciona com a t&eacute;cnica certa. A CAFF segue o protocolo do fabricante, com preparo de substrato, primer adequado, camadas na espessura exata e cura controlada.<br><br>
+<strong>3. Responsabilidade t&eacute;cnica:</strong> Engenheiro civil respons&aacute;vel t&eacute;cnico por todo o servi&ccedil;o, com ART emitida. N&atilde;o &eacute; &ldquo;pedreiro que impermeabiliza&rdquo; &mdash; &eacute; engenharia aplicada.</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Diferencial do mecanismo</div>
+    <div class="field-value tall">&bull; &Uacute;nica empresa na regi&atilde;o que &eacute; representante oficial de multinacional italiana<br>
+&bull; &Uacute;nica que entrega produto + m&atilde;o de obra + ART em um s&oacute; pacote<br>
+&bull; &Uacute;nica com garantia acima do exigido por lei (6 anos vs. 5)<br>
+&bull; &Uacute;nica com engenheiro p&oacute;s-graduado em diagn&oacute;stica e per&iacute;cia como respons&aacute;vel t&eacute;cnico<br>
+&bull; Princ&iacute;pio 90/1%: 90% dos vazamentos v&ecirc;m de apenas 1% do im&oacute;vel &mdash; a CAFF sabe exatamente onde agir</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 10. NÍVEL DE CONSCIÊNCIA -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">10 &mdash; N&iacute;vel de Consci&ecirc;ncia (Schwartz)</div>
+  <h2>Onde o p&uacute;blico <em>est&aacute;</em></h2>
+  <p style="font-size:0.88rem; color:var(--cinza-claro); font-weight:300; margin-bottom:16px;">N&iacute;vel predominante do p&uacute;blico-alvo da CAFF Engenharia:</p>
+
+  <div class="level-options">
+    <label class="level-option"><span class="lo-dot"></span><span class="lo-label">Inconsciente</span><span class="lo-desc">N&atilde;o sabe que tem o problema</span></label>
+    <label class="level-option active"><span class="lo-dot"></span><span class="lo-label">Consciente do Problema</span><span class="lo-desc">Sabe que d&oacute;i, n&atilde;o sabe a solu&ccedil;&atilde;o</span></label>
+    <label class="level-option"><span class="lo-dot"></span><span class="lo-label">Consciente da Solu&ccedil;&atilde;o</span><span class="lo-desc">Sabe que existe, n&atilde;o conhece a sua</span></label>
+    <label class="level-option"><span class="lo-dot"></span><span class="lo-label">Consciente do Produto</span><span class="lo-desc">Conhece sua oferta, n&atilde;o comprou</span></label>
+    <label class="level-option"><span class="lo-dot"></span><span class="lo-label">Mais Consciente</span><span class="lo-desc">Pronto para comprar</span></label>
+  </div>
+
+  <div class="insight-box">
+    <strong>Implica&ccedil;&atilde;o estrat&eacute;gica:</strong> O p&uacute;blico sabe que tem problema de infiltra&ccedil;&atilde;o ou medo de ter, mas n&atilde;o conhece a solu&ccedil;&atilde;o com membrana de poliuretano. A comunica&ccedil;&atilde;o precisa primeiro <strong>educar</strong> (mostrar que existe uma tecnologia superior) e depois <strong>converter</strong> (mostrar que a CAFF &eacute; a melhor escolha na regi&atilde;o). Conte&uacute;dos educativos no Instagram (Reels e carross&eacute;is) s&atilde;o o formato ideal para esse n&iacute;vel de consci&ecirc;ncia.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 11. TOM DE COMUNICAÇÃO -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">11 &mdash; Tom de Comunica&ccedil;&atilde;o</div>
+  <h2>Como a marca <em>fala</em></h2>
+
+  <div class="scale-row">
+    <span class="scale-label">Formal &harr; Casual</span>
+    <div class="scale-track"><div class="scale-fill" style="width:50%"></div></div>
+    <span class="scale-val">50</span>
+  </div>
+  <div class="scale-row">
+    <span class="scale-label">S&eacute;rio &harr; Divertido</span>
+    <div class="scale-track"><div class="scale-fill" style="width:80%"></div></div>
+    <span class="scale-val">80</span>
+  </div>
+  <div class="scale-row">
+    <span class="scale-label">T&eacute;cnico &harr; Acess&iacute;vel</span>
+    <div class="scale-track"><div class="scale-fill" style="width:60%"></div></div>
+    <span class="scale-val">60</span>
+  </div>
+  <div class="scale-row">
+    <span class="scale-label">Autorit&aacute;rio &harr; Amig&aacute;vel</span>
+    <div class="scale-track"><div class="scale-fill" style="width:80%"></div></div>
+    <span class="scale-val">80</span>
+  </div>
+
+  <div class="field" style="margin-top:16px;">
+    <div class="field-label">Persona da marca</div>
+    <div class="field-value tall"><strong>Parceiro, amigo e mentor t&eacute;cnico.</strong><br><br>
+O Austry fala com o cliente como um parceiro que quer resolver o problema junto. Passa todas as orienta&ccedil;&otilde;es necess&aacute;rias de forma clara e acess&iacute;vel, sem jarg&otilde;es t&eacute;cnicos desnecess&aacute;rios. Mant&eacute;m autoridade t&eacute;cnica quando necess&aacute;rio (credenciais, dados, especifica&ccedil;&otilde;es), mas o tom predominante &eacute; amig&aacute;vel e acolhedor.<br><br>
+<strong>Na pr&aacute;tica:</strong> Conte&uacute;do no Instagram deve ter o rosto do Austry falando diretamente com a c&acirc;mera, explicando de forma simples, mostrando a obra, os materiais e os resultados. Tom de &ldquo;vou te explicar como funciona&rdquo;, nunca de &ldquo;eu sou superior porque sei mais&rdquo;.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 12. RESTRIÇÕES E CONTEXTO -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">12 &mdash; Restri&ccedil;&otilde;es e Contexto</div>
+  <h2>Limites e <em>prazos</em></h2>
+
+  <div class="field-grid">
+    <div class="field">
+      <div class="field-label">Prazo de lan&ccedil;amento</div>
+      <div class="field-value">Imediato &mdash; assim que a estrutura de an&uacute;ncios estiver configurada (aguardando recupera&ccedil;&atilde;o de acesso ao Facebook do Austry)</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Or&ccedil;amento mensal para tr&aacute;fego</div>
+      <div class="field-value">R$ 900,00/m&ecirc;s (R$ 30,00/dia) &mdash; com expectativa de reajuste conforme resultados de vendas</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Canais priorit&aacute;rios</div>
+    <div class="field-value">Instagram (conte&uacute;do org&acirc;nico + an&uacute;ncios), Facebook (an&uacute;ncios Meta Ads), WhatsApp (atendimento e convers&atilde;o). Google Ads como canal secund&aacute;rio (busca local).</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Restri&ccedil;&otilde;es do nicho</div>
+    <div class="field-value tall">&bull; N&atilde;o prometer resultados absolutos sem laudo t&eacute;cnico pr&eacute;vio<br>
+&bull; Respeitar normas do CREA e legisla&ccedil;&atilde;o de engenharia civil<br>
+&bull; Garantia formal deve estar sempre atrelada &agrave; ART<br>
+&bull; Evitar comparativos diretos nominais com concorrentes nos an&uacute;ncios<br>
+&bull; Aten&ccedil;&atilde;o &agrave; velocidade de atendimento &mdash; pesquisa indica que quem atende o lead em menos de 30 segundos fecha 60-70% dos contratos</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Estrutura de an&uacute;ncios &mdash; Status</div>
+    <div class="field-value tall">&bull; &#10003; Acesso ao perfil do Facebook recuperado<br>
+&bull; &#10003; P&aacute;gina comercial criada no Facebook<br>
+&bull; &#10003; Gerenciador de Neg&oacute;cios configurado<br>
+&bull; &#10003; Conta de an&uacute;ncios criada<br>
+&bull; &#10003; Acessos compartilhados com Davidson<br>
+&bull; Verificar situa&ccedil;&atilde;o da hospedagem do site (dom&iacute;nio ativo, site fora do ar &mdash; contatar desenvolvedor anterior para backup)</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================================ -->
+<!-- 13. MÉTRICAS DE REFERÊNCIA -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-tag">13 &mdash; M&eacute;tricas de Refer&ecirc;ncia</div>
+  <h2>Benchmarks do <em>mercado</em></h2>
+
+  <div class="insight-box" style="margin-top:0;">
+    <strong>Dados extra&iacute;dos da pesquisa de mercado para calibrar expectativas e metas:</strong>
+  </div>
+
+  <table class="obj-table" style="margin-top:16px;">
+    <thead><tr><th>#</th><th>M&eacute;trica</th><th>Refer&ecirc;ncia</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>CPC estimado (termos locais)</td><td>R$ 2,00 a R$ 8,00</td></tr>
+      <tr><td>2</td><td>Taxa de convers&atilde;o em landing page</td><td>26% (refer&ecirc;ncia internacional)</td></tr>
+      <tr><td>3</td><td>Leads estimados com R$ 900/m&ecirc;s</td><td>35 a 75 leads/m&ecirc;s</td></tr>
+      <tr><td>4</td><td>Taxa de fechamento (atendimento r&aacute;pido)</td><td>60-70% (atendimento em &lt;30s)</td></tr>
+      <tr><td>5</td><td>Ticket m&eacute;dio</td><td>R$ 15.000 a R$ 20.000</td></tr>
+      <tr><td>6</td><td>Mercado global de impermeabiliza&ccedil;&atilde;o</td><td>USD 42 bilh&otilde;es at&eacute; 2031</td></tr>
+      <tr><td>7</td><td>Crescimento constru&ccedil;&atilde;o civil BA</td><td>4% acima da m&eacute;dia pr&eacute;-Covid</td></tr>
+      <tr><td>8</td><td>Reclama&ccedil;&otilde;es sobre infiltra&ccedil;&atilde;o</td><td>70% de todos os v&iacute;cios construtivos</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTIONS -->
+<div style="text-align:center; padding:32px 0;" class="no-print">
+  <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); font-weight:400; margin-bottom:20px;">Briefing completo. Salve como PDF para refer&ecirc;ncia.</p>
+  <div class="btn-bar">
+    <button class="btn btn-primary" onclick="window.print()">Salvar como PDF</button>
+  </div>
+  <p style="font-size:0.75rem; color:var(--cinza-claro); margin-top:16px; font-weight:300;">No di&aacute;logo de impress&atilde;o, selecione &ldquo;Salvar como PDF&rdquo; como destino.</p>
+</div>
+
+<div style="text-align:center; padding:24px 0; border-top:1px solid var(--cinza-border);">
+  <p style="font-family:var(--serif); font-size:0.95rem;">ADS Company &mdash; <em style="font-style:italic; color:var(--laranja);">Assessoria de Marketing e Performance</em></p>
+  <p style="font-size:0.75rem; color:var(--cinza-claro); margin-top:4px;">Briefing Estrat&eacute;gico &mdash; CAFF Engenharia | Maio 2026</p>
+</div>
+
+</body>
+</html>

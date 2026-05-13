@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise LinkedIn &amp; Blogs — CAFF Engenharia | ADS Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #FF6B35;
+            --accent-dark: #E55A28;
+            --accent-light: rgba(255, 107, 53, 0.15);
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-card-hover: #1C1C1C;
+            --text-primary: #F5F5F5;
+            --text-secondary: #B0B0B0;
+            --text-muted: #777777;
+            --border: #222222;
+            --border-accent: rgba(255, 107, 53, 0.3);
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 50%, #0F0F0F 100%);
+            border-bottom: 2px solid var(--accent);
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255, 107, 53, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-logo img {
+            height: 48px;
+            width: auto;
+            filter: brightness(1.1);
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .header-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .header-title span {
+            color: var(--accent);
+        }
+
+        .header-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-weight: 400;
+        }
+
+        .header-meta {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .header-meta strong {
+            color: var(--text-secondary);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav-section {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-light);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        /* ===== SUBSECTION ===== */
+        .subsection {
+            margin-bottom: 2.5rem;
+        }
+
+        .subsection-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        /* ===== CARDS ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(255, 107, 53, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .card-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .card-role {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 0.15rem;
+        }
+
+        .card-body {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.65rem;
+            font-weight: 600;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag--blue {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--info);
+        }
+
+        .tag--green {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--success);
+        }
+
+        .tag--yellow {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        /* ===== STATS ROW ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--border-accent);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== TABLES ===== */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        }
+
+        thead th {
+            padding: 0.9rem 1rem;
+            text-align: left;
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody td {
+            padding: 0.8rem 1rem;
+            color: var(--text-secondary);
+        }
+
+        tbody td:first-child {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .volume-bar {
+            display: inline-block;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 3px;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* ===== INSIGHT BOXES ===== */
+        .insight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .insight-box--blue {
+            border-left-color: var(--info);
+        }
+
+        .insight-box--green {
+            border-left-color: var(--success);
+        }
+
+        .insight-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-box--blue .insight-label {
+            color: var(--info);
+        }
+
+        .insight-box--green .insight-label {
+            color: var(--success);
+        }
+
+        .insight-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .insight-text strong {
+            color: var(--text-primary);
+        }
+
+        /* ===== OPPORTUNITY CARDS ===== */
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .opp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .opp-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+        }
+
+        .opp-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .opp-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .opp-body {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .opp-impact {
+            margin-top: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .impact-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .impact-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .impact-dot.active {
+            background: var(--accent);
+        }
+
+        .impact-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* ===== CHECKLIST ===== */
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 0.6rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* ===== FORMAT COMPARISON ===== */
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .format-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .format-card:hover {
+            border-color: var(--border-accent);
+        }
+
+        .format-card.recommended {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.1);
+        }
+
+        .format-badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .format-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .format-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .format-engagement {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .format-note {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* ===== BLOG CARDS ===== */
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+
+        .blog-rank {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-light);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 800;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .blog-info {
+            flex: 1;
+        }
+
+        .blog-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .blog-url {
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .blog-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.4rem;
+            line-height: 1.5;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 0.75rem;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--border-accent);
+        }
+
+        .faq-question {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--accent);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .footer-text strong {
+            color: var(--accent);
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-meta {
+                text-align: center;
+            }
+
+            .header-title {
+                font-size: 1.35rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cards-grid,
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .format-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blog-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .nav-link {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+
+            .format-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        /* ===== DIVIDER ===== */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            margin: 4rem 0;
+        }
+
+        /* ===== NORMAS TABLE ===== */
+        .norma-badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--info);
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<!-- NAV BAR -->
+<div style="position:sticky;top:0;z-index:9999;background:rgba(10,10,10,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Pesquisas
+  </a>
+  <a href="../index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+<!-- /NAV BAR -->
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img src="../ads-logo.png" alt="ADS Company" onerror="this.style.display='none'">
+            </div>
+            <div class="header-info">
+                <div class="header-badge">Pesquisa de Mercado</div>
+                <h1 class="header-title">Analise <span>LinkedIn &amp; Blogs</span></h1>
+                <p class="header-subtitle">Inteligencia competitiva para posicionamento digital da CAFF Engenharia no segmento de impermeabilizacao</p>
+            </div>
+            <div class="header-meta">
+                <p><strong>Cliente:</strong> CAFF Engenharia</p>
+                <p><strong>Segmento:</strong> Impermeabilizacao</p>
+                <p><strong>Data:</strong> Maio 2026</p>
+                <p><strong>Fase:</strong> 01 — Pesquisa</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav-section">
+        <div class="nav-content">
+            <a href="#linkedin-perfis" class="nav-link">Perfis LinkedIn</a>
+            <a href="#linkedin-algoritmo" class="nav-link">Algoritmo 2026</a>
+            <a href="#linkedin-formatos" class="nav-link">Formatos</a>
+            <a href="#linkedin-estrategia" class="nav-link">Estrategia LinkedIn</a>
+            <a href="#blogs-relevantes" class="nav-link">Blogs do Setor</a>
+            <a href="#keywords" class="nav-link">Palavras-chave</a>
+            <a href="#duvidas" class="nav-link">Duvidas Frequentes</a>
+            <a href="#oportunidades" class="nav-link">Oportunidades</a>
+            <a href="#plano-acao" class="nav-link">Plano de Acao</a>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- ================================================================ -->
+        <!-- PARTE 1: LINKEDIN                                                -->
+        <!-- ================================================================ -->
+
+        <section class="section" id="linkedin-perfis">
+            <div class="section-header">
+                <div class="section-icon">in</div>
+                <div>
+                    <h2 class="section-title">Perfis de <span>Destaque</span> no LinkedIn</h2>
+                    <p class="section-description">Profissionais e empresas de referencia na construcao civil e impermeabilizacao</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Empresas de Impermeabilizacao com Presenca no LinkedIn</h3>
+                <div class="cards-grid">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">D</div>
+                            <div>
+                                <div class="card-name">Dienstmann Engenharia</div>
+                                <div class="card-role">70 anos de mercado | Desde 2002 exclusiva em impermeabilizacao</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Referencia no Sul do Brasil. Dedica-se exclusivamente ao desenvolvimento de projetos de impermeabilizacao e execucao de sistemas para construtoras, industrias, condominios e residencias. Presenca ativa no LinkedIn com conteudo tecnico.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">Projetos</span>
+                            <span class="tag">Execucao</span>
+                            <span class="tag">B2B</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">IS</div>
+                            <div>
+                                <div class="card-name">Ispersul Engenharia</div>
+                                <div class="card-role">Servicos de impermeabilizacao, isolamento termico e reparos estruturais</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Oferece servicos de impermeabilizacao, isolamento termico, revestimentos, pisos esportivos, reparos estruturais, reformas e projetos de consultoria em construcao civil. Pagina corporativa ativa no LinkedIn.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">Multi-servico</span>
+                            <span class="tag">Consultoria</span>
+                            <span class="tag">LinkedIn ativo</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">DR</div>
+                            <div>
+                                <div class="card-name">Dr. Impermeabilizacao</div>
+                                <div class="card-role">Eleita 3x melhor empresa de SP | +10 anos de mercado</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Especialista em lajes, telhados e isolamento termico. Marca forte com posicionamento de autoridade. Nome de marca memoravel que funciona como estrategia de marketing pessoal aplicada a empresa.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">Marca forte</span>
+                            <span class="tag">Premiada</span>
+                            <span class="tag">Autoridade</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">FB</div>
+                            <div>
+                                <div class="card-name">Fibersals</div>
+                                <div class="card-role">+30 anos | Blog referencia | Garantia de 15 anos</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Consolidou seu sistema de impermeabilizacao como solucao definitiva. Possui o blog mais completo do setor com guias, artigos tecnicos e FAQ. Estrategia de conteudo que gera autoridade e trafego organico.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag--green">Blog referencia</span>
+                            <span class="tag">SEO forte</span>
+                            <span class="tag">Conteudo</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">EC</div>
+                            <div>
+                                <div class="card-name">Ecoimper</div>
+                                <div class="card-role">Bahia | Fundada em 2015 | Impermeabilizacao e engenharia</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Empresa baiana com experiencia solida no mercado da construcao civil, especialmente em impermeabilizacao, engenharia e instalacao de sistemas. Referencia regional importante para a CAFF Engenharia.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag--yellow">Concorrente BA</span>
+                            <span class="tag">Regional</span>
+                            <span class="tag">Desde 2015</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">LI</div>
+                            <div>
+                                <div class="card-name">Loja da Impermeabilizacao</div>
+                                <div class="card-role">Salvador-BA | Revenda tecnica + consultoria</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Estabelecida em Salvador com foco em revenda tecnica de produtos de impermeabilizacao de qualidade e consultoria tecnica. Modelo de negocio que combina venda de material com orientacao especializada.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag--yellow">Concorrente BA</span>
+                            <span class="tag">Revenda</span>
+                            <span class="tag">Consultoria</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Perfis Influentes da Construcao Civil no LinkedIn</h3>
+                <div class="cards-grid">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">EM</div>
+                            <div>
+                                <div class="card-name">Eduardo Mikail</div>
+                                <div class="card-role">Engenheiro | Fundador Engenharia 360 | 21M+ seguidores</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Maior influenciador de engenharia civil do Brasil. Fundador do portal Engenharia 360 e possui construtora propria. Compartilha dicas para profissionais da construcao civil. Referencia em conteudo tecnico acessivel.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag--blue">Top Influencer</span>
+                            <span class="tag">Multi-plataforma</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">CS</div>
+                            <div>
+                                <div class="card-name">Camila Soares</div>
+                                <div class="card-role">CEO | Transformacao digital na engenharia | 95K+ seguidores</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Influenciadora focada na transformacao digital dos engenheiros. Sucesso no Instagram e forte presenca no LinkedIn. Conteudo sobre inovacao, tecnologia e modernizacao do setor da construcao civil.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag--blue">Influencer</span>
+                            <span class="tag">Digital</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">VL</div>
+                            <div>
+                                <div class="card-name">Vinicius Lorenzi</div>
+                                <div class="card-role">Engenheiro Civil | Fundacoes Sem Complicacoes</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Pos-doutor em ciencias ambientais. Administra a pagina "Fundacoes Sem Complicacoes" no LinkedIn, compartilhando conteudo tecnico sobre fundacoes e engenharia de solo. Modelo de nicho tecnico no LinkedIn.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag--green">Nicho tecnico</span>
+                            <span class="tag">Academico</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">RS</div>
+                            <div>
+                                <div class="card-name">Roberto de Souza</div>
+                                <div class="card-role">Doutor em Eng. Civil | Presidente CTE</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Presidente do Centro de Tecnologia de Edificacoes (CTE). Conteudo de alto nivel sobre normas, qualidade e tecnologia na construcao civil. Referencia em autoridade tecnica e institucional no LinkedIn.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag--green">Autoridade</span>
+                            <span class="tag">Institucional</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">LM</div>
+                            <div>
+                                <div class="card-name">Leonardo Manzione</div>
+                                <div class="card-role">Doutor em Eng. Civil | Especialista BIM</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Especialista em implementacao de BIM em construtoras. Conteudo sobre tecnologia, inovacao e processos na construcao civil. Forte engajamento com publico tecnico.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag tag--blue">BIM</span>
+                            <span class="tag">Tecnologia</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">MS</div>
+                            <div>
+                                <div class="card-name">Miguel da Silva Filho</div>
+                                <div class="card-role">Eng. Civil | +30 anos | 100+ empreendimentos</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Vasta experiencia em gerenciamento de obras, planejamento e orcamentos. Mais de 30 anos e 100 empreendimentos residenciais, industriais e comerciais pelo Brasil. Conteudo pratico e orientado a resultados.
+                        </div>
+                        <div class="card-tags">
+                            <span class="tag">Gestao</span>
+                            <span class="tag">Experiencia</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===== ALGORITMO LINKEDIN 2026 ===== -->
+        <section class="section" id="linkedin-algoritmo">
+            <div class="section-header">
+                <div class="section-icon">#</div>
+                <div>
+                    <h2 class="section-title">Algoritmo <span>LinkedIn 2026</span></h2>
+                    <p class="section-description">Dados de mais de 2 milhoes de publicacoes analisadas — o que realmente funciona</p>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-number">2.75x</div>
+                    <div class="stat-label">Mais impressoes perfil pessoal vs. pagina corporativa</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5x</div>
+                    <div class="stat-label">Mais engajamento perfil pessoal vs. pagina empresa</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15x</div>
+                    <div class="stat-label">Peso de comentario vs. curtida no algoritmo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90min</div>
+                    <div class="stat-label">Janela critica de engajamento apos publicacao</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <div class="insight-label">Mudanca critica em 2026</div>
+                <div class="insight-text">
+                    O LinkedIn agora mede <strong>quanto tempo o usuario engaja</strong> com o conteudo (Depth Score), nao apenas se clicou. Publicacoes com links externos tem distribuicao <strong>reduzida em 60%</strong>. O algoritmo prioriza <strong>engajamento autentico</strong> sobre alcance, <strong>conexoes pessoais</strong> sobre transmissao corporativa e <strong>expertise original</strong> sobre conteudo generico.
+                </div>
+            </div>
+
+            <div class="insight-box insight-box--blue">
+                <div class="insight-label">Interest-Graph Matching — novo em 2026</div>
+                <div class="insight-text">
+                    O conteudo agora e categorizado <strong>por topico</strong>, nao apenas pela rede de conexoes. Isso significa que um post tecnico sobre impermeabilizacao pode alcancar engenheiros e sindicos que <strong>nunca viram seu perfil</strong>, desde que o conteudo seja relevante para o interesse deles. Oportunidade enorme para nichos especializados como o da CAFF Engenharia.
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Frequencia de Publicacao vs. Impressoes</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Frequencia</th>
+                                <th>Impressoes por Post</th>
+                                <th>Recomendacao</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1x por semana</td>
+                                <td>Linha de base</td>
+                                <td>Minimo absoluto para manter visibilidade</td>
+                            </tr>
+                            <tr>
+                                <td>2-5x por semana</td>
+                                <td>+1.182 impressoes</td>
+                                <td>Frequencia ideal para comecar — CAFF deve mirar aqui</td>
+                            </tr>
+                            <tr>
+                                <td>6-10x por semana</td>
+                                <td>+5.001 impressoes</td>
+                                <td>Para perfis em crescimento acelerado</td>
+                            </tr>
+                            <tr>
+                                <td>11+ por semana</td>
+                                <td>+17.000 impressoes</td>
+                                <td>Nivel influenciador — alto volume de conteudo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Melhores Horarios para Publicar</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dia</th>
+                                <th>Melhor Horario</th>
+                                <th>Engajamento Relativo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Terca a quinta-feira</td>
+                                <td>8h - 10h</td>
+                                <td><span class="tag tag--green">Maximo</span></td>
+                            </tr>
+                            <tr>
+                                <td>Segunda e sexta-feira</td>
+                                <td>12h - 14h</td>
+                                <td><span class="tag tag--yellow">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>Finais de semana</td>
+                                <td>Evitar se possivel</td>
+                                <td><span class="tag">-50% engajamento</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===== FORMATOS LINKEDIN ===== -->
+        <section class="section" id="linkedin-formatos">
+            <div class="section-header">
+                <div class="section-icon">&lt;/&gt;</div>
+                <div>
+                    <h2 class="section-title">Formatos que <span>Funcionam</span></h2>
+                    <p class="section-description">Comparativo de engajamento por tipo de conteudo no LinkedIn em 2026</p>
+                </div>
+            </div>
+
+            <div class="format-grid">
+                <div class="format-card recommended">
+                    <div class="format-badge">Recomendado</div>
+                    <div class="format-emoji">&#128196;</div>
+                    <div class="format-name">Documento/Carrossel (PDF)</div>
+                    <div class="format-engagement">6.60%</div>
+                    <div class="format-note">Maior engajamento | +596% vs. texto</div>
+                </div>
+
+                <div class="format-card recommended">
+                    <div class="format-badge">Alta Performance</div>
+                    <div class="format-emoji">&#128202;</div>
+                    <div class="format-name">Enquetes</div>
+                    <div class="format-engagement">+200%</div>
+                    <div class="format-note">Alcance acima da media</div>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-emoji">&#128221;</div>
+                    <div class="format-name">Post de Texto</div>
+                    <div class="format-engagement">Base</div>
+                    <div class="format-note">Funciona com storytelling e gancho</div>
+                </div>
+
+                <div class="format-card">
+                    <div class="format-emoji">&#127909;</div>
+                    <div class="format-name">Video</div>
+                    <div class="format-engagement">-200%</div>
+                    <div class="format-note">Alcance caiu em 2026 — usar com estrategia</div>
+                </div>
+            </div>
+
+            <div class="insight-box" style="margin-top: 2rem;">
+                <div class="insight-label">Dado critico para a CAFF Engenharia</div>
+                <div class="insight-text">
+                    Carrosseis de PDF geram <strong>278% mais engajamento que videos</strong>, <strong>303% mais que imagens</strong> e <strong>596% mais que texto puro</strong>. Para uma empresa de impermeabilizacao, documentos com <strong>antes e depois de obras</strong>, <strong>passo a passo tecnico</strong> e <strong>checklists</strong> sao formatos ideais para carrosseis no LinkedIn.
+                </div>
+            </div>
+
+            <div class="subsection" style="margin-top: 2rem;">
+                <h3 class="subsection-title">Estrutura Ideal de Posts no LinkedIn</h3>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">T</div>
+                            <div>
+                                <div class="card-name">Tamanho Ideal</div>
+                                <div class="card-role">900 a 1.500 caracteres</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Posts nessa faixa tem melhor performance. Nem curto demais (falta contexto) nem longo demais (perde atencao).
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">#</div>
+                            <div>
+                                <div class="card-name">Hashtags</div>
+                                <div class="card-role">3 a 5 no maximo</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Mais de 5 hashtags parece spam. Use hashtags especificas do setor: #impermeabilizacao #construcaocivil #engenharia #manutencaopredial #reformas
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">F</div>
+                            <div>
+                                <div class="card-name">Framework 3-2-1</div>
+                                <div class="card-role">Estrutura comprovada</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            3 linhas de gancho (para prender), 2 insights de valor (para educar) e 1 chamada para acao (para engajar). Posts com pergunta direta recebem <strong>77% mais comentarios</strong>.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">M</div>
+                            <div>
+                                <div class="card-name">Mix de Conteudo</div>
+                                <div class="card-role">Regra 60-30-10</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            60% conteudo educacional (dicas, tutoriais, normas), 30% lideranca de pensamento (opiniao, tendencias, cases) e 10% conteudo de engajamento (enquetes, perguntas, bastidores).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===== ESTRATEGIA LINKEDIN PARA IMPERMEABILIZACAO ===== -->
+        <section class="section" id="linkedin-estrategia">
+            <div class="section-header">
+                <div class="section-icon">&#9881;</div>
+                <div>
+                    <h2 class="section-title">Estrategia LinkedIn para <span>Impermeabilizacao</span></h2>
+                    <p class="section-description">Posicionamento especifico para empresas de impermeabilizacao no LinkedIn — dados internacionais aplicados ao Brasil</p>
+                </div>
+            </div>
+
+            <div class="insight-box insight-box--green">
+                <div class="insight-label">Insight estrategico</div>
+                <div class="insight-text">
+                    Empresas de impermeabilizacao internacionais que seguem estrategia de conteudo no LinkedIn <strong>ranqueiam consistentemente acima</strong> daquelas que nao publicam. O LinkedIn e especialmente eficaz para <strong>conectar-se com profissionais de construcao, arquitetura e imobiliario</strong> — exatamente o publico B2B da CAFF Engenharia.
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">7 Pilares de Conteudo para Impermeabilizacao no LinkedIn</h3>
+                <div class="opportunity-grid">
+
+                    <div class="opp-card">
+                        <div class="opp-number">1</div>
+                        <div class="opp-title">Conhecer o Publico-Alvo</div>
+                        <div class="opp-body">
+                            Mapear se o publico principal e de construtoras, sindicos, arquitetos ou proprietarios. Criar conteudo segmentado para cada persona. No LinkedIn, foco em decisores: engenheiros, gestores de obra e sindicos profissionais.
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">2</div>
+                        <div class="opp-title">SEO no Perfil</div>
+                        <div class="opp-body">
+                            Incluir palavras-chave como "impermeabilizacao", "infiltracao", "manutencao predial" e "construcao civil" no titulo, resumo e experiencia do perfil. O algoritmo usa esses termos para mostrar o perfil em buscas.
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">3</div>
+                        <div class="opp-title">Fotos de Antes e Depois</div>
+                        <div class="opp-body">
+                            Fotos comparativas de projetos sao a prova tangivel de expertise. Mostram resultado real e constroem confianca. Ideal para carrosseis de PDF no LinkedIn — formato com maior engajamento.
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">4</div>
+                        <div class="opp-title">Blog Educacional</div>
+                        <div class="opp-body">
+                            Publicar artigos que respondam duvidas comuns sobre impermeabilizacao. Empresas que publicam conteudo consistente e util ranqueiam acima das que nao publicam. Use o LinkedIn como canal de distribuicao.
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">5</div>
+                        <div class="opp-title">Depoimentos e Cases</div>
+                        <div class="opp-body">
+                            Depoimentos de clientes sao prova social que influenciam decisoes. Publicar cases com descricao do problema, solucao aplicada e resultado obtido. Formato que gera alto engajamento e credibilidade.
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">6</div>
+                        <div class="opp-title">Participar de Grupos</div>
+                        <div class="opp-body">
+                            Grupos do LinkedIn sobre construcao civil, engenharia e manutencao predial sao subaproveitados. Participar ativamente posiciona a CAFF como referencia no nicho sem investimento em anuncios.
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">7</div>
+                        <div class="opp-title">Networking Estrategico</div>
+                        <div class="opp-body">
+                            Conectar-se com profissionais de arquitetura, construcao e imobiliario. Personalizar convites de conexao explicando a atuacao da CAFF e como pode colaborar. Foco em decisores regionais da Bahia.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Temas com Maior Engajamento no Nicho</h3>
+                <ul class="checklist">
+                    <li>Patologias da construcao civil: mofo, fissuras, infiltracoes — conteudo educativo com fotos reais</li>
+                    <li>Normas tecnicas (ABNT NBR 9574 e 9575) — simplificacao para leigos e profissionais</li>
+                    <li>Comparacao de sistemas: manta asfaltica vs. poliuretano vs. poliureia vs. PVC</li>
+                    <li>Responsabilidade do sindico em condominios — tema juridico com apelo alto</li>
+                    <li>Manutencao preventiva vs. corretiva — economia real de custos com dados</li>
+                    <li>Impermeabilizacao em periodo chuvoso — sazonalidade do conteudo (gera picos de busca)</li>
+                    <li>Erros mais comuns na impermeabilizacao — conteudo que viraliza por identificacao</li>
+                    <li>Checklist de contratacao de empresa — conteudo de servico que gera leads</li>
+                    <li>Tendencias e inovacoes: poliureia, membranas elastomericas, cristalizantes</li>
+                    <li>Bastidores de obra — humanizacao da marca com equipe em acao</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ================================================================ -->
+        <!-- PARTE 2: BLOGS E SITES                                           -->
+        <!-- ================================================================ -->
+
+        <section class="section" id="blogs-relevantes">
+            <div class="section-header">
+                <div class="section-icon">&#9997;</div>
+                <div>
+                    <h2 class="section-title">Blogs e Sites <span>Relevantes</span> do Setor</h2>
+                    <p class="section-description">Principais fontes de conteudo sobre construcao civil, impermeabilizacao e manutencao predial no Brasil</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Blogs Especializados em Impermeabilizacao</h3>
+
+                <div class="blog-card">
+                    <div class="blog-rank">1</div>
+                    <div class="blog-info">
+                        <div class="blog-name">Blog Fibersals</div>
+                        <div class="blog-url">fibersals.com.br/blog</div>
+                        <div class="blog-desc">O blog mais completo sobre impermeabilizacao no Brasil. Publica guias, FAQ com 15 perguntas respondidas, artigos tecnicos sobre sistemas e materiais. Referencia em SEO no nicho com conteudo otimizado. Modelo a ser estudado pela CAFF Engenharia.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">2</div>
+                    <div class="blog-info">
+                        <div class="blog-name">RFS Engenharia Blog</div>
+                        <div class="blog-url">rfsengenharia.com.br</div>
+                        <div class="blog-desc">Conteudo tecnico atualizado sobre impermeabilizacao de estruturas, obras de arte especiais e estrategias para periodo chuvoso. Publicacoes frequentes em 2026. Foco em engenharia de grande porte.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">3</div>
+                    <div class="blog-info">
+                        <div class="blog-name">Blog Quartzolit (Weber)</div>
+                        <div class="blog-url">quartzolit.weber/blog</div>
+                        <div class="blog-desc">Fabricante de materiais com blog robusto. Artigos sobre mitos e verdades, tutoriais de aplicacao e guias por tipo de superficie. Conteudo otimizado para SEO com foco em duvidas do consumidor final.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">4</div>
+                    <div class="blog-info">
+                        <div class="blog-name">NTC Brasil</div>
+                        <div class="blog-url">ntcbrasil.com.br/blog</div>
+                        <div class="blog-desc">Focado em inovacoes e tecnologias de impermeabilizacao. Artigos sobre novos materiais, sustentabilidade e eficiencia. Abordagem mais tecnica e voltada para profissionais.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">5</div>
+                    <div class="blog-info">
+                        <div class="blog-name">Blog Liga da Impermeabilizacao</div>
+                        <div class="blog-url">blogdaliga.com.br</div>
+                        <div class="blog-desc">Conteudo sobre normas tecnicas, legislacao e boas praticas de impermeabilizacao. Artigos sobre ABNT NBR 9574 e 9575 de forma acessivel. Nicho juridico-tecnico pouco explorado.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">6</div>
+                    <div class="blog-info">
+                        <div class="blog-name">SindicoNet</div>
+                        <div class="blog-url">sindiconet.com.br</div>
+                        <div class="blog-desc">Portal referencia para sindicos com secao especifica sobre impermeabilizacao em condominios. Publico-alvo direto: sindicos que contratam empresas de impermeabilizacao. Canal de aquisicao B2B importante.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Portais de Construcao Civil (Referencia para Conteudo)</h3>
+
+                <div class="blog-card">
+                    <div class="blog-rank">7</div>
+                    <div class="blog-info">
+                        <div class="blog-name">Blog Vobi</div>
+                        <div class="blog-url">vobi.com.br/blog</div>
+                        <div class="blog-desc">Plataforma de conhecimento para engenheiros, arquitetos e gestores de obra. Foco em otimizacao de processos, produtividade e inovacao. Conteudo de alto nivel editorial.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">8</div>
+                    <div class="blog-info">
+                        <div class="blog-name">Blog Sienge</div>
+                        <div class="blog-url">sienge.com.br/blog</div>
+                        <div class="blog-desc">Um dos maiores portais de construcao civil do Brasil. Artigos sobre tendencias, gestao, tecnologia e mercado. Organiza o ConstruSummit. Referencia em conteudo de qualidade.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">9</div>
+                    <div class="blog-info">
+                        <div class="blog-name">ConstruConnect</div>
+                        <div class="blog-url">construconnect.com.br/blog</div>
+                        <div class="blog-desc">Analise de dados do setor com base quantitativa. Panoramas de mercado, tendencias e oportunidades. Conteudo baseado em dados reais — nao previsoes vagas.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">10</div>
+                    <div class="blog-info">
+                        <div class="blog-name">Blog Leroy Merlin</div>
+                        <div class="blog-url">blog.leroymerlin.com.br</div>
+                        <div class="blog-desc">Conteudo tutorial voltado para o consumidor final. Guias de "como fazer" impermeabilizacao, tipos de sistemas e passo a passo. Alto volume de trafego organico — modelo de SEO para duvidas do consumidor.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">11</div>
+                    <div class="blog-info">
+                        <div class="blog-name">Engenharia 360</div>
+                        <div class="blog-url">engenharia360.com</div>
+                        <div class="blog-desc">Portal fundado por Eduardo Mikail com listas, guias e conteudo editorial sobre engenharia e construcao civil. Alto trafego e forte presenca em redes sociais.</div>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-rank">12</div>
+                    <div class="blog-info">
+                        <div class="blog-name">PiniWeb</div>
+                        <div class="blog-url">piniweb.com.br</div>
+                        <div class="blog-desc">Portal da editora Pini com artigos tecnicos de alto nivel sobre impermeabilizacao, projetos e normas. Referencia historica na construcao civil brasileira.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===== PALAVRAS-CHAVE ===== -->
+        <section class="section" id="keywords">
+            <div class="section-header">
+                <div class="section-icon">&#128270;</div>
+                <div>
+                    <h2 class="section-title">Palavras-chave <span>Estrategicas</span></h2>
+                    <p class="section-description">Termos mais buscados relacionados a impermeabilizacao no Brasil — estimativa de volume mensal e potencial de conteudo</p>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <div class="insight-label">Metodologia</div>
+                <div class="insight-text">
+                    Volumes estimados com base em dados de ferramentas de SEO (SEMrush, Ubersuggest, Google Keyword Planner) e analise de tendencias do Google Trends. Os valores representam buscas mensais estimadas no Brasil. A <strong>intencao de busca</strong> e classificada como: informacional (I), comercial (C) ou transacional (T).
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Palavras-chave Principais</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Palavra-chave</th>
+                                <th>Volume Estimado/mes</th>
+                                <th>Intencao</th>
+                                <th>Dificuldade</th>
+                                <th>Potencial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>impermeabilizacao</td>
+                                <td><span class="volume-bar" style="width:120px"></span>33.100+</td>
+                                <td><span class="tag tag--blue">Informacional</span></td>
+                                <td>Alta</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao de laje</td>
+                                <td><span class="volume-bar" style="width:80px"></span>14.800+</td>
+                                <td><span class="tag tag--blue">Informacional</span></td>
+                                <td>Media</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizante para laje</td>
+                                <td><span class="volume-bar" style="width:70px"></span>12.100+</td>
+                                <td><span class="tag tag--yellow">Comercial</span></td>
+                                <td>Media</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>empresa de impermeabilizacao</td>
+                                <td><span class="volume-bar" style="width:50px"></span>6.600+</td>
+                                <td><span class="tag">Transacional</span></td>
+                                <td>Media</td>
+                                <td><span class="tag tag--green">Muito alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao de parede</td>
+                                <td><span class="volume-bar" style="width:45px"></span>5.400+</td>
+                                <td><span class="tag tag--blue">Informacional</span></td>
+                                <td>Media</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>manta asfaltica</td>
+                                <td><span class="volume-bar" style="width:60px"></span>9.900+</td>
+                                <td><span class="tag tag--yellow">Comercial</span></td>
+                                <td>Media</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>infiltracao na parede</td>
+                                <td><span class="volume-bar" style="width:55px"></span>8.100+</td>
+                                <td><span class="tag tag--blue">Informacional</span></td>
+                                <td>Media</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao de piscina</td>
+                                <td><span class="volume-bar" style="width:35px"></span>4.400+</td>
+                                <td><span class="tag tag--blue">Informacional</span></td>
+                                <td>Media</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>como impermeabilizar laje</td>
+                                <td><span class="volume-bar" style="width:40px"></span>4.400+</td>
+                                <td><span class="tag tag--blue">Informacional</span></td>
+                                <td>Baixa</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao de banheiro</td>
+                                <td><span class="volume-bar" style="width:30px"></span>3.600+</td>
+                                <td><span class="tag tag--blue">Informacional</span></td>
+                                <td>Media</td>
+                                <td><span class="tag tag--green">Alto</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Palavras-chave de Cauda Longa (Oportunidade)</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Palavra-chave</th>
+                                <th>Volume Estimado</th>
+                                <th>Intencao</th>
+                                <th>Oportunidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>impermeabilizacao de laje com manta</td>
+                                <td>2.400+</td>
+                                <td><span class="tag tag--blue">Info</span></td>
+                                <td>Conteudo tutorial detalhado</td>
+                            </tr>
+                            <tr>
+                                <td>quanto custa impermeabilizar uma laje</td>
+                                <td>1.900+</td>
+                                <td><span class="tag tag--yellow">Comercial</span></td>
+                                <td>Pagina de orcamento + blog</td>
+                            </tr>
+                            <tr>
+                                <td>tipos de impermeabilizacao</td>
+                                <td>2.900+</td>
+                                <td><span class="tag tag--blue">Info</span></td>
+                                <td>Guia comparativo completo</td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao de caixa d'agua</td>
+                                <td>1.600+</td>
+                                <td><span class="tag tag--blue">Info</span></td>
+                                <td>Conteudo para sindicos</td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao laje exposta</td>
+                                <td>1.300+</td>
+                                <td><span class="tag tag--blue">Info</span></td>
+                                <td>Nicho especifico — pouca concorrencia</td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao predial</td>
+                                <td>1.000+</td>
+                                <td><span class="tag">Transacional</span></td>
+                                <td>Pagina de servico B2B</td>
+                            </tr>
+                            <tr>
+                                <td>empresa impermeabilizacao perto de mim</td>
+                                <td>880+</td>
+                                <td><span class="tag">Transacional</span></td>
+                                <td>SEO local + Google Meu Negocio</td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao manta asfaltica preco</td>
+                                <td>720+</td>
+                                <td><span class="tag tag--yellow">Comercial</span></td>
+                                <td>Conteudo de comparacao + CTA</td>
+                            </tr>
+                            <tr>
+                                <td>garantia impermeabilizacao quanto tempo</td>
+                                <td>590+</td>
+                                <td><span class="tag tag--blue">Info</span></td>
+                                <td>Diferencial CAFF — conteudo de confianca</td>
+                            </tr>
+                            <tr>
+                                <td>impermeabilizacao Bahia</td>
+                                <td>320+</td>
+                                <td><span class="tag">Transacional</span></td>
+                                <td>SEO local — altissimo valor por lead</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Perguntas do "As Pessoas Tambem Perguntam" (Google)</h3>
+                <div class="insight-box insight-box--blue">
+                    <div class="insight-label">Estrategia de conteudo</div>
+                    <div class="insight-text">
+                        Cada pergunta abaixo e uma oportunidade de artigo ou post. Responder essas perguntas de forma completa e tecnica no blog/LinkedIn posiciona a CAFF Engenharia como <strong>autoridade nas respostas do Google</strong> (featured snippets).
+                    </div>
+                </div>
+
+                <ul class="checklist">
+                    <li>Para que serve a impermeabilizacao?</li>
+                    <li>Quanto tempo dura a impermeabilizacao?</li>
+                    <li>Qual o melhor tipo de impermeabilizacao para laje?</li>
+                    <li>Quanto custa impermeabilizar uma laje de 100m2?</li>
+                    <li>Qual a diferenca entre manta asfaltica e membrana liquida?</li>
+                    <li>E possivel impermeabilizar uma laje ja construida?</li>
+                    <li>Quem e responsavel pela impermeabilizacao no condominio?</li>
+                    <li>Como saber se a impermeabilizacao precisa ser refeita?</li>
+                    <li>Pode impermeabilizar em dia de chuva?</li>
+                    <li>Qual a norma da ABNT para impermeabilizacao?</li>
+                    <li>Quanto tempo a manta asfaltica leva para secar?</li>
+                    <li>Impermeabilizacao caseira funciona?</li>
+                    <li>Por que a impermeabilizacao falha?</li>
+                    <li>Precisa quebrar o piso para impermeabilizar?</li>
+                    <li>Como escolher uma empresa de impermeabilizacao?</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===== DUVIDAS FREQUENTES ===== -->
+        <section class="section" id="duvidas">
+            <div class="section-header">
+                <div class="section-icon">?</div>
+                <div>
+                    <h2 class="section-title">Duvidas <span>Mais Frequentes</span> do Publico</h2>
+                    <p class="section-description">15 perguntas reais que o publico faz sobre impermeabilizacao — base para conteudo educativo</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">1. Para que serve a impermeabilizacao?</div>
+                <div class="faq-answer">Protege materiais do ataque da umidade e garante durabilidade estrutural. Evita infiltracoes, mofo, corrosao de armaduras e degradacao do concreto.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">2. Impermeabilizacao realmente funciona?</div>
+                <div class="faq-answer">Sim, desde que utilize sistemas adequados, produtos de qualidade e mao de obra especializada. Solucoes caseiras podem funcionar como paliativo, mas sistemas profissionais oferecem maior durabilidade e controle tecnico.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">3. Quais sao os tipos de impermeabilizacao?</div>
+                <div class="faq-answer">Existem tres categorias: rigidos (argamassa polimerica, cristalizantes), flexiveis (manta asfaltica, membranas de poliuretano, PVC) e semiflexiveis. A escolha depende da exposicao a agua, movimentacao estrutural e tipo de superficie.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">4. Quanto tempo dura a impermeabilizacao?</div>
+                <div class="faq-answer">Manta asfaltica: 10 a 15 anos. Membranas de poliuretano: ate 20 anos. A durabilidade depende do sistema, qualidade dos materiais, execucao e manutencao periodica.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">5. Quando devo impermeabilizar?</div>
+                <div class="faq-answer">Durante a construcao (em fundacoes, lajes e terracos) e tambem em reformas pos-obra quando surgem sinais de infiltracao. Epocas secas sao ideais para a aplicacao.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">6. Como impermeabilizar uma laje?</div>
+                <div class="faq-answer">Usar sistemas flexiveis como manta asfaltica sobre substrato limpo e regularizado. O tipo de sistema deve considerar se ha transito de pessoas (poliureia, poliuretano e PVC sao mais indicados para lajes com trafego).</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">7. Qual a diferenca entre impermeabilizacao rigida e flexivel?</div>
+                <div class="faq-answer">Rigida (argamassa polimerica) e indicada para superficies sem movimentacao. Flexivel (manta, membrana) e para areas com dilatacao termica e movimentacao estrutural, como lajes e terracos expostos.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">8. Quem deve fazer a impermeabilizacao?</div>
+                <div class="faq-answer">Profissionais e empresas habilitadas com experiencia em procedimentos normativos. A grande maioria dos problemas em sistemas de impermeabilizacao ocorre por falhas de execucao — mesmo produtos de qualidade podem falhar se mal instalados.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">9. Como escolher uma empresa de impermeabilizacao?</div>
+                <div class="faq-answer">Verificar historico, qualificacao da equipe, tecnicas utilizadas, materiais certificados, reputacao no mercado (Reclame Aqui, avaliacoes), garantias oferecidas e solicitar inspecao e orcamento detalhado antes de contratar.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">10. Por que a impermeabilizacao falha?</div>
+                <div class="faq-answer">Tres causas principais: perda de vida util (desgaste natural), falhas de execucao (mao de obra nao qualificada) e qualidade inadequada dos materiais. A execucao e responsavel pela maioria das falhas.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">11. Quem e responsavel pela impermeabilizacao no condominio?</div>
+                <div class="faq-answer">De acordo com o artigo 1348 do Codigo Civil, o sindico e responsavel pela conservacao das partes comuns. A impermeabilizacao de areas comuns (lajes, terracos, reservatorios) e responsabilidade do condominio.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">12. Quanto custa impermeabilizar?</div>
+                <div class="faq-answer">O custo varia conforme o sistema, area e complexidade. Manta asfaltica: R$ 40 a R$ 80/m2. Membrana liquida: R$ 30 a R$ 60/m2. Poliuretano: R$ 50 a R$ 100/m2. A vistoria tecnica e indispensavel para orcamento preciso.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">13. Manutencao preventiva e mais barata que corretiva?</div>
+                <div class="faq-answer">Sim, significativamente. A manutencao preventiva de impermeabilizacao custa uma fracao da corretiva, que envolve quebra de pisos, remocao de revestimentos e refazimento completo do sistema — alem dos transtornos para moradores.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">14. De quanto em quanto tempo trocar a impermeabilizacao da caixa d'agua?</div>
+                <div class="faq-answer">A durabilidade do sistema em caixas d'agua e de 3 a 5 anos. Recomenda-se incluir reavaliacao periodica no plano de manutencao predial do condominio.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">15. Pode-se aplicar impermeabilizante em cima de tinta?</div>
+                <div class="faq-answer">Depende do tipo de impermeabilizante e da condicao da superficie. Alguns produtos permitem aplicacao direta, mas a avaliacao tecnica do substrato e essencial para garantir aderencia e eficacia.</div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===== NORMAS TECNICAS ===== -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">&#9878;</div>
+                <div>
+                    <h2 class="section-title">Normas <span>Tecnicas</span> — ABNT</h2>
+                    <p class="section-description">Normas brasileiras que regulam a impermeabilizacao — conteudo de autoridade para LinkedIn e blog</p>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Norma</th>
+                            <th>Titulo</th>
+                            <th>O que Regulamenta</th>
+                            <th>Potencial de Conteudo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="norma-badge">NBR 9575</span></td>
+                            <td>Impermeabilizacao — Selecao e projeto</td>
+                            <td>Diretrizes e especificacoes para aplicacao em edificios, pontes e reservatorios</td>
+                            <td>Artigo explicativo + carrossel LinkedIn</td>
+                        </tr>
+                        <tr>
+                            <td><span class="norma-badge">NBR 9574</span></td>
+                            <td>Execucao de impermeabilizacao</td>
+                            <td>Procedimento adequado para cada tipo de sistema (rigido e flexivel)</td>
+                            <td>Serie de posts "passo a passo"</td>
+                        </tr>
+                        <tr>
+                            <td><span class="norma-badge">NBR 9685</span></td>
+                            <td>Emulsao asfaltica para impermeabilizacao</td>
+                            <td>Especificacoes tecnicas de emulsoes asfalticas</td>
+                            <td>Conteudo comparativo de materiais</td>
+                        </tr>
+                        <tr>
+                            <td><span class="norma-badge">NBR 15575</span></td>
+                            <td>Norma de Desempenho</td>
+                            <td>Desempenho de edificacoes — inclui requisitos de estanqueidade</td>
+                            <td>Artigo sobre responsabilidade legal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="insight-box insight-box--green">
+                <div class="insight-label">Oportunidade de posicionamento</div>
+                <div class="insight-text">
+                    Pouquissimas empresas de impermeabilizacao no interior da Bahia produzem conteudo sobre normas tecnicas. Criar uma serie "Normas Descomplicadas" no LinkedIn e blog posiciona a CAFF Engenharia como <strong>autoridade tecnica</strong> e gera confianca junto a engenheiros, arquitetos e sindicos que buscam empresas em conformidade.
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===== OPORTUNIDADES ===== -->
+        <section class="section" id="oportunidades">
+            <div class="section-header">
+                <div class="section-icon">&#9733;</div>
+                <div>
+                    <h2 class="section-title">Oportunidades de <span>Conteudo</span></h2>
+                    <p class="section-description">Gaps identificados no mercado que a CAFF Engenharia pode explorar para se diferenciar</p>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Empresas de impermeabilizacao do interior da BA com blog ativo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;5</div>
+                    <div class="stat-label">Empresas do setor na BA com LinkedIn profissional</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">33K+</div>
+                    <div class="stat-label">Buscas mensais para "impermeabilizacao" no Brasil</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">596%</div>
+                    <div class="stat-label">Mais engajamento de carrosseis vs. texto no LinkedIn</div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Gaps de Conteudo Identificados</h3>
+                <div class="opportunity-grid">
+
+                    <div class="opp-card">
+                        <div class="opp-number">1</div>
+                        <div class="opp-title">Blog Tecnico Local</div>
+                        <div class="opp-body">
+                            Nenhuma empresa de impermeabilizacao do interior da Bahia possui blog ativo com conteudo otimizado para SEO. A CAFF pode dominar as buscas regionais criando artigos sobre problemas climaticos locais, tipos de construcao da regiao e solucoes adequadas.
+                        </div>
+                        <div class="opp-impact">
+                            <div class="impact-dots">
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                            </div>
+                            <span class="impact-label">Impacto maximo</span>
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">2</div>
+                        <div class="opp-title">Presenca LinkedIn B2B</div>
+                        <div class="opp-body">
+                            O mercado de impermeabilizacao na Bahia tem presenca quase nula no LinkedIn. Criar perfil profissional do fundador + pagina da empresa com conteudo consistente posiciona a CAFF como unica referencia digital no estado para decisores B2B.
+                        </div>
+                        <div class="opp-impact">
+                            <div class="impact-dots">
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                            </div>
+                            <span class="impact-label">Impacto maximo</span>
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">3</div>
+                        <div class="opp-title">Conteudo sobre Normas</div>
+                        <div class="opp-body">
+                            Artigos simplificando normas ABNT (NBR 9574, 9575, 15575) para leigos e profissionais. Gap enorme — poucos blogs abordam normas de forma acessivel. Conteudo que gera autoridade e confianca tecnica.
+                        </div>
+                        <div class="opp-impact">
+                            <div class="impact-dots">
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot"></div>
+                            </div>
+                            <span class="impact-label">Impacto alto</span>
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">4</div>
+                        <div class="opp-title">Serie "Antes e Depois"</div>
+                        <div class="opp-body">
+                            Carrosseis de PDF no LinkedIn com fotos de antes e depois de obras. Formato com maior engajamento na plataforma (+596%). Prova visual de competencia que constroi confianca e gera leads qualificados.
+                        </div>
+                        <div class="opp-impact">
+                            <div class="impact-dots">
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot"></div>
+                            </div>
+                            <span class="impact-label">Impacto alto</span>
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">5</div>
+                        <div class="opp-title">Conteudo para Sindicos</div>
+                        <div class="opp-body">
+                            Sindicos sao decisores de compra para impermeabilizacao predial. Criar conteudo especifico: responsabilidades legais, checklist de contratacao, cronograma de manutencao. Nicho B2B com alto valor por lead.
+                        </div>
+                        <div class="opp-impact">
+                            <div class="impact-dots">
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot"></div>
+                            </div>
+                            <span class="impact-label">Impacto alto</span>
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">6</div>
+                        <div class="opp-title">Sazonalidade: Periodo Chuvoso</div>
+                        <div class="opp-body">
+                            Buscas por infiltracao e impermeabilizacao disparam no periodo chuvoso (outubro a marco na Bahia). Preparar conteudo antecipadamente e publicar quando a demanda sobe gera picos de trafego e leads sazonais.
+                        </div>
+                        <div class="opp-impact">
+                            <div class="impact-dots">
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot"></div>
+                                <div class="impact-dot"></div>
+                            </div>
+                            <span class="impact-label">Impacto medio-alto</span>
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">7</div>
+                        <div class="opp-title">Google Meu Negocio + SEO Local</div>
+                        <div class="opp-body">
+                            "Empresa impermeabilizacao perto de mim" tem 880+ buscas/mes. Otimizar presenca no Google Meu Negocio com fotos, avaliacoes e posts regulares capta trafego transacional de alto valor com baixo investimento.
+                        </div>
+                        <div class="opp-impact">
+                            <div class="impact-dots">
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                            </div>
+                            <span class="impact-label">Impacto maximo</span>
+                        </div>
+                    </div>
+
+                    <div class="opp-card">
+                        <div class="opp-number">8</div>
+                        <div class="opp-title">Calculadora de Custos Online</div>
+                        <div class="opp-body">
+                            "Quanto custa impermeabilizar" tem 1.900+ buscas/mes. Nenhuma empresa da regiao oferece calculadora online ou tabela de referencia. Ferramenta simples no site que captura leads enquanto responde a duvida mais comercial do publico.
+                        </div>
+                        <div class="opp-impact">
+                            <div class="impact-dots">
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot active"></div>
+                                <div class="impact-dot"></div>
+                                <div class="impact-dot"></div>
+                            </div>
+                            <span class="impact-label">Impacto medio-alto</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===== PLANO DE ACAO ===== -->
+        <section class="section" id="plano-acao">
+            <div class="section-header">
+                <div class="section-icon">&#9654;</div>
+                <div>
+                    <h2 class="section-title">Plano de <span>Acao</span> Recomendado</h2>
+                    <p class="section-description">Proximos passos para posicionar a CAFF Engenharia como referencia digital em impermeabilizacao na Bahia</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Acoes Imediatas (Semana 1-2)</h3>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">1</div>
+                            <div>
+                                <div class="card-name">Perfil LinkedIn do Fundador</div>
+                                <div class="card-role">Prioridade maxima — perfis pessoais geram 5x mais engajamento</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Criar perfil otimizado com titulo: "Especialista em Impermeabilizacao | Engenheiro Civil | CAFF Engenharia | Bahia". Incluir palavras-chave no resumo, foto profissional em obra e banner com identidade visual.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">2</div>
+                            <div>
+                                <div class="card-name">Pagina da Empresa no LinkedIn</div>
+                                <div class="card-role">Complementa o perfil pessoal — presenca institucional</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Criar pagina com descricao completa, localizacao, servicos e primeiros posts. Vincular ao perfil pessoal. Postar pelo menos 1x por semana para manter ativa.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">3</div>
+                            <div>
+                                <div class="card-name">Google Meu Negocio</div>
+                                <div class="card-role">SEO local — leads transacionais de alto valor</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Completar perfil com fotos de obras, horario de funcionamento, area de atuacao, descricao otimizada e solicitar avaliacoes de clientes anteriores. Publicar posts semanais.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Acoes de Curto Prazo (Semana 3-8)</h3>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">4</div>
+                            <div>
+                                <div class="card-name">Calendario de Conteudo LinkedIn</div>
+                                <div class="card-role">3x por semana | Terca, quarta e quinta | 8h-10h</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Semana 1: Case antes/depois (carrossel PDF). Semana 2: Post educativo sobre duvida frequente. Semana 3: Enquete ou pergunta ao publico. Semana 4: Norma tecnica simplificada. Alternar entre formatos.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">5</div>
+                            <div>
+                                <div class="card-name">Primeiros 5 Artigos do Blog</div>
+                                <div class="card-role">Foco em palavras-chave de cauda longa com menor concorrencia</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            1) Tipos de impermeabilizacao: guia completo. 2) Como escolher empresa de impermeabilizacao. 3) Impermeabilizacao de laje: passo a passo. 4) Quanto custa impermeabilizar? 5) 10 sinais de que sua laje precisa de impermeabilizacao.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">6</div>
+                            <div>
+                                <div class="card-name">Networking Estrategico</div>
+                                <div class="card-role">Conectar com 50+ profissionais da regiao</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Conectar-se com engenheiros, arquitetos, sindicos e gestores de condominio da Bahia. Personalizar cada convite. Interagir com conteudo de terceiros (comentar, compartilhar) para ampliar alcance organico.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Acoes de Medio Prazo (Mes 3-6)</h3>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">7</div>
+                            <div>
+                                <div class="card-name">Serie "Normas Descomplicadas"</div>
+                                <div class="card-role">Conteudo diferenciado que nenhum concorrente produz</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Serie de posts e artigos explicando as normas ABNT (NBR 9574, 9575, 15575) de forma acessivel. Carrosseis no LinkedIn + artigos no blog. Posiciona como autoridade tecnica.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">8</div>
+                            <div>
+                                <div class="card-name">Conteudo para Sindicos</div>
+                                <div class="card-role">Publico B2B de alto valor — decisores de compra</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Guia do sindico para impermeabilizacao (PDF), checklist de manutencao preventiva, artigo sobre responsabilidade legal. Distribuir via LinkedIn e parcerias com administradoras de condominio.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-avatar">9</div>
+                            <div>
+                                <div class="card-name">Preparacao Sazonal</div>
+                                <div class="card-role">Antecipar conteudo para periodo chuvoso (outubro-marco)</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Produzir conteudo sobre impermeabilizacao no periodo chuvoso com antecedencia. Agendar publicacoes, campanhas e artigos para quando as buscas dispararem. Estrategia de captura sazonal de leads.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-divider"></div>
+        <p class="footer-text">
+            <strong>ADS Company</strong> — Pesquisa de Mercado | CAFF Engenharia | Maio 2026
+        </p>
+        <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.65rem;">
+            Analise de LinkedIn &amp; Blogs — Inteligencia Competitiva para Posicionamento Digital
+        </p>
+        <div class="footer-divider"></div>
+    </footer>
+
+</body>
+</html>

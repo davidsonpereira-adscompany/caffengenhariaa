@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analise YouTube — Mercado de Impermeabilizacao | CAFF Engenharia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-card-hover: #1C1C1C;
+            --accent: #FF6B35;
+            --accent-light: #FF8A5C;
+            --accent-dark: #CC5529;
+            --text-primary: #F5F5F5;
+            --text-secondary: #B0B0B0;
+            --text-muted: #777777;
+            --border: #2A2A2A;
+            --border-accent: rgba(255, 107, 53, 0.3);
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --info: #2196F3;
+            --danger: #F44336;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+            --shadow-accent: 0 4px 24px rgba(255, 107, 53, 0.15);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #1a1008 100%);
+            border-bottom: 2px solid var(--accent);
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .header-logo img {
+            height: 40px;
+            opacity: 0.9;
+        }
+
+        .header-title {
+            text-align: right;
+        }
+
+        .header-title h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-title p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            background: linear-gradient(180deg, #1a0e04 0%, var(--bg-primary) 100%);
+            padding: 80px 24px 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero h2 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           NAVIGATION / TABLE OF CONTENTS
+           ============================================ */
+        .toc {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+
+        .toc-inner {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        .toc h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .toc-item:hover {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .toc-num {
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ============================================
+           SECTIONS
+           ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            margin-bottom: 64px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .section-header h2 span {
+            color: var(--accent);
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+            line-height: 1.8;
+            padding-left: 64px;
+        }
+
+        /* ============================================
+           CARDS — VIDEO / CHANNEL
+           ============================================ */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-accent);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .tag-tutorial { background: rgba(33, 150, 243, 0.15); color: #64B5F6; }
+        .tag-problema { background: rgba(244, 67, 54, 0.15); color: #EF5350; }
+        .tag-comparacao { background: rgba(255, 193, 7, 0.15); color: #FFD54F; }
+        .tag-case { background: rgba(76, 175, 80, 0.15); color: #81C784; }
+        .tag-educativo { background: rgba(156, 39, 176, 0.15); color: #CE93D8; }
+        .tag-custo { background: rgba(255, 107, 53, 0.15); color: var(--accent-light); }
+        .tag-canal { background: rgba(255, 107, 53, 0.15); color: var(--accent); }
+        .tag-marketing { background: rgba(0, 188, 212, 0.15); color: #4DD0E1; }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .card-title a:hover {
+            color: var(--accent);
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .card-insight {
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: rgba(255, 107, 53, 0.08);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .card-insight strong {
+            color: var(--accent);
+        }
+
+        /* ============================================
+           TABLES
+           ============================================ */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        thead {
+            background: var(--bg-secondary);
+        }
+
+        th {
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 12px 16px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover td {
+            background: rgba(255, 107, 53, 0.04);
+        }
+
+        td a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           INSIGHT BOXES
+           ============================================ */
+        .insight-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin-bottom: 20px;
+        }
+
+        .insight-box h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .insight-box p,
+        .insight-box li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .insight-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .insight-box ul li {
+            padding: 6px 0 6px 20px;
+            position: relative;
+        }
+
+        .insight-box ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 2px;
+            transform: rotate(45deg);
+        }
+
+        /* ============================================
+           STATS ROW
+           ============================================ */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-card .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           OPPORTUNITY CARDS
+           ============================================ */
+        .opp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .opp-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #1a1008 100%);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius);
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .opp-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .opp-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(255, 107, 53, 0.15);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .opp-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .opp-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .opp-card .opp-action {
+            margin-top: 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            padding: 8px 14px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* ============================================
+           QUOTE / COMMENT CARDS
+           ============================================ */
+        .comments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .comment-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+
+        .comment-card .comment-text {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .comment-card .comment-text::before {
+            content: '\201C';
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-right: 4px;
+        }
+
+        .comment-card .comment-source {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--border);
+            padding: 40px 24px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        footer p strong {
+            color: var(--accent);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-title {
+                text-align: center;
+            }
+
+            .hero {
+                padding: 50px 16px 40px;
+            }
+
+            .section-desc {
+                padding-left: 0;
+            }
+
+            .cards-grid,
+            .opp-grid,
+            .comments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- NAV BAR -->
+<div style="position:sticky;top:0;z-index:9999;background:rgba(10,10,10,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Pesquisas
+  </a>
+  <a href="../index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+<!-- /NAV BAR -->
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+    <div class="header-inner">
+        <div class="header-logo">
+            <img src="../ads-logo.png" alt="ADS Company">
+        </div>
+        <div class="header-title">
+            <h1>Pesquisa YouTube</h1>
+            <p>CAFF Engenharia &mdash; Mercado de Impermeabilizacao</p>
+        </div>
+    </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+    <span class="hero-badge">Pesquisa de Mercado &mdash; Maio 2026</span>
+    <h2>Analise do YouTube:<br><span>Mercado de Impermeabilizacao</span></h2>
+    <p>
+        Mapeamento completo dos videos, canais, temas e oportunidades de conteudo
+        no YouTube para o segmento de impermeabilizacao. Dados que fundamentam
+        a estrategia de conteudo e posicionamento da CAFF Engenharia.
+    </p>
+</section>
+
+<!-- ========== TABLE OF CONTENTS ========== -->
+<div class="toc">
+    <div class="toc-inner">
+        <h3>Indice do Documento</h3>
+        <div class="toc-grid">
+            <a href="#panorama" class="toc-item">
+                <span class="toc-num">1</span>
+                Panorama do Mercado no YouTube
+            </a>
+            <a href="#canais" class="toc-item">
+                <span class="toc-num">2</span>
+                Canais de Referencia
+            </a>
+            <a href="#laje" class="toc-item">
+                <span class="toc-num">3</span>
+                Impermeabilizacao de Laje
+            </a>
+            <a href="#banheiro" class="toc-item">
+                <span class="toc-num">4</span>
+                Impermeabilizacao de Banheiro
+            </a>
+            <a href="#piscina" class="toc-item">
+                <span class="toc-num">5</span>
+                Impermeabilizacao de Piscina
+            </a>
+            <a href="#fachada" class="toc-item">
+                <span class="toc-num">6</span>
+                Fachadas e Manutencao Predial
+            </a>
+            <a href="#problemas" class="toc-item">
+                <span class="toc-num">7</span>
+                Vazamentos e Solucoes
+            </a>
+            <a href="#custos" class="toc-item">
+                <span class="toc-num">8</span>
+                Custos e Precificacao
+            </a>
+            <a href="#duvidas" class="toc-item">
+                <span class="toc-num">9</span>
+                Duvidas e Medos do Publico
+            </a>
+            <a href="#oportunidades" class="toc-item">
+                <span class="toc-num">10</span>
+                Oportunidades de Conteudo
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ========== 1. PANORAMA ========== -->
+    <section id="panorama">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <h2>Panorama do <span>Mercado no YouTube</span></h2>
+        </div>
+        <p class="section-desc">
+            O mercado de impermeabilizacao no YouTube brasileiro e dominado por conteudo tutorial e educativo.
+            Os videos com maior engajamento abordam problemas reais (infiltracoes, vazamentos) e apresentam
+            solucoes praticas. O publico busca principalmente orientacao para resolver problemas urgentes em
+            suas casas e construcoes.
+        </p>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-value">11+</div>
+                <div class="stat-label">Temas pesquisados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">80+</div>
+                <div class="stat-label">Videos analisados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Canais de referencia</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">10</div>
+                <div class="stat-label">Oportunidades mapeadas</div>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <h4>Principais descobertas</h4>
+            <ul>
+                <li>Conteudo de <strong>problema/solucao</strong> (infiltracao, vazamento) tem o maior engajamento</li>
+                <li>Videos <strong>"passo a passo"</strong> dominam as buscas — o publico quer aprender a fazer ou entender o processo</li>
+                <li><strong>Comparativos de produtos</strong> (manta asfaltica vs. manta liquida, Vedacit vs. Sika) geram alto interesse</li>
+                <li>Conteudo sobre <strong>custos e precos</strong> e altamente buscado — o publico quer saber quanto vai gastar</li>
+                <li>Videos de <strong>"antes e depois"</strong> e <strong>resultados apos 1-2 anos</strong> geram credibilidade e confianca</li>
+                <li>Poucos canais de <strong>empresas de impermeabilizacao</strong> produzem conteudo — mercado subexplorado</li>
+                <li>O interior do Brasil tem <strong>representacao quase nula</strong> neste segmento no YouTube</li>
+            </ul>
+        </div>
+
+        <div class="insight-box">
+            <h4>Categorias de conteudo mais populares</h4>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Formato dominante</th>
+                            <th>Nivel de demanda</th>
+                            <th>Concorrencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Impermeabilizacao de laje</td>
+                            <td>Tutorial passo a passo</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alta</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Impermeabilizacao de banheiro</td>
+                            <td>Tutorial pratico</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alta</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alta</td>
+                        </tr>
+                        <tr>
+                            <td>Vazamento / infiltracao (solucao)</td>
+                            <td>Problema + solucao</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alta</td>
+                            <td style="color: var(--success); font-weight: 600;">Media</td>
+                        </tr>
+                        <tr>
+                            <td>Impermeabilizacao de piscina</td>
+                            <td>Tutorial + comparativo</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alta</td>
+                            <td style="color: var(--success); font-weight: 600;">Media</td>
+                        </tr>
+                        <tr>
+                            <td>Fachadas e predios</td>
+                            <td>Educativo / tecnico</td>
+                            <td style="color: var(--success); font-weight: 600;">Media</td>
+                            <td style="color: #4DD0E1; font-weight: 600;">Baixa</td>
+                        </tr>
+                        <tr>
+                            <td>Custos e precificacao</td>
+                            <td>Orcamento / valores reais</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alta</td>
+                            <td style="color: #4DD0E1; font-weight: 600;">Baixa</td>
+                        </tr>
+                        <tr>
+                            <td>Erros comuns / o que nao fazer</td>
+                            <td>Educativo negativo</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alta</td>
+                            <td style="color: #4DD0E1; font-weight: 600;">Baixa</td>
+                        </tr>
+                        <tr>
+                            <td>Antes e depois / resultados</td>
+                            <td>Case / transformacao</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alta</td>
+                            <td style="color: #4DD0E1; font-weight: 600;">Baixa</td>
+                        </tr>
+                        <tr>
+                            <td>Manutencao predial</td>
+                            <td>Educativo / podcast</td>
+                            <td style="color: var(--success); font-weight: 600;">Media</td>
+                            <td style="color: #4DD0E1; font-weight: 600;">Baixa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 2. CANAIS ========== -->
+    <section id="canais">
+        <div class="section-header">
+            <div class="section-number">2</div>
+            <h2>Canais de <span>Referencia</span></h2>
+        </div>
+        <p class="section-desc">
+            Os principais canais que produzem conteudo sobre impermeabilizacao no YouTube brasileiro.
+            A maioria sao canais de engenheiros, mestres de obras ou empresas fabricantes de produtos.
+            Ha uma lacuna clara: poucos prestadores de servico usam o YouTube como ferramenta de aquisicao.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-tag tag-canal">Canal Especializado</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/c/MundodaImpermeabilizacao" target="_blank" rel="noopener">
+                        Mundo da Impermeabilizacao
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Eng. Anderson Oliveira</span>
+                    <span>+17 anos de experiencia</span>
+                </div>
+                <p class="card-desc">
+                    Canal dedicado exclusivamente a engenharia de impermeabilizacao. Conteudo tecnico apresentado
+                    de forma simplificada, acessivel tanto para leigos quanto para profissionais da area.
+                    Referencia no segmento brasileiro.
+                </p>
+                <div class="card-insight">
+                    <strong>Insight:</strong> O formato "tecnico mas acessivel" prova que o publico quer
+                    entender o assunto, nao apenas ver o servico sendo feito.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-canal">Canal Especializado</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/channel/UCs03uJBYHW6aeRrbJ4OF4PQ" target="_blank" rel="noopener">
+                        Luchetti Hidraulica e Impermeabilizacao
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Distribuidor tecnico</span>
+                    <span>Suporte 24h para engenheiros e arquitetos</span>
+                </div>
+                <p class="card-desc">
+                    Canal corporativo de distribuidora tecnica de hidraulica e impermeabilizacao. Oferece
+                    conteudo especializado de suporte para profissionais de engenharia e arquitetura.
+                </p>
+                <div class="card-insight">
+                    <strong>Insight:</strong> Modelo de conteudo B2B — foca em profissionais, nao no consumidor final.
+                    Oportunidade para a CAFF falar diretamente com o dono do imovel.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-canal">Canal de Engenharia</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/channel/UCi5lp0MPZ9t04gAfPmo0ImA" target="_blank" rel="noopener">
+                        Athena Engenharia
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Construcao civil</span>
+                    <span>Sistemas de impermeabilizacao e pisos</span>
+                </div>
+                <p class="card-desc">
+                    Desenvolve sistemas para construcao civil com foco em impermeabilizacao e revestimento
+                    de pisos em estruturas de concreto. Publica videos de obras concluidas.
+                </p>
+                <div class="card-insight">
+                    <strong>Insight:</strong> Conteudo com foco em obras concluidas — o formato "case de sucesso"
+                    gera prova social e credibilidade.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-canal">Canal Educativo</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/ocanaldaengenharia" target="_blank" rel="noopener">
+                        O Canal da Engenharia
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Engenharia e construcao</span>
+                    <span>Conteudo generalista de construcao civil</span>
+                </div>
+                <p class="card-desc">
+                    Informacao e entretenimento sobre o mundo da engenharia e construcao. Formato mais leve
+                    e descontraido para aprendizagem simplificada. Aborda impermeabilizacao dentro de um
+                    escopo maior de construcao civil.
+                </p>
+                <div class="card-insight">
+                    <strong>Insight:</strong> O tom descontraido funciona — prova que o conteudo
+                    tecnico nao precisa ser "chato" para ser respeitado.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-canal">Canal Pioneiro</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/c/fibersals" target="_blank" rel="noopener">
+                        Fibersals Impermeabilizacao
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Desde 1985</span>
+                    <span>Pioneira em impermeabilizacao permanente no Brasil</span>
+                </div>
+                <p class="card-desc">
+                    Canal da empresa pioneira em impermeabilizacao permanente no Brasil. Utiliza sistema
+                    proprio a base de poliester. Referencia em durabilidade e solucoes definitivas.
+                </p>
+                <div class="card-insight">
+                    <strong>Insight:</strong> A palavra "permanente" e "definitiva" e um gancho poderoso
+                    — o publico esta cansado de solucoes temporarias que voltam a vazar.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-canal">Canal de Obras</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/channel/UCYjJQL3NKuVouYRhVk-0LOQ" target="_blank" rel="noopener">
+                        Hero Impermeabilizacao e Reforma
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Impermeabilizacao + reforma</span>
+                    <span>Conteudo pratico de obras</span>
+                </div>
+                <p class="card-desc">
+                    Canal focado em conteudo pratico de impermeabilizacao e reforma de construcoes.
+                    Mostra o dia a dia de obras reais com dicas e tecnicas aplicadas.
+                </p>
+                <div class="card-insight">
+                    <strong>Insight:</strong> O modelo "diario de obra" cria conexao com o publico
+                    e gera conteudo recorrente de forma natural.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 3. LAJE ========== -->
+    <section id="laje">
+        <div class="section-header">
+            <div class="section-number">3</div>
+            <h2>Impermeabilizacao de <span>Laje</span></h2>
+        </div>
+        <p class="section-desc">
+            O tema mais buscado e com maior volume de conteudo no YouTube. A impermeabilizacao de laje
+            e o "carro-chefe" do segmento, com dezenas de videos ultrapassando centenas de milhares de visualizacoes.
+            O publico busca desde tutoriais DIY ate solucoes profissionais.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-tag tag-tutorial">Tutorial</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=7U3OO6lZRCI" target="_blank" rel="noopener">
+                        Veja como impermeabilizar uma laje passo a passo (da maneira que funciona)
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Set/2021</span>
+                    <span>Formato: Tutorial completo</span>
+                </div>
+                <p class="card-desc">
+                    Video tutorial que mostra o passo a passo de uma impermeabilizacao de laje que realmente funciona.
+                    O gancho "da maneira que funciona" indica que o publico ja tentou solucoes que falharam.
+                </p>
+                <div class="card-insight">
+                    <strong>Gancho eficaz:</strong> "Da maneira que funciona" — explora a frustracao
+                    de quem ja gastou dinheiro com solucoes que nao resolveram.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-tutorial">Tutorial</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=S6ivIj414hM" target="_blank" rel="noopener">
+                        Como impermeabilizar uma laje corretamente
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Nov/2024</span>
+                    <span>Formato: Tutorial tecnico</span>
+                </div>
+                <p class="card-desc">
+                    Enfatiza que "toda boa impermeabilizacao comeca com uma boa limpeza".
+                    Aborda a preparacao da superficie como etapa fundamental do processo.
+                </p>
+                <div class="card-insight">
+                    <strong>Gancho eficaz:</strong> "Corretamente" — implica que ha uma forma errada
+                    que muitos estao fazendo. Educa e posiciona como autoridade.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-problema">Problema / Solucao</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=lqHKWVN8IVA" target="_blank" rel="noopener">
+                        VAZAMENTO NA SUA LAJE NUNCA MAIS (IMPERMEABILIZACAO passo a passo)
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Set/2019</span>
+                    <span>Formato: Promessa + tutorial</span>
+                </div>
+                <p class="card-desc">
+                    Titulo com promessa forte: "NUNCA MAIS". Um dos videos mais antigos e consistentes da busca,
+                    provando que conteudo evergreen sobre impermeabilizacao tem longevidade no YouTube.
+                </p>
+                <div class="card-insight">
+                    <strong>Gancho eficaz:</strong> "Nunca mais" — promessa de solucao definitiva.
+                    O publico quer resolver de uma vez por todas.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-comparacao">Comparativo</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=GkGFmVfT0Bc" target="_blank" rel="noopener">
+                        VEJA COMO IMPERMEABILIZAR UMA LAJE COM PRODUTOS QUE REALMENTE FUNCIONAM!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Recomendacao de produtos</span>
+                </div>
+                <p class="card-desc">
+                    Foco em produtos que "realmente funcionam" — novamente explorando a frustracao
+                    do publico com solucoes ineficazes. Recomendacao de marcas e tipos de produtos.
+                </p>
+                <div class="card-insight">
+                    <strong>Gancho eficaz:</strong> "Produtos que realmente funcionam" — o publico
+                    quer indicacao confiavel. Oportunidade para a CAFF recomendar o que usa.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-case">Case / Resultado</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=JF2aT8JTCzc" target="_blank" rel="noopener">
+                        LAJE EXPOSTA — SOLUCAO DEFINITIVA CONTRA INFILTRACAO (Poliester Flexivel)
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Solucao + produto especifico</span>
+                </div>
+                <p class="card-desc">
+                    Aborda um nicho especifico — laje exposta (sem telhado) — e apresenta o poliester flexivel
+                    como solucao definitiva. Conteudo segmentado que atende uma dor muito especifica.
+                </p>
+                <div class="card-insight">
+                    <strong>Gancho eficaz:</strong> "Solucao definitiva" — O publico de laje exposta
+                    tem um problema cronico e quer a ultima solucao que vai precisar.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-case">Resultado a longo prazo</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=f6UXxEvBmmM" target="_blank" rel="noopener">
+                        Veja como esta a impermeabilizacao 2 ANOS depois da aplicacao
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Followup / prova</span>
+                </div>
+                <p class="card-desc">
+                    Video de acompanhamento mostrando o estado da impermeabilizacao apos 2 anos.
+                    Formato raro e extremamente poderoso para gerar confianca.
+                </p>
+                <div class="card-insight">
+                    <strong>Oportunidade CAFF:</strong> Filmar obras antigas e mostrar o resultado anos depois.
+                    Prova social imbativel para o mercado local.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 4. BANHEIRO ========== -->
+    <section id="banheiro">
+        <div class="section-header">
+            <div class="section-number">4</div>
+            <h2>Impermeabilizacao de <span>Banheiro</span></h2>
+        </div>
+        <p class="section-desc">
+            Segundo tema mais buscado. A impermeabilizacao de banheiro e uma preocupacao universal
+            — todo proprietario de imovel precisa lidar com isso em algum momento. O conteudo varia
+            entre tutoriais DIY e demonstracoes profissionais com produtos especificos.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-tag tag-tutorial">Tutorial Completo</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=ZligJqfMfnQ" target="_blank" rel="noopener">
+                        Passo a passo completo de como impermeabilizar um banheiro
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Mai/2023</span>
+                    <span>Formato: Tutorial passo a passo</span>
+                </div>
+                <p class="card-desc">
+                    Tutorial completo cobrindo todo o processo de impermeabilizacao de banheiro.
+                    Formato educativo que atende tanto quem vai fazer sozinho quanto quem quer
+                    entender o que o profissional esta fazendo.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-tutorial">Tutorial com Especialista</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=kR0WaqxkapU" target="_blank" rel="noopener">
+                        Aprenda Como Fazer a Impermeabilizacao de Banheiro com Manta Liquida
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Dez/2022</span>
+                    <span>Especialista: Helio Paulino, mestre de obras</span>
+                </div>
+                <p class="card-desc">
+                    Video com mestre de obras experiente ensinando a aplicacao de manta liquida em banheiro.
+                    A presenca de um especialista reconhecido agrega autoridade ao conteudo.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-problema">Problema Especifico</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=UZ98l1_s5r8" target="_blank" rel="noopener">
+                        BANHEIRO SEM INFILTRACAO! VEJA COMO IMPERMEABILIZAR CORRETAMENTE!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Fev/2021</span>
+                    <span>Formato: Solucao completa</span>
+                </div>
+                <p class="card-desc">
+                    Video completo que mostra como impermeabilizar corretamente um banheiro
+                    para eliminar infiltracoes. Titulo com promessa e instrucao.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-tutorial">Nicho Especifico</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=BlqGMxChQxs" target="_blank" rel="noopener">
+                        IMPERMEABILIZACAO EM BOX DE BANHEIRO COM PAREDE DE DRYWALL
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Tutorial de nicho</span>
+                </div>
+                <p class="card-desc">
+                    Aborda o nicho especifico de banheiros com paredes de drywall — uma demanda
+                    crescente com a popularizacao desse tipo de construcao. Conteudo segmentado
+                    que atende uma duvida especifica.
+                </p>
+                <div class="card-insight">
+                    <strong>Oportunidade:</strong> Conteudo de nicho (drywall, apartamento, segundo andar)
+                    tem menos concorrencia e atende duvidas muito especificas.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-problema">Problema Frequente</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=Ud5AB5Xl88s" target="_blank" rel="noopener">
+                        Impermeabilizacao de banheiro de segundo andar — aprenda como evitar problemas!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Parceria: Quartzolit</span>
+                    <span>Formato: Educativo patrocinado</span>
+                </div>
+                <p class="card-desc">
+                    Aborda o problema especifico de banheiros em andares superiores, onde a infiltracao
+                    afeta o andar de baixo. Parceria com a Quartzolit agrega credibilidade tecnica.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-tutorial">Pratico e Rapido</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=1YCbfSp2oLE" target="_blank" rel="noopener">
+                        Impermeabilizacao de banheiros facil, rapida e sem complicacao!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Serie: #NaPraticaHard</span>
+                    <span>Formato: Tutorial express</span>
+                </div>
+                <p class="card-desc">
+                    Formato mais curto e direto, focado em quem quer resolver rapido.
+                    O titulo "facil, rapida e sem complicacao" atrai quem tem medo de
+                    que o processo seja complexo demais.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 5. PISCINA ========== -->
+    <section id="piscina">
+        <div class="section-header">
+            <div class="section-number">5</div>
+            <h2>Impermeabilizacao de <span>Piscina</span></h2>
+        </div>
+        <p class="section-desc">
+            Nicho premium dentro da impermeabilizacao. O publico que busca por piscinas tem poder
+            aquisitivo maior e esta disposto a pagar por solucoes profissionais. Os videos focam
+            em diferentes metodos e comparativos de produtos.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-tag tag-tutorial">Tutorial Completo</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=8Czo7W8EYkI" target="_blank" rel="noopener">
+                        Impermeabilizacao de piscina de alvenaria passo a passo
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Passo a passo tecnico</span>
+                </div>
+                <p class="card-desc">
+                    Guia completo para impermeabilizacao de piscinas de alvenaria — o tipo mais comum
+                    no Brasil. Cobre desde a preparacao ate a finalizacao do processo.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-comparacao">Comparativo de Produtos</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=ZuX6CiljW8I" target="_blank" rel="noopener">
+                        SIKA TOP 100 OU VIAPLUS? TESTEI OS DOIS NA IMPERMEABILIZACAO DA PISCINA!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Teste comparativo</span>
+                </div>
+                <p class="card-desc">
+                    Comparacao direta entre dois produtos líderes (Sika Top 100 e Viaplus) aplicados
+                    na mesma piscina. Formato de "teste real" gera altissimo engajamento porque
+                    responde a duvida mais frequente: "qual produto usar?"
+                </p>
+                <div class="card-insight">
+                    <strong>Oportunidade CAFF:</strong> Criar videos comparando produtos que a empresa
+                    utiliza, explicando por que escolheu cada um para cada situacao.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-tutorial">Tutorial com Manta</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=xp8dIDHWH7k" target="_blank" rel="noopener">
+                        Impermeabilizacao de Piscina com Manta Asfaltica e Tela
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Tutorial de metodo especifico</span>
+                </div>
+                <p class="card-desc">
+                    Demonstra o uso de primer, manta asfaltica e tela para manter piscinas
+                    livres de vazamentos. Aborda um metodo tradicional com materiais acessiveis.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-problema">Promessa Forte</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=baAoggoyZrM" target="_blank" rel="noopener">
+                        Sua PISCINA NUNCA vai VAZAR se VOCE fizer ASSIM!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Promessa + metodo</span>
+                </div>
+                <p class="card-desc">
+                    Titulo com promessa maxima: "NUNCA vai VAZAR". Uso de caixa alta para enfase.
+                    Gancho eficaz que atrai cliques de quem ja teve problemas com vazamentos em piscina.
+                </p>
+                <div class="card-insight">
+                    <strong>Padrao de titulo:</strong> Os titulos mais eficazes usam promessas fortes
+                    ("nunca mais", "definitivo", "para sempre") combinadas com instrucao ("faca assim", "passo a passo").
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 6. FACHADA ========== -->
+    <section id="fachada">
+        <div class="section-header">
+            <div class="section-number">6</div>
+            <h2>Fachadas e <span>Manutencao Predial</span></h2>
+        </div>
+        <p class="section-desc">
+            Segmento com menor volume de conteudo, porem com alto potencial para posicionamento B2B.
+            Sindicos, administradoras de condominios e construtoras buscam informacoes sobre
+            impermeabilizacao de fachadas e manutencao predial.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-tag tag-educativo">Educativo Corporativo</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=OjpTQbqE2fg" target="_blank" rel="noopener">
+                        Impermeabilizacao de Fachadas — Sika
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Ago/2016</span>
+                    <span>Canal: Sika Brasil</span>
+                </div>
+                <p class="card-desc">
+                    Video institucional da Sika sobre impermeabilizacao de fachadas. Explica que a fachada
+                    possui funcao estetica e de vedacao. Conteudo antigo que ainda aparece nas buscas —
+                    prova a falta de conteudo atualizado neste nicho.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-educativo">Podcast Tecnico</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=2eue7BGPnvs" target="_blank" rel="noopener">
+                        Impermeabilizacao — Fachada de Edificios (O PERITO Podcast)
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Out/2021</span>
+                    <span>Formato: Podcast</span>
+                </div>
+                <p class="card-desc">
+                    Episodio de podcast sobre impermeabilizacao de fachadas de edificios.
+                    Formato conversacional com especialista. Tendencia crescente de podcasts
+                    tecnicos na construcao civil.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-tutorial">Tutorial Pratico</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=_lc95Ve2vF4" target="_blank" rel="noopener">
+                        Passo a Passo: Como proteger a fachada da sua casa contra a umidade e chuva
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Ago/2018</span>
+                    <span>Formato: Tutorial</span>
+                </div>
+                <p class="card-desc">
+                    Apresenta solucoes para proteger a fachada e paredes externas contra chuvas e umidade,
+                    evitando infiltracoes. Conteudo acessivel para o proprietario do imovel.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-educativo">Condominio</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=REz-6LYCihw" target="_blank" rel="noopener">
+                        Seu condominio precisa de impermeabilizacao? Descubra agora!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Mar/2025</span>
+                    <span>Serie: Condominio em Pauta</span>
+                </div>
+                <p class="card-desc">
+                    Episodio recente com especialista sobre impermeabilizacao em condominios. Aborda quando
+                    e por que um condominio precisa de servicos de impermeabilizacao, direcionado a sindicos
+                    e administradores.
+                </p>
+                <div class="card-insight">
+                    <strong>Oportunidade B2B:</strong> Sindicos e administradoras sao tomadores de decisao.
+                    Conteudo educativo para esse publico pode gerar contratos de alto valor.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-educativo">Seguranca Estrutural</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=xdKkpTTx9uo" target="_blank" rel="noopener">
+                        Como a impermeabilizacao contribui para a seguranca estrutural dos Condominios
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Serie: Condominio em Pauta</span>
+                    <span>Formato: Educativo</span>
+                </div>
+                <p class="card-desc">
+                    Explora a relacao entre impermeabilizacao e seguranca estrutural do edificio.
+                    Angulo de "seguranca" e mais forte que "conforto" para justificar o investimento.
+                </p>
+                <div class="card-insight">
+                    <strong>Angulo poderoso:</strong> Conectar impermeabilizacao com seguranca estrutural
+                    eleva a urgencia — nao e so "estetica", e "seguranca do predio".
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-problema">Responsabilidade</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=qSA52h1vm70" target="_blank" rel="noopener">
+                        Infiltracao na cobertura: quem paga — condominio ou proprietario?
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Serie: Especialistas</span>
+                    <span>Formato: Pergunta e resposta</span>
+                </div>
+                <p class="card-desc">
+                    Aborda a duvida juridica/financeira sobre responsabilidade de infiltracoes em
+                    condominios. Conteudo altamente relevante para sindicos que precisam justificar
+                    orcamentos de manutencao.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 7. PROBLEMAS ========== -->
+    <section id="problemas">
+        <div class="section-header">
+            <div class="section-number">7</div>
+            <h2>Vazamentos, Infiltracoes e <span>Solucoes</span></h2>
+        </div>
+        <p class="section-desc">
+            Os videos com maior apelo emocional e engajamento. O publico que busca por "vazamento"
+            ou "infiltracao" esta em modo de urgencia — quer resolver um problema agora. Esse e
+            o tipo de conteudo que mais converte em contatos comerciais.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-tag tag-problema">Solucao Definitiva</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=cxDknefgPAc" target="_blank" rel="noopener">
+                        Adeus VAZAMENTO na laje.. esse metodo resolve pra SEMPRE!!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Out/2022</span>
+                    <span>Produto: Acqua Zero (membrana elastica)</span>
+                </div>
+                <p class="card-desc">
+                    Apresenta membrana elastica impermeabilizante como solucao permanente para vazamentos.
+                    Titulo com forte apelo emocional: "adeus", "pra SEMPRE". Formato que combina
+                    problema, solucao e produto especifico.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-custo">Custo da Solucao</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=D9RJA0k9Ehg" target="_blank" rel="noopener">
+                        Como resolver laje com infiltracao e vazamento? Quanto custou?
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Jun/2024</span>
+                    <span>Formato: Solucao + custo real</span>
+                </div>
+                <p class="card-desc">
+                    Combina solucao pratica com informacao de custo — exatamente o que o publico quer saber.
+                    O titulo com pergunta reflete a busca real das pessoas no Google/YouTube.
+                </p>
+                <div class="card-insight">
+                    <strong>Oportunidade CAFF:</strong> Videos mostrando obras reais com valores reais.
+                    Transparencia no preco gera confianca e filtra leads qualificados.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-educativo">Mitos e Verdades</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=foHxNhg-IWc" target="_blank" rel="noopener">
+                        Contrapiso NAO resolve INFILTRACAO e vazamento — assista a solucao
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Ago/2022</span>
+                    <span>Formato: Desmistificacao</span>
+                </div>
+                <p class="card-desc">
+                    Desfaz o mito de que contrapiso resolve infiltracao. Formato "o que NAO funciona"
+                    atrai atencao e educa o publico. Posiciona o criador como especialista que sabe
+                    o que realmente resolve.
+                </p>
+                <div class="card-insight">
+                    <strong>Formato eficaz:</strong> "X NAO funciona" — o formato negativo atrai mais
+                    cliques e educa o publico, preparando para a solucao correta.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-problema">Solucao Barata</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=mv7SYAHtqPc" target="_blank" rel="noopener">
+                        INFILTRACAO, VAZAMENTO E GOTEIRA... CONHECA ESSE PRODUTO BARATO!
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Fev/2025</span>
+                    <span>Formato: Produto acessivel</span>
+                </div>
+                <p class="card-desc">
+                    Apresenta produto barato para resolver infiltracoes. O gancho "produto barato"
+                    atrai o publico de menor poder aquisitivo que quer resolver por conta propria.
+                    Video recente provando que a demanda por solucoes acessiveis continua alta.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-problema">Erros Que Custam Caro</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=IiB34oe2A1U" target="_blank" rel="noopener">
+                        10 SOLUCOES RUINS PARA IMPERMEABILIZAR SUA CASA QUE TE FAZEM JOGAR DINHEIRO FORA
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Abr/2025</span>
+                    <span>Formato: Lista de erros</span>
+                </div>
+                <p class="card-desc">
+                    Video recente sobre solucoes que nao funcionam para impermeabilizacao. Formato de lista
+                    ("10 solucoes ruins") com gancho de perda financeira ("jogar dinheiro fora"). Altissimo
+                    potencial de engajamento pelo conteudo contra-intuitivo.
+                </p>
+                <div class="card-insight">
+                    <strong>Formato poderoso:</strong> "Erros que voce esta cometendo" — as pessoas
+                    clicam para verificar se estao fazendo algo errado. Altissima taxa de clique.
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-educativo">10 Erros Tecnicos</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=xbKf_1Ow-Xk" target="_blank" rel="noopener">
+                        Os 10 principais erros na impermeabilizacao
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Professores: Irene Joffily e Matheus Leoni</span>
+                    <span>Formato: Aula tecnica</span>
+                </div>
+                <p class="card-desc">
+                    Aula com professores sobre os 10 principais erros em sistemas de impermeabilizacao.
+                    Formato academico que agrega muita autoridade tecnica. Publico: profissionais
+                    e estudantes de engenharia.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 8. CUSTOS ========== -->
+    <section id="custos">
+        <div class="section-header">
+            <div class="section-number">8</div>
+            <h2>Custos e <span>Precificacao</span></h2>
+        </div>
+        <p class="section-desc">
+            Um dos temas com maior demanda e menor oferta de conteudo. O publico quer saber "quanto custa"
+            antes de contratar. Profissionais querem saber "quanto cobrar". Ambos os lados representam
+            oportunidades de conteudo para a CAFF Engenharia.
+        </p>
+
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-tag tag-custo">Precificacao</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=ihZKhLci_eg" target="_blank" rel="noopener">
+                        Quanto devo cobrar para fazer uma impermeabilizacao
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Mar/2022</span>
+                    <span>Formato: Calculo de mao de obra</span>
+                </div>
+                <p class="card-desc">
+                    Ensina profissionais a calcularem o preco da mao de obra para servicos de impermeabilizacao.
+                    Conteudo B2B que mostra a maturidade do mercado — profissionais querem se profissionalizar.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-custo">Custo Real</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=xKY0K9E1D2s" target="_blank" rel="noopener">
+                        MANTA ASFALTICA E CARO? QUANTO CUSTOU A IMPERMEABILIZACAO DESSA LAJE
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Jul/2023</span>
+                    <span>Area: 19m2</span>
+                </div>
+                <p class="card-desc">
+                    Mostra o resultado e custo real da impermeabilizacao de uma laje de 19m2 com manta asfaltica.
+                    O titulo com pergunta ("e caro?") reflete a duvida real do consumidor. Numeros reais
+                    geram confianca e ajudam na decisao de compra.
+                </p>
+                <div class="card-insight">
+                    <strong>Oportunidade CAFF:</strong> Criar uma serie "Quanto custou?" mostrando
+                    obras reais com valores detalhados (material + mao de obra).
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-custo">Fundacao</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/watch?v=SdmCEokawpQ" target="_blank" rel="noopener">
+                        QUANTO CUSTA IMPERMEABILIZAR A FUNDACAO? PRECO DA IMPERMEABILIZACAO
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Publicado: Ago/2022</span>
+                    <span>Serie: Casa Dias Obra</span>
+                </div>
+                <p class="card-desc">
+                    Revela o preco da impermeabilizacao de fundacao dentro de uma serie
+                    acompanhando a construcao de uma casa. Formato de "diario de obra"
+                    com informacoes financeiras reais.
+                </p>
+            </div>
+
+            <div class="card">
+                <span class="card-tag tag-custo">Cobranca por m2</span>
+                <h3 class="card-title">
+                    <a href="https://www.youtube.com/shorts/71a1ejrJJp8" target="_blank" rel="noopener">
+                        Impermeabilizacao de laje se cobra por metro quadrado?
+                    </a>
+                </h3>
+                <div class="card-meta">
+                    <span>Formato: Shorts / video curto</span>
+                </div>
+                <p class="card-desc">
+                    Video curto respondendo uma duvida pratica sobre cobranca. O formato Shorts
+                    para respostas rapidas sobre impermeabilizacao e uma tendencia que ainda tem
+                    pouca concorrencia.
+                </p>
+                <div class="card-insight">
+                    <strong>Formato:</strong> Shorts respondendo perguntas frequentes sobre custos —
+                    formato rapido, facil de produzir, alto potencial de alcance.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 9. DUVIDAS DO PUBLICO ========== -->
+    <section id="duvidas">
+        <div class="section-header">
+            <div class="section-number">9</div>
+            <h2>Duvidas, Medos e <span>Objecoes do Publico</span></h2>
+        </div>
+        <p class="section-desc">
+            Analise dos comentarios, titulos e perguntas mais frequentes nos videos de impermeabilizacao.
+            Essas sao as duvidas reais que o publico tem — e que a CAFF Engenharia precisa responder
+            em seu conteudo e comunicacao comercial.
+        </p>
+
+        <h3 style="font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 20px;">
+            Principais duvidas identificadas nos comentarios
+        </h3>
+
+        <div class="comments-grid">
+            <div class="comment-card">
+                <p class="comment-text">Qual produto e melhor? Manta asfaltica ou manta liquida? Vedacit ou Sika?</p>
+                <span class="comment-source">Duvida sobre produtos &mdash; Frequencia: Muito alta</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Quanto custa impermeabilizar minha laje de X metros quadrados?</p>
+                <span class="comment-source">Duvida sobre preco &mdash; Frequencia: Muito alta</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Posso fazer a impermeabilizacao eu mesmo ou preciso de um profissional?</p>
+                <span class="comment-source">DIY vs. profissional &mdash; Frequencia: Alta</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Ja tentei impermeabilizar e voltou a vazar. O que fiz de errado?</p>
+                <span class="comment-source">Frustracao com solucoes anteriores &mdash; Frequencia: Alta</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Quanto tempo dura a impermeabilizacao? Vou ter que refazer de novo?</p>
+                <span class="comment-source">Duvida sobre durabilidade &mdash; Frequencia: Alta</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Preciso quebrar o piso todo para impermeabilizar ou tem como fazer por cima?</p>
+                <span class="comment-source">Medo de obra grande &mdash; Frequencia: Alta</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">A infiltracao vem do vizinho. Quem paga? Eu ou ele?</p>
+                <span class="comment-source">Duvida juridica &mdash; Frequencia: Media</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Funciona para laje exposta sem telhado? Aguenta sol e chuva?</p>
+                <span class="comment-source">Caso especifico &mdash; Frequencia: Media</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Serve para caixa d'agua tambem? E reservatorio?</p>
+                <span class="comment-source">Aplicacao especifica &mdash; Frequencia: Media</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Contratei um pedreiro e a impermeabilizacao nao deu certo. E normal?</p>
+                <span class="comment-source">Desconfianca com profissionais &mdash; Frequencia: Media</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">E verdade que umidade no rodape e por falta de impermeabilizacao na fundacao?</p>
+                <span class="comment-source">Umidade ascendente &mdash; Frequencia: Media</span>
+            </div>
+            <div class="comment-card">
+                <p class="comment-text">Qual a diferenca entre impermeabilizacao rigida e flexivel?</p>
+                <span class="comment-source">Duvida tecnica &mdash; Frequencia: Media</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 20px;">
+                Medos e objecoes antes de contratar
+            </h3>
+
+            <div class="insight-box">
+                <h4>Os 8 medos que impedem a contratacao</h4>
+                <ul>
+                    <li><strong>Medo do preco alto:</strong> "Impermeabilizacao e muito cara, nao tenho condicao" — o publico nao sabe diferenciar o custo do servico profissional da "solucao caseira" que nao funciona</li>
+                    <li><strong>Medo de ser enganado:</strong> "Ja fui enganado por pedreiro que disse que sabia fazer" — desconfianca com profissionais sem especializacao</li>
+                    <li><strong>Medo de nao resolver:</strong> "E se eu gastar e continuar vazando?" — necessidade de garantia e credibilidade</li>
+                    <li><strong>Medo da obra baguncar a casa:</strong> "Vao ter que quebrar tudo? Quanto tempo vai durar?" — preocupacao com transtorno</li>
+                    <li><strong>Medo de produto errado:</strong> "Tem tantas opcoes que nao sei qual escolher" — paralisia por excesso de opcoes</li>
+                    <li><strong>Medo de ser problema estrutural:</strong> "E se o problema for mais grave do que parece?" — medo de descobrir algo pior</li>
+                    <li><strong>Medo do retrabalho:</strong> "Ja tentei resolver 3 vezes e voltou" — trauma de experiencias anteriores</li>
+                    <li><strong>Falta de referencia local:</strong> "Nao conheco ninguem que faca isso aqui na minha cidade" — dificuldade de encontrar profissional qualificado no interior</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 20px;">
+                Reclamacoes mais comuns sobre servicos de impermeabilizacao
+            </h3>
+
+            <div class="insight-box">
+                <h4>O que gera insatisfacao no mercado</h4>
+                <ul>
+                    <li><strong>Servico mal executado:</strong> "Pagaram caro e o problema voltou em meses" — falta de preparo profissional</li>
+                    <li><strong>Sem garantia:</strong> "O profissional nao deu nenhuma garantia por escrito" — amadorismo do setor</li>
+                    <li><strong>Sem laudo ou relatorio:</strong> "Nao explicaram o que foi feito nem o que estava errado" — falta de comunicacao tecnica</li>
+                    <li><strong>Material de baixa qualidade:</strong> "Usaram produto barato e nao durou" — economia errada nos materiais</li>
+                    <li><strong>Prazo nao cumprido:</strong> "Disseram 3 dias e levaram 2 semanas" — falta de planejamento</li>
+                    <li><strong>Sujeira e desorganizacao:</strong> "Deixaram a casa toda suja e nao limparam" — falta de profissionalismo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 10. OPORTUNIDADES ========== -->
+    <section id="oportunidades">
+        <div class="section-header">
+            <div class="section-number">10</div>
+            <h2>Oportunidades de <span>Conteudo para a CAFF</span></h2>
+        </div>
+        <p class="section-desc">
+            Com base em toda a pesquisa realizada, estas sao as 10 oportunidades estrategicas de conteudo
+            para a CAFF Engenharia se posicionar como autoridade em impermeabilizacao na Bahia. Cada oportunidade
+            foi ranqueada por potencial de impacto e viabilidade de execucao.
+        </p>
+
+        <div class="opp-grid">
+            <div class="opp-card">
+                <span class="opp-number">01</span>
+                <h4>Serie "Antes e Depois" de obras reais</h4>
+                <p>
+                    Filmar o antes, durante e depois de cada obra de impermeabilizacao. O formato de transformacao
+                    e o mais compartilhado no Instagram e YouTube. Usar obras reais da CAFF na regiao da Bahia.
+                </p>
+                <span class="opp-action">Alto impacto + Facil execucao</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">02</span>
+                <h4>Serie "Quanto Custou?" com valores reais</h4>
+                <p>
+                    Mostrar obras concluidas com valores detalhados (material + mao de obra + area).
+                    Transparencia no preco e o que mais gera confianca e filtra leads qualificados.
+                    Pouquissima concorrencia neste formato.
+                </p>
+                <span class="opp-action">Altissima demanda + Baixa concorrencia</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">03</span>
+                <h4>Videos "X meses depois" — prova de durabilidade</h4>
+                <p>
+                    Visitar obras antigas (6 meses, 1 ano, 2 anos) e mostrar que a impermeabilizacao
+                    continua intacta. Formato raríssimo no YouTube que gera prova social imbativel.
+                    A CAFF pode usar obras ja realizadas como portfolio visual.
+                </p>
+                <span class="opp-action">Prova social maxima + Formato unico</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">04</span>
+                <h4>Shorts respondendo duvidas frequentes</h4>
+                <p>
+                    Criar Shorts/Reels de 30-60 segundos respondendo as duvidas mais comuns:
+                    "Quanto custa?", "Quanto tempo dura?", "Precisa quebrar tudo?", "Qual produto usar?".
+                    Formato rapido com altissimo alcance organico.
+                </p>
+                <span class="opp-action">Alto alcance + Producao rapida</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">05</span>
+                <h4>"5 erros que fazem sua impermeabilizacao durar menos"</h4>
+                <p>
+                    Conteudo educativo negativo — mostrar o que NAO fazer. Esse formato tem altissima
+                    taxa de clique porque as pessoas querem verificar se estao cometendo erros.
+                    Posiciona a CAFF como especialista que sabe diferenciar o certo do errado.
+                </p>
+                <span class="opp-action">Alta taxa de clique + Autoridade tecnica</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">06</span>
+                <h4>Conteudo especifico para a regiao da Bahia</h4>
+                <p>
+                    Nenhum canal de impermeabilizacao fala especificamente sobre os desafios do clima
+                    baiano (calor intenso, chuvas tropicais, umidade). Conteudo regionalizado domina
+                    as buscas locais e atrai o publico certo.
+                </p>
+                <span class="opp-action">Zero concorrencia local + SEO regional</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">07</span>
+                <h4>Comparativo de produtos na pratica</h4>
+                <p>
+                    Videos testando e comparando produtos (Sika vs. Vedacit, manta asfaltica vs. liquida,
+                    flexivel vs. rigida) em obras reais. O publico adora esse formato porque resolve
+                    a indecisao de "qual produto comprar".
+                </p>
+                <span class="opp-action">Alto engajamento + Autoridade tecnica</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">08</span>
+                <h4>Conteudo para sindicos e administradoras</h4>
+                <p>
+                    Videos educativos sobre manutencao predial, impermeabilizacao de fachadas e
+                    obrigacoes legais de condominios. Publico B2B com alto ticket medio e
+                    potencial de contratos recorrentes.
+                </p>
+                <span class="opp-action">Alto ticket + Mercado B2B</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">09</span>
+                <h4>Depoimentos de clientes em video</h4>
+                <p>
+                    Gravar clientes reais falando sobre o problema que tinham e como a CAFF resolveu.
+                    Depoimento autentico e a prova social mais poderosa — supera qualquer argumento
+                    tecnico. Formato simples: celular + cliente satisfeito.
+                </p>
+                <span class="opp-action">Prova social + Facil producao</span>
+            </div>
+
+            <div class="opp-card">
+                <span class="opp-number">10</span>
+                <h4>"Diario de Obra" — acompanhamento em tempo real</h4>
+                <p>
+                    Documentar obras em andamento com atualizacoes regulares. O publico acompanha
+                    o processo e cria conexao com a marca. Formato que gera conteudo recorrente
+                    de forma organica e mostra a rotina profissional da empresa.
+                </p>
+                <span class="opp-action">Conteudo recorrente + Conexao com publico</span>
+            </div>
+        </div>
+
+        <!-- RESUMO ESTRATEGICO -->
+        <div style="margin-top: 50px;">
+            <div class="insight-box" style="border-left-color: var(--accent); border-width: 4px;">
+                <h4 style="font-size: 1.1rem; margin-bottom: 16px;">Resumo Estrategico — Posicionamento no YouTube</h4>
+                <p style="margin-bottom: 16px;">
+                    O mercado de impermeabilizacao no YouTube brasileiro e dominado por canais generalistas de construcao civil
+                    e por fabricantes de produtos. Ha uma <strong>lacuna evidente</strong> de empresas prestadoras de servico
+                    que usam o YouTube como ferramenta de aquisicao de clientes.
+                </p>
+                <p style="margin-bottom: 16px;">
+                    A CAFF Engenharia tem a oportunidade de se posicionar como a <strong>referencia em impermeabilizacao no interior da Bahia</strong>
+                    com um conteudo que combina:
+                </p>
+                <ul>
+                    <li><strong>Obras reais:</strong> antes/depois, custos reais, resultados a longo prazo</li>
+                    <li><strong>Educacao:</strong> responder duvidas, desmontar mitos, explicar processos</li>
+                    <li><strong>Regionalizacao:</strong> falar dos desafios especificos do clima e construcoes da Bahia</li>
+                    <li><strong>Prova social:</strong> depoimentos de clientes, visitas a obras antigas, portfolio visual</li>
+                    <li><strong>Transparencia:</strong> precos reais, prazos reais, garantias claras</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TABELA DE FORMATOS RECOMENDADOS -->
+        <div style="margin-top: 30px;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 20px;">
+                Formatos de conteudo recomendados — priorizacao
+            </h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Formato</th>
+                            <th>Plataforma</th>
+                            <th>Frequencia</th>
+                            <th>Dificuldade</th>
+                            <th>Impacto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Shorts/Reels de duvidas</strong></td>
+                            <td>YouTube + Instagram</td>
+                            <td>3-5x por semana</td>
+                            <td style="color: var(--success);">Facil</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Antes e depois de obras</strong></td>
+                            <td>Instagram + YouTube</td>
+                            <td>1-2x por semana</td>
+                            <td style="color: var(--success);">Facil</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tutorial "como funciona"</strong></td>
+                            <td>YouTube</td>
+                            <td>1x por semana</td>
+                            <td style="color: var(--warning);">Media</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>"Quanto custou?" com valores</strong></td>
+                            <td>YouTube</td>
+                            <td>2x por mes</td>
+                            <td style="color: var(--success);">Facil</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Depoimento de cliente</strong></td>
+                            <td>Instagram + YouTube</td>
+                            <td>2x por mes</td>
+                            <td style="color: var(--success);">Facil</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Comparativo de produtos</strong></td>
+                            <td>YouTube</td>
+                            <td>1x por mes</td>
+                            <td style="color: var(--warning);">Media</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>"X meses depois" de obra</strong></td>
+                            <td>YouTube + Instagram</td>
+                            <td>1x por mes</td>
+                            <td style="color: var(--success);">Facil</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Conteudo para sindicos</strong></td>
+                            <td>YouTube + LinkedIn</td>
+                            <td>2x por mes</td>
+                            <td style="color: var(--warning);">Media</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alto (B2B)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TITULOS SUGERIDOS -->
+        <div style="margin-top: 30px;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 20px;">
+                Sugestoes de titulos baseados nos padroes de sucesso do YouTube
+            </h3>
+
+            <div class="insight-box">
+                <h4>20 titulos para videos da CAFF Engenharia</h4>
+                <ul>
+                    <li>"Quanto custou impermeabilizar essa laje de 50m2 na Bahia?"</li>
+                    <li>"NUNCA faca isso na impermeabilizacao da sua casa (5 erros fatais)"</li>
+                    <li>"Impermeabilizacao de R$800 vs R$5.000 — qual vale mais a pena?"</li>
+                    <li>"Veja como esta a impermeabilizacao 1 ANO depois (resultado real)"</li>
+                    <li>"Manta asfaltica ou manta liquida? Testei os dois na mesma obra"</li>
+                    <li>"Cliente ligou desesperado: vazamento em toda a laje. Veja como resolvemos"</li>
+                    <li>"Contrapiso NAO resolve infiltracao — a prova que faltava"</li>
+                    <li>"Impermeabilizacao de banheiro no 2o andar: o erro que ninguem te conta"</li>
+                    <li>"Sindico: como saber se seu predio precisa de impermeabilizacao"</li>
+                    <li>"Quanto custa impermeabilizar uma piscina no interior da Bahia?"</li>
+                    <li>"O MAIOR erro que pedreiros cometem na impermeabilizacao (e voce paga por isso)"</li>
+                    <li>"3 sinais de que sua laje precisa de impermeabilizacao URGENTE"</li>
+                    <li>"Por que a impermeabilizacao que voce fez NAO durou?"</li>
+                    <li>"Impermeabilizacao barata vs. profissional: a diferenca em 2 anos"</li>
+                    <li>"Obra completa: impermeabilizacao de fachada de predio (passo a passo)"</li>
+                    <li>"Seu banheiro esta infiltrando? Descubra a causa REAL"</li>
+                    <li>"Umidade no rodape? O problema esta na fundacao (e a solucao tambem)"</li>
+                    <li>"Como escolher o impermeabilizante certo para cada situacao"</li>
+                    <li>"Dia de obra: impermeabilizacao de laje exposta em Pirenopolis"</li>
+                    <li>"A verdade sobre garantia em impermeabilizacao (que ninguem fala)"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PALAVRAS-CHAVE -->
+        <div style="margin-top: 30px;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 20px;">
+                Palavras-chave com alto volume de busca no YouTube
+            </h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Palavra-chave</th>
+                            <th>Intencao de busca</th>
+                            <th>Volume estimado</th>
+                            <th>Concorrencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>como impermeabilizar laje</td>
+                            <td>Tutorial / DIY</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alto</td>
+                            <td style="color: var(--warning);">Alta</td>
+                        </tr>
+                        <tr>
+                            <td>impermeabilizacao de banheiro</td>
+                            <td>Tutorial / DIY</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alto</td>
+                            <td style="color: var(--warning);">Alta</td>
+                        </tr>
+                        <tr>
+                            <td>vazamento laje solucao</td>
+                            <td>Problema urgente</td>
+                            <td style="color: var(--danger); font-weight: 700;">Muito alto</td>
+                            <td style="color: var(--success);">Media</td>
+                        </tr>
+                        <tr>
+                            <td>infiltracao parede como resolver</td>
+                            <td>Problema urgente</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alto</td>
+                            <td style="color: var(--success);">Media</td>
+                        </tr>
+                        <tr>
+                            <td>manta asfaltica vs manta liquida</td>
+                            <td>Comparativo</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alto</td>
+                            <td style="color: var(--success);">Media</td>
+                        </tr>
+                        <tr>
+                            <td>quanto custa impermeabilizar</td>
+                            <td>Preco / orcamento</td>
+                            <td style="color: var(--warning); font-weight: 600;">Alto</td>
+                            <td style="color: #4DD0E1;">Baixa</td>
+                        </tr>
+                        <tr>
+                            <td>impermeabilizacao piscina</td>
+                            <td>Tutorial / profissional</td>
+                            <td style="color: var(--success); font-weight: 600;">Medio</td>
+                            <td style="color: var(--success);">Media</td>
+                        </tr>
+                        <tr>
+                            <td>impermeabilizacao fachada predio</td>
+                            <td>Profissional / B2B</td>
+                            <td style="color: var(--success); font-weight: 600;">Medio</td>
+                            <td style="color: #4DD0E1;">Baixa</td>
+                        </tr>
+                        <tr>
+                            <td>umidade rodape fundacao</td>
+                            <td>Diagnostico</td>
+                            <td style="color: var(--success); font-weight: 600;">Medio</td>
+                            <td style="color: #4DD0E1;">Baixa</td>
+                        </tr>
+                        <tr>
+                            <td>impermeabilizacao Bahia</td>
+                            <td>Local / regional</td>
+                            <td style="color: #4DD0E1; font-weight: 600;">Baixo</td>
+                            <td style="color: #4DD0E1;">Muito baixa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <p><strong>ADS Company</strong> &mdash; Pesquisa de Mercado | CAFF Engenharia | Maio 2026</p>
+    <p style="margin-top: 8px; font-size: 0.7rem; color: #555;">
+        Documento de uso interno &mdash; Inteligencia de mercado para fundamentacao estrategica
+    </p>
+</footer>
+
+</body>
+</html>
