@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Idea &mdash; CAFF Engenharia | ADS Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --laranja: #FF5C00;
+    --laranja2: #FF7A33;
+    --laranja3: rgba(255,92,0,0.12);
+    --preto: #060606;
+    --bg2: #0A0A0A;
+    --bg3: #0E0E0E;
+    --card: #111111;
+    --card2: #0C0C0C;
+    --border: rgba(255,255,255,0.06);
+    --branco: #F5F5F5;
+    --texto: #A0A0A0;
+    --texto2: #666;
+    --texto3: #333;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: var(--sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 32px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,92,0,0.08) 0%, transparent 70%),
+                linear-gradient(180deg, #040404 0%, #060606 100%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(255,92,0,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(255,92,0,0.04) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 40px;
+    font-family: var(--sans);
+  }
+  .hero-big-idea {
+    font-family: var(--serif);
+    font-size: clamp(44px, 8vw, 110px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    max-width: 900px;
+  }
+  .hero-big-idea em {
+    font-style: italic;
+    color: var(--laranja);
+  }
+  .hero-tagline {
+    font-size: clamp(16px, 2.2vw, 20px);
+    font-weight: 300;
+    color: var(--texto);
+    max-width: 660px;
+    line-height: 1.7;
+    margin-bottom: 56px;
+    font-family: var(--sans);
+  }
+  .hero-tagline strong { color: var(--branco); font-weight: 500; }
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(180deg, var(--laranja) 0%, transparent 100%);
+    margin: 0 auto;
+  }
+
+  /* ── LAYOUT ───────────────────────────────────────────── */
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .section {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .sec-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 16px;
+    font-family: var(--sans);
+  }
+  .sec-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .sec-title em { font-style: italic; color: var(--laranja); }
+  .sec-body {
+    font-size: 16px;
+    color: var(--texto);
+    font-weight: 300;
+    max-width: 700px;
+    line-height: 1.8;
+    font-family: var(--sans);
+  }
+  .sec-body p + p { margin-top: 20px; }
+  .sec-body strong { color: var(--branco); font-weight: 500; }
+
+  /* ── QUOTE BLOCK ──────────────────────────────────────── */
+  .quote-block {
+    margin: 48px 0;
+    padding: 40px 48px;
+    background: var(--card);
+    border-left: 3px solid var(--laranja);
+    position: relative;
+  }
+  .quote-block::before {
+    content: '\201C';
+    font-family: var(--serif);
+    font-size: 120px;
+    color: var(--laranja3);
+    position: absolute;
+    top: -20px;
+    left: 24px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .quote-text {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--branco);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 16px;
+  }
+  .quote-author {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    font-family: var(--sans);
+  }
+
+  /* ── CASO IPOD ────────────────────────────────────────── */
+  .caso-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 48px 0;
+  }
+  .caso-card {
+    padding: 40px 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .caso-card.errado { border-left: 3px solid var(--texto3); }
+  .caso-card.certo { border-left: 3px solid var(--laranja); }
+  .caso-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-family: var(--sans);
+  }
+  .caso-card.errado .caso-card-label { color: var(--texto3); }
+  .caso-card.certo .caso-card-label { color: var(--laranja); }
+  .caso-card-produto {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--texto2);
+    margin-bottom: 8px;
+  }
+  .caso-card-frase {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .caso-card.errado .caso-card-frase { color: var(--texto2); }
+  .caso-card.certo .caso-card-frase { color: var(--branco); }
+  .caso-card-desc {
+    font-size: 14px;
+    color: var(--texto);
+    font-weight: 300;
+    line-height: 1.6;
+    font-family: var(--sans);
+  }
+
+  /* ── ANTES / DEPOIS ───────────────────────────────────── */
+  .transform-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    margin: 56px 0;
+    align-items: start;
+  }
+  .transform-col {
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .transform-col.antes { border-right: none; border-radius: 8px 0 0 8px; }
+  .transform-col.depois { border-left: none; border-color: rgba(255,92,0,0.25); border-radius: 0 8px 8px 0; background: rgba(255,92,0,0.04); }
+  .transform-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-size: 22px;
+    color: var(--laranja);
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+  .transform-col-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-family: var(--sans);
+  }
+  .transform-col.antes .transform-col-label { color: var(--texto3); }
+  .transform-col.depois .transform-col-label { color: var(--laranja); }
+  .transform-item {
+    font-size: 14px;
+    color: var(--texto);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+    font-family: var(--sans);
+  }
+  .transform-item:last-child { border-bottom: none; }
+  .transform-item .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .antes .dot { background: var(--texto3); }
+  .depois .dot { background: var(--laranja); }
+
+  /* ── INIMIGO ──────────────────────────────────────────── */
+  .inimigo-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 48px;
+    margin: 48px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .inimigo-box::before {
+    content: 'INIMIGO';
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    color: rgba(255,255,255,0.06);
+    font-family: var(--sans);
+  }
+  .inimigo-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .inimigo-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .inimigo-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .inimigo-nome {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texto3);
+    margin-bottom: 6px;
+    font-family: var(--sans);
+  }
+  .inimigo-desc {
+    font-size: 15px;
+    color: var(--texto);
+    font-weight: 300;
+    line-height: 1.6;
+    font-family: var(--sans);
+  }
+  .inimigo-desc strong { color: var(--branco); font-weight: 500; }
+
+  /* ── PILARES ──────────────────────────────────────────── */
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 56px 0;
+  }
+  .pilar {
+    background: var(--card);
+    padding: 40px 32px;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .pilar:hover { border-color: rgba(255,92,0,0.25); }
+  .pilar-num {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--laranja3);
+    font-family: var(--sans);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .pilar-titulo {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .pilar-frase {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--laranja);
+    margin-bottom: 16px;
+    font-style: italic;
+    font-family: var(--serif);
+  }
+  .pilar-desc {
+    font-size: 13px;
+    color: var(--texto2);
+    line-height: 1.6;
+    font-weight: 300;
+    font-family: var(--sans);
+  }
+
+  /* ── VOZ ──────────────────────────────────────────────── */
+  .voz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 48px 0;
+  }
+  .voz-card {
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .voz-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: var(--sans);
+  }
+  .voz-card.sim .voz-card-label { color: var(--laranja); }
+  .voz-card.nao .voz-card-label { color: var(--texto3); }
+  .voz-exemplo {
+    font-size: 14px;
+    color: var(--texto);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-style: italic;
+    font-weight: 300;
+    font-family: var(--sans);
+  }
+  .voz-exemplo:last-child { border-bottom: none; }
+
+  /* ── APLICACOES ───────────────────────────────────────── */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin: 48px 0;
+  }
+  .app-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 32px;
+  }
+  .app-plataforma {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 12px;
+    font-family: var(--sans);
+  }
+  .app-titulo {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .app-desc {
+    font-size: 13px;
+    color: var(--texto2);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-family: var(--sans);
+  }
+  .app-exemplo {
+    background: var(--bg3);
+    border-left: 2px solid var(--laranja);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--texto);
+    font-style: italic;
+    line-height: 1.5;
+    font-family: var(--sans);
+  }
+
+  /* ── HEADLINE BANK ────────────────────────────────────── */
+  .headline-item {
+    padding: 24px 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    margin-bottom: 2px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .headline-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--laranja);
+    width: 24px;
+    flex-shrink: 0;
+    font-family: var(--sans);
+  }
+  .headline-text {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--branco);
+    font-weight: 400;
+    line-height: 1.4;
+    flex: 1;
+  }
+  .headline-uso {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--texto3);
+    white-space: nowrap;
+    font-family: var(--sans);
+  }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  .footer {
+    padding: 60px 32px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--texto3);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+  .footer-logo em { color: var(--laranja); font-style: italic; }
+  .footer-sub { font-size: 12px; color: var(--texto3); font-family: var(--sans); }
+
+  /* ── PRINT ────────────────────────────────────────────── */
+  @media print {
+    @page { margin: 15mm; }
+    body { background: #fff; color: #111; }
+    .hero { background: #fff; min-height: auto; padding: 40px 0; }
+    .hero-big-idea, .sec-title { color: #111; }
+    .hero-big-idea em, .sec-title em { color: #FF5C00; }
+    .sec-label, .pilar-frase, .app-plataforma, .hero-eyebrow, .quote-author { color: #FF5C00; }
+    .hero-tagline, .sec-body, .pilar-desc, .app-desc { color: #444; }
+    .card, .pilar, .voz-card, .app-card, .headline-item, .inimigo-box { background: #f9f9f9; border-color: #ddd; }
+    .quote-block { background: #f5f5f5; border-left-color: #FF5C00; }
+    .quote-text { color: #111; }
+    .hero-divider, .transform-divider { display: none; }
+    .footer { border-top-color: #ddd; }
+    .nav-bar { display: none !important; }
+  }
+
+  /* ── RESPONSIVO ───────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .hero { padding: 60px 20px; }
+    .wrap { padding: 0 20px; }
+    .section { padding: 60px 0; }
+    .caso-grid { grid-template-columns: 1fr; }
+    .pilares-grid { grid-template-columns: 1fr; }
+    .transform-grid { grid-template-columns: 1fr; }
+    .transform-col.antes { border-radius: 8px 8px 0 0; border-right: 1px solid var(--border); border-bottom: none; }
+    .transform-col.depois { border-radius: 0 0 8px 8px; border-left: 1px solid rgba(255,92,0,0.25); border-top: none; }
+    .transform-divider {
+      width: 100%;
+      height: 40px;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-top: none;
+      border-bottom: none;
+    }
+    .voz-grid { grid-template-columns: 1fr; }
+    .app-grid { grid-template-columns: 1fr; }
+    .quote-block { padding: 28px 24px; }
+    .inimigo-box { padding: 28px 24px; }
+    .headline-item { flex-wrap: wrap; gap: 8px; padding: 20px 24px; }
+    .headline-uso { width: 100%; }
+    .caso-card { padding: 28px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 48px 16px; }
+    .wrap { padding: 0 16px; }
+    .section { padding: 48px 0; }
+    .hero-big-idea { font-size: clamp(32px, 10vw, 48px); }
+    .sec-title { font-size: clamp(24px, 6vw, 32px); }
+    .quote-block { padding: 20px 16px; }
+    .inimigo-box { padding: 20px 16px; }
+    .pilar { padding: 28px 20px; }
+    .headline-item { padding: 16px; }
+    .headline-text { font-size: 15px; }
+    .nav-bar a { font-size: 10px !important; padding: 5px 10px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV BAR -->
+<div class="nav-bar" style="position:sticky;top:0;z-index:9999;background:rgba(6,6,6,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     HERO — A BIG IDEA
+═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-eyebrow">CAFF Engenharia &mdash; Big Idea da Campanha</div>
+
+  <h1 class="hero-big-idea">
+    Impermeabilize<br>
+    <em>uma vez.</em><br>
+    Esqueça por<br>
+    <em>décadas.</em>
+  </h1>
+
+  <p class="hero-tagline">
+    A sua laje protegida com tecnologia italiana &mdash;
+    <strong>sem goteira, sem retrabalho, sem dor de cabeça</strong>
+    &mdash; por até 25 anos. Com garantia de engenheiro.
+  </p>
+
+  <div class="hero-divider"></div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     1. A LIÇÃO DO iPOD
+═══════════════════════════════════════════════ -->
+<div class="wrap">
+<section class="section">
+  <div class="sec-label">01 &mdash; A Origem da Big Idea</div>
+  <h2 class="sec-title">A lição de<br><em>Steve Jobs</em></h2>
+
+  <div class="sec-body">
+    <p>Em 2001, Steve Jobs subiu ao palco para apresentar o iPod. Naquela época, já existiam dezenas de MP3 players no mercado. A Dell vendia o seu anunciando <strong>"5GB de armazenamento"</strong>. A Microsoft falava em <strong>"codec H.265, protocolo HLS, servidores dedicados"</strong>. Creative Labs listava especificações técnicas que ninguém entendia.</p>
+    <p>O que Jobs disse? Nenhuma especificação. Nenhum número de engenharia. Ele tirou o iPod do bolso e falou seis palavras:</p>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">1.000 músicas no seu bolso.</p>
+    <span class="quote-author">Steve Jobs &mdash; Lançamento do iPod, 2001</span>
+  </div>
+
+  <div class="sec-body">
+    <p>Em uma frase, Jobs comunicou a <strong>transformação</strong> &mdash; não a tecnologia. O cliente não queria 5 gigabytes. Queria levar toda a sua música para qualquer lugar. A Apple vendeu 100 milhões de iPods. Os concorrentes, com todas as suas especificações técnicas, desapareceram.</p>
+    <p>A lição é simples: <strong>as pessoas não compram características técnicas. Compram o que muda na vida delas.</strong></p>
+  </div>
+
+  <div class="caso-grid">
+    <div class="caso-card errado">
+      <div class="caso-card-label">Como os concorrentes falavam</div>
+      <div class="caso-card-produto">Dell DJ &mdash; 2003</div>
+      <div class="caso-card-frase">"5GB de armazenamento interno com interface USB 2.0"</div>
+      <div class="caso-card-desc">Ninguém sabe o que são 5 gigabytes. Ninguém se emociona com USB 2.0. A comunicação fala sobre o produto &mdash; nunca sobre o cliente.</div>
+    </div>
+    <div class="caso-card certo">
+      <div class="caso-card-label">Como a Apple falou</div>
+      <div class="caso-card-produto">iPod &mdash; 2001</div>
+      <div class="caso-card-frase">"1.000 músicas no seu bolso"</div>
+      <div class="caso-card-desc">Qualquer pessoa entende. Qualquer pessoa deseja. A comunicação fala sobre a transformação que o cliente vive &mdash; e o produto se torna irresistível.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     2. O PARALELO COM A CAFF
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">02 &mdash; O Paralelo com a CAFF</div>
+  <h2 class="sec-title">O mesmo erro no mercado<br>de <em>impermeabilização</em></h2>
+
+  <div class="sec-body">
+    <p>O mercado de impermeabilização comete exatamente o mesmo erro que os concorrentes do iPod. Engenheiros e empresas falam em <strong>"membrana de poliuretano bicomponente", "alongamento de 400%", "resistência térmica de -40°C a +80°C", "substrato preparado com primer acrílico"</strong>.</p>
+    <p>O dono de uma obra em Barreiras que está preocupado com goteira não faz ideia do que é um primer acrílico. Não sabe o que significa "alongamento de 400%". E não precisa saber.</p>
+    <p>O que ele quer saber é: <strong>vai resolver meu problema de uma vez por todas?</strong></p>
+  </div>
+
+  <div class="caso-grid">
+    <div class="caso-card errado">
+      <div class="caso-card-label">O que o mercado fala</div>
+      <div class="caso-card-produto">Comunicação técnica típica</div>
+      <div class="caso-card-frase">"Membrana de poliuretano com alongamento de 400% e resistência térmica de -40°C a +80°C"</div>
+      <div class="caso-card-desc">O dono da obra não sabe o que é poliuretano. Não sabe o que é alongamento de 400%. E não deveria precisar saber para confiar no serviço.</div>
+    </div>
+    <div class="caso-card certo">
+      <div class="caso-card-label">O que a CAFF deve falar</div>
+      <div class="caso-card-produto">Comunicação CAFF Engenharia</div>
+      <div class="caso-card-frase">"Impermeabilize uma vez. Esqueça por décadas."</div>
+      <div class="caso-card-desc">Qualquer pessoa entende. Qualquer dono de obra deseja exatamente isso. A tecnologia está por trás &mdash; mas a promessa está na frente.</div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">Marketing é sobre valores. O mundo é muito barulhento, e não vamos ter a chance de fazer as pessoas lembrarem muito sobre nós. Então precisamos ser muito claros sobre o que queremos que elas saibam.</p>
+    <span class="quote-author">Steve Jobs &mdash; Reunião interna da Apple, 1997</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     3. O INIMIGO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">03 &mdash; O Inimigo</div>
+  <h2 class="sec-title">Contra o que<br><em>estamos lutando</em></h2>
+
+  <div class="sec-body">
+    <p>Toda Big Idea precisa de um inimigo claro. O inimigo não é um concorrente &mdash; é a <strong>situação que o cliente quer escapar.</strong> São três:</p>
+  </div>
+
+  <div class="inimigo-box">
+    <div class="inimigo-item">
+      <div class="inimigo-icon">💧</div>
+      <div>
+        <div class="inimigo-nome">A Infiltração Silenciosa</div>
+        <div class="inimigo-desc">A água entra devagar, sem avisar. Quando a mancha aparece no forro, o problema já tem semanas. Mofo na parede, cheiro de umidade, forro danificado, móveis estragados. <strong>E o pior: o reparo custa até 15 vezes mais do que a prevenção.</strong> Cada dia sem impermeabilização é um dia de prejuízo invisível.</div>
+      </div>
+    </div>
+    <div class="inimigo-item">
+      <div class="inimigo-icon">🔄</div>
+      <div>
+        <div class="inimigo-nome">O Retrabalho Infinito</div>
+        <div class="inimigo-desc">Contratou um profissional informal. Aplicou manta líquida. Ficou bom por 2 anos. Depois voltou a infiltrar. Refez. Infiltrou de novo. <strong>Cada retrabalho custa mais que o anterior, porque agora precisa desfazer o que foi feito errado antes.</strong> O cliente entra num ciclo de gastar dinheiro sem resolver o problema.</div>
+      </div>
+    </div>
+    <div class="inimigo-item">
+      <div class="inimigo-icon">🤷</div>
+      <div>
+        <div class="inimigo-nome">O Profissional Sem Garantia</div>
+        <div class="inimigo-desc">Sem ART, sem nota, sem garantia por escrito. Quando dá problema, o telefone não atende mais. <strong>70% das reclamações de vícios construtivos são sobre infiltração</strong> &mdash; e a maioria não tem a quem reclamar, porque contratou sem nenhum respaldo técnico ou jurídico.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     4. A TRANSFORMAÇÃO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">04 &mdash; A Transformação</div>
+  <h2 class="sec-title">De onde o cliente está<br>para <em>onde ele quer chegar</em></h2>
+
+  <div class="sec-body">
+    <p>A campanha não vende um serviço de impermeabilização. <strong>Vende a paz de espírito de saber que a laje está protegida para sempre.</strong> É essa transformação que deve aparecer em cada anúncio, cada post, cada palavra.</p>
+  </div>
+
+  <div class="transform-grid">
+    <div class="transform-col antes">
+      <div class="transform-col-label">Antes da CAFF</div>
+      <div class="transform-item"><span class="dot"></span>Mancha no forro que aparece toda chuva</div>
+      <div class="transform-item"><span class="dot"></span>Mofo na parede causando rinite e bronquite na família</div>
+      <div class="transform-item"><span class="dot"></span>Medo de chegar o período de chuvas e o problema voltar</div>
+      <div class="transform-item"><span class="dot"></span>Já gastou duas vezes com serviço que não resolveu</div>
+      <div class="transform-item"><span class="dot"></span>Laje que não pode usar &mdash; sem terraço, sem área gourmet</div>
+      <div class="transform-item"><span class="dot"></span>Contratou sem garantia, sem ART, sem respaldo</div>
+    </div>
+    <div class="transform-divider">&rarr;</div>
+    <div class="transform-col depois">
+      <div class="transform-col-label">Depois da CAFF</div>
+      <div class="transform-item"><span class="dot"></span>Forro intacto &mdash; nenhuma mancha, nenhuma goteira</div>
+      <div class="transform-item"><span class="dot"></span>Casa saudável, sem mofo, sem umidade</div>
+      <div class="transform-item"><span class="dot"></span>Tranquilidade total &mdash; pode chover o quanto quiser</div>
+      <div class="transform-item"><span class="dot"></span>Fez uma vez e esqueceu &mdash; por até 25 anos</div>
+      <div class="transform-item"><span class="dot"></span>Laje virou terraço, área gourmet, espaço de lazer</div>
+      <div class="transform-item"><span class="dot"></span>Garantia de 6 anos com ART de engenheiro civil</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     5. OS TRÊS PILARES
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">05 &mdash; Os Três Pilares</div>
+  <h2 class="sec-title">As três promessas que<br><em>sustentam tudo</em></h2>
+
+  <div class="sec-body">
+    <p>Toda comunicação da CAFF &mdash; seja um anúncio de 6 segundos ou uma página de vendas completa &mdash; deve se apoiar em pelo menos um desses três pilares. São eles que transformam características técnicas em <strong>benefícios que o cliente sente na pele.</strong></p>
+  </div>
+
+  <div class="pilares-grid">
+
+    <div class="pilar">
+      <div class="pilar-num">01</div>
+      <div class="pilar-titulo">Fez Uma Vez, Esqueceu</div>
+      <div class="pilar-frase">"A impermeabilização que você nunca mais precisa refazer"</div>
+      <div class="pilar-desc">O cliente não quer saber que a membrana dura 25 anos. Quer saber que nunca mais vai ter goteira. Que vai esquecer que a laje existe. Que a preocupação acaba no dia da aplicação &mdash; e não volta mais.</div>
+    </div>
+
+    <div class="pilar">
+      <div class="pilar-num">02</div>
+      <div class="pilar-titulo">Proteção com Nome e Sobrenome</div>
+      <div class="pilar-frase">"Engenheiro responsável, garantia formal, ART inclusa"</div>
+      <div class="pilar-desc">Chega de serviço sem nota, sem garantia, sem ninguém para responder. A CAFF entrega um profissional que assina embaixo &mdash; literal e juridicamente. Deu problema? Tem a quem recorrer.</div>
+    </div>
+
+    <div class="pilar">
+      <div class="pilar-num">03</div>
+      <div class="pilar-titulo">Sua Laje Vira Espaço</div>
+      <div class="pilar-frase">"De problema a patrimônio"</div>
+      <div class="pilar-desc">A laje que antes era fonte de dor de cabeça vira terraço, área gourmet, espaço de lazer. Livre para caminhar sem proteção mecânica. O imóvel ganha valor &mdash; e a família ganha espaço.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     6. A VOZ DA CAMPANHA
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">06 &mdash; A Voz da Campanha</div>
+  <h2 class="sec-title">Como a CAFF<br><em>fala com o mundo</em></h2>
+
+  <div class="sec-body">
+    <p>A voz da CAFF é a do <strong>engenheiro amigo</strong> &mdash; aquele que você confia para cuidar da sua obra, que te explica tudo sem jargão, que fala a sua língua e nunca te faz sentir ignorante. Direto, acolhedor, confiável.</p>
+    <p>A copy nunca fala em poliuretano bicomponente, substrato, primer acrílico, alongamento percentual ou resistência em graus Celsius. Fala em <strong>laje protegida, casa sem goteira, tranquilidade por décadas, garantia de engenheiro.</strong></p>
+  </div>
+
+  <div class="voz-grid">
+    <div class="voz-card sim">
+      <div class="voz-card-label">Fala assim</div>
+      <div class="voz-exemplo">"Impermeabilize uma vez. Esqueça por décadas."</div>
+      <div class="voz-exemplo">"Sua laje aguenta o calor de Barreiras? A nossa solução aguenta até 80°C."</div>
+      <div class="voz-exemplo">"Já refez a impermeabilização e o problema voltou? Isso acaba aqui."</div>
+      <div class="voz-exemplo">"Garantia de 6 anos com ART. Deu problema? Eu respondo."</div>
+      <div class="voz-exemplo">"Imagina transformar sua laje em terraço gourmet. Sem medo de goteira."</div>
+      <div class="voz-exemplo">"A Odete impermeabilizou com a gente. Pergunte pra ela como está a laje."</div>
+    </div>
+    <div class="voz-card nao">
+      <div class="voz-card-label">Nunca fala assim</div>
+      <div class="voz-exemplo">"Membrana de poliuretano bicomponente à base de poliol e isocianato."</div>
+      <div class="voz-exemplo">"Alongamento de 400% conforme norma ABNT NBR 9952."</div>
+      <div class="voz-exemplo">"Aplicação sobre substrato com primer acrílico de alta aderência."</div>
+      <div class="voz-exemplo">"Resistência térmica de -40°C a +80°C certificada pelo fabricante."</div>
+      <div class="voz-exemplo">"Sistema monocomponente com cura úmida e tempo de recobrimento de 12h."</div>
+      <div class="voz-exemplo">"Espessura mínima de filme seco: 1.500 micrômetros em duas demãos."</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     7. BANCO DE HEADLINES
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">07 &mdash; Banco de Headlines</div>
+  <h2 class="sec-title">Frases que abrem<br><em>qualquer porta</em></h2>
+
+  <div class="sec-body">
+    <p>Headlines derivadas diretamente da Big Idea. Cada uma ataca um ponto de dor diferente ou acende um desejo diferente &mdash; mas todas falam em <strong>benefício, jamais em característica.</strong></p>
+  </div>
+
+  <div style="margin-top: 40px;">
+
+    <div class="headline-item">
+      <div class="headline-num">01</div>
+      <div class="headline-text">Impermeabilize uma vez. Esqueça por décadas.</div>
+      <div class="headline-uso">Big Idea Principal</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">02</div>
+      <div class="headline-text">Você não deveria ter que refazer a impermeabilização a cada dois anos.</div>
+      <div class="headline-uso">Página de Vendas</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">03</div>
+      <div class="headline-text">Quando a mancha aparece no forro, o prejuízo já tem semanas.</div>
+      <div class="headline-uso">Anúncio &mdash; Dor</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">04</div>
+      <div class="headline-text">Imagine sua laje virar terraço gourmet. Sem medo de goteira. Por 25 anos.</div>
+      <div class="headline-uso">Anúncio &mdash; Desejo</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">05</div>
+      <div class="headline-text">Refazer a impermeabilização custa até 15 vezes mais do que fazer certo da primeira vez.</div>
+      <div class="headline-uso">Anúncio &mdash; Comparativo</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">06</div>
+      <div class="headline-text">Impermeabilizei com a CAFF. A chuva pode vir. Minha laje aguenta.</div>
+      <div class="headline-uso">Prova Social &mdash; Depoimento</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">07</div>
+      <div class="headline-text">Novembro está chegando. Sua laje está pronta para o período de chuvas?</div>
+      <div class="headline-uso">Anúncio &mdash; Urgência</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">08</div>
+      <div class="headline-text">70% dos vícios construtivos são infiltração. E a maioria poderia ter sido evitada.</div>
+      <div class="headline-uso">Anúncio &mdash; Curiosidade</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">09</div>
+      <div class="headline-text">Garantia de 6 anos. ART de engenheiro. Porque "confie em mim" não é garantia.</div>
+      <div class="headline-uso">Anúncio &mdash; Autoridade</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">10</div>
+      <div class="headline-text">Eu paguei barato na impermeabilização. E depois paguei 15 vezes mais para consertar.</div>
+      <div class="headline-uso">Reels &mdash; Instagram</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">11</div>
+      <div class="headline-text">A impermeabilização que o engenheiro assina embaixo.</div>
+      <div class="headline-uso">Slogan &mdash; Branding</div>
+    </div>
+
+    <div class="headline-item">
+      <div class="headline-num">12</div>
+      <div class="headline-text">Sua casa merece uma proteção que dure mais do que a própria construção.</div>
+      <div class="headline-uso">YouTube &mdash; Hook</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     8. APLICAÇÕES POR CANAL
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">08 &mdash; Aplicações por Canal</div>
+  <h2 class="sec-title">A Big Idea em<br><em>cada plataforma</em></h2>
+
+  <div class="sec-body">
+    <p>A mesma ideia central &mdash; <em>Impermeabilize uma vez. Esqueça por décadas.</em> &mdash; se adapta ao formato e ao momento de cada plataforma. O espírito é sempre o mesmo: benefício primeiro, sempre.</p>
+  </div>
+
+  <div class="app-grid">
+
+    <div class="app-card">
+      <div class="app-plataforma">Instagram &mdash; Reels</div>
+      <div class="app-titulo">Quando a mancha aparece, o prejuízo já começou</div>
+      <div class="app-desc">Primeiros 3 segundos: mostrar a dor (forro manchado, goteira caindo, mofo na parede). Virada: a CAFF aplicando, o Austry explicando. CTA: "Fale com um engenheiro &mdash; link na bio."</div>
+      <div class="app-exemplo">"Essa mancha no forro? Não é estética. É prejuízo. E quanto mais tempo passa, mais caro fica."</div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-plataforma">Instagram &mdash; Carrossel</div>
+      <div class="app-titulo">Quanto custa NÃO impermeabilizar</div>
+      <div class="app-desc">Slide 1: pergunta provocadora. Slides 2-5: comparativo visual (prevenção vs. retrabalho). Slide final: CAFF como a escolha inteligente. Salvar = intenção de contato.</div>
+      <div class="app-exemplo">"Slide 1: Você acha impermeabilização cara? Slide 5: Refazer custa 15x mais."</div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-plataforma">Instagram &mdash; Antes e Depois</div>
+      <div class="app-titulo">De problema a patrimônio</div>
+      <div class="app-desc">Antes: laje exposta, infiltração visível, forro danificado. Depois: laje impermeabilizada, acabamento impecável, terraço pronto para uso. O Austry narra o processo de forma simples.</div>
+      <div class="app-exemplo">"Essa laje infiltrava toda chuva. Hoje? Terraço gourmet. Pode chover o quanto quiser."</div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-plataforma">Meta Ads &mdash; Criativo</div>
+      <div class="app-titulo">Fez uma vez, esqueceu por décadas</div>
+      <div class="app-desc">Imagem ou vídeo curto com o contraste central: laje com problema vs. laje da CAFF. Copy com benefício na primeira linha. CTA para contato via WhatsApp.</div>
+      <div class="app-exemplo">"Enquanto uns refazem a cada 2 anos, nossos clientes esquecem que a laje existe. Por até 25 anos."</div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-plataforma">WhatsApp &mdash; Atendimento</div>
+      <div class="app-titulo">O engenheiro que responde</div>
+      <div class="app-desc">Tom pessoal e acolhedor. O Austry responde diretamente. Envia fotos de obras anteriores, vídeo explicativo, e agenda visita técnica. Sem pressão, com informação.</div>
+      <div class="app-exemplo">"Oi, aqui é o Austry, engenheiro da CAFF. Me conta sobre a sua obra que eu te explico o que a gente pode fazer."</div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-plataforma">Google Ads &mdash; Busca Local</div>
+      <div class="app-titulo">Impermeabilização em Barreiras</div>
+      <div class="app-desc">Anúncio focado em quem já está buscando a solução. Headline com benefício + localização. Extensão de chamada direta. Landing page com depoimentos e CTA para WhatsApp.</div>
+      <div class="app-exemplo">"Impermeabilização em Barreiras com garantia de 6 anos. Engenheiro civil responsável. Fale agora."</div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-plataforma">Página de Vendas</div>
+      <div class="app-titulo">Impermeabilize uma vez. Esqueça por décadas.</div>
+      <div class="app-desc">Headline da Big Idea no topo. Jornada do cliente (antes → depois). Três pilares de benefício. Depoimentos em vídeo (Odete, Andréia). Garantia e ART como fechamento.</div>
+      <div class="app-exemplo">"Você não deveria ter que refazer a impermeabilização a cada dois anos. A CAFF prova que existe outro caminho."</div>
+    </div>
+
+    <div class="app-card">
+      <div class="app-plataforma">Conteúdo Educativo</div>
+      <div class="app-titulo">O engenheiro que ensina</div>
+      <div class="app-desc">Austry na obra, falando direto com a câmera. Explica conceitos complexos de forma simples. Mostra materiais, processos, resultados. Tom de "vou te explicar", nunca de superioridade.</div>
+      <div class="app-exemplo">"Muita gente pergunta: por que não usar manta líquida? Deixa eu te mostrar a diferença na prática."</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     9. A REGRA DE OURO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">09 &mdash; A Regra de Ouro</div>
+  <h2 class="sec-title">O filtro de<br><em>toda decisão criativa</em></h2>
+
+  <div class="quote-block">
+    <p class="quote-text">Antes de publicar qualquer coisa, pergunte: isso fala sobre o que o cliente <em>sente e vive</em> &mdash; ou sobre o que o produto <em>tem e faz</em>?</p>
+    <span class="quote-author">Teste da Big Idea &mdash; CAFF Engenharia</span>
+  </div>
+
+  <div class="sec-body">
+    <p>Se a resposta for "fala sobre o produto", reescreva até que fale sobre o cliente. <strong>A CAFF não usa membrana de poliuretano. A CAFF faz você nunca mais ter goteira.</strong> A CAFF não oferece alongamento de 400%. A CAFF garante que sua laje acompanha os movimentos da estrutura sem trincar.</p>
+    <p>Característica é o que o produto é. Benefício é o que o cliente <em>vira</em> depois de ter o produto.</p>
+    <p><strong>Venda sempre a transformação &mdash; jamais a especificação.</strong></p>
+    <p style="margin-top: 32px; padding: 24px; background: var(--card); border: 1px solid var(--border); font-size: 14px; line-height: 1.8;">
+      <strong style="color: var(--laranja);">Na prática:</strong> Quando o Austry gravar um Reels mostrando a aplicação, ele não diz "estou aplicando membrana de poliuretano bicomponente". Ele diz: <strong>"Essa laje nunca mais vai dar problema. Pode chover o quanto quiser."</strong><br><br>
+      A tecnologia é a razão pela qual funciona. A transformação é a razão pela qual o cliente compra. Comunique a segunda. A primeira fica nos bastidores, na garantia, na ART &mdash; para quando o cliente quiser se aprofundar.
+    </p>
+  </div>
+
+</section>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">ADS <em>Company</em> &mdash; Assessoria de Marketing e Performance</div>
+  <div class="footer-sub">Big Idea &mdash; CAFF Engenharia &mdash; Maio 2026</div>
+</footer>
+
+</body>
+</html>
