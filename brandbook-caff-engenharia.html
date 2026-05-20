@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandbook &amp; Identidade Visual &mdash; CAFF Engenharia | ADS Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --laranja: #FF5C00;
+    --laranja2: #FF7A33;
+    --amber: #F0A500;
+    --amber2: #FFB800;
+    --amber-glow: rgba(240,165,0,0.12);
+    --verde: #2ecc71;
+    --verde3: rgba(46,204,113,0.12);
+    --vermelho: #e74c3c;
+    --vermelho3: rgba(231,76,60,0.12);
+    --amarelo: #f1c40f;
+    --preto: #060606;
+    --bg2: #0A0A0A;
+    --card: #111111;
+    --card2: #161616;
+    --border: rgba(255,255,255,0.06);
+    --branco: #F5F5F5;
+    --texto: #A0A0A0;
+    --texto2: #666;
+    --texto3: #333;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --montserrat: 'Montserrat', sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: var(--sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 32px 80px;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(240,165,0,0.06) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(32px, 6vw, 56px);
+    font-weight: 700; line-height: 1.1; margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: italic; color: var(--amber); }
+  .hero p {
+    font-size: 17px; color: var(--texto); font-weight: 300;
+    max-width: 620px; margin: 0 auto; line-height: 1.7;
+  }
+  .hero p strong { color: var(--branco); font-weight: 500; }
+
+  /* ── WRAP ── */
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+  .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+
+  .sec-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 16px;
+  }
+  .sec-title {
+    font-family: var(--serif); font-size: clamp(26px, 4vw, 44px);
+    font-weight: 700; line-height: 1.15; margin-bottom: 28px;
+  }
+  .sec-title em { font-style: italic; color: var(--amber); }
+  .sec-body {
+    font-size: 15px; color: var(--texto); font-weight: 300;
+    max-width: 700px; line-height: 1.8;
+  }
+  .sec-body p + p { margin-top: 16px; }
+  .sec-body strong { color: var(--branco); font-weight: 500; }
+
+  /* ── LOGO SHOWCASE ── */
+  .logo-showcase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    background: radial-gradient(circle at 50% 50%, #1a1a1a, #0a0a0a);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin: 40px 0;
+  }
+
+  /* ── PALETA ── */
+  .palette-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2px; margin: 40px 0;
+  }
+  .color-card {
+    background: var(--card); border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .color-swatch { height: 100px; width: 100%; }
+  .color-info { padding: 16px; }
+  .color-name {
+    font-size: 12px; font-weight: 700; color: var(--branco);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .color-hex {
+    font-size: 13px; color: var(--texto); font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .color-role {
+    font-size: 11px; color: var(--texto2); margin-top: 6px; line-height: 1.4;
+  }
+
+  /* ── ANÁLISE ── */
+  .analise-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 40px 0;
+  }
+  .analise-card {
+    background: var(--card); border: 1px solid var(--border); padding: 28px;
+  }
+  .analise-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .analise-label.positivo { color: var(--verde); }
+  .analise-label.negativo { color: var(--vermelho); }
+  .analise-label.neutro { color: var(--amber); }
+  .analise-text {
+    font-size: 14px; color: var(--texto); font-weight: 300; line-height: 1.7;
+  }
+  .analise-text strong { color: var(--branco); font-weight: 500; }
+
+  /* ── LOGO VARIAÇÕES ── */
+  .logo-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin: 40px 0;
+  }
+  .logo-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 40px 32px 24px; text-align: center;
+    transition: border-color 0.3s;
+  }
+  .logo-card:hover { border-color: rgba(240,165,0,0.25); }
+  .logo-card.recomendada { border-color: rgba(240,165,0,0.4); background: rgba(240,165,0,0.02); }
+  .logo-card-badge {
+    display: inline-block;
+    font-size: 8px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--preto); background: var(--amber);
+    padding: 3px 8px; border-radius: 3px; margin-bottom: 16px;
+  }
+  .logo-card-svg {
+    display: flex; justify-content: center; align-items: center;
+    min-height: 180px; margin-bottom: 20px;
+  }
+  .logo-card-num {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--texto3); margin-bottom: 8px;
+  }
+  .logo-card.recomendada .logo-card-num { color: var(--amber); }
+  .logo-card-name {
+    font-family: var(--serif); font-size: 16px; font-weight: 700;
+    color: var(--branco); margin-bottom: 8px;
+  }
+  .logo-card-desc {
+    font-size: 12px; color: var(--texto2); font-weight: 300;
+    line-height: 1.6; max-width: 280px; margin: 0 auto;
+  }
+
+  /* ── APLICAÇÕES ── */
+  .app-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 40px 0;
+  }
+  .app-card {
+    background: var(--card); border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .app-preview {
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .app-info { padding: 16px; }
+  .app-name {
+    font-size: 12px; font-weight: 700; color: var(--branco);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .app-desc {
+    font-size: 11px; color: var(--texto2); font-weight: 300; line-height: 1.5;
+  }
+
+  /* ── TIPOGRAFIA ── */
+  .tipo-showcase {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 40px; margin: 24px 0;
+  }
+  .tipo-sample {
+    margin-bottom: 24px; padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tipo-sample:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .tipo-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 12px;
+  }
+  .tipo-demo {
+    font-size: 32px; font-weight: 700; color: var(--branco); margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .tipo-weights {
+    font-size: 13px; color: var(--texto); font-weight: 300; line-height: 1.8;
+  }
+
+  /* ── NOTA ── */
+  .nota {
+    padding: 24px; background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; font-size: 13px; color: var(--texto); line-height: 1.8;
+    margin: 32px 0;
+  }
+  .nota strong { color: var(--branco); font-weight: 500; }
+  .nota .label { color: var(--amber); font-weight: 700; }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 60px 32px; text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: var(--serif); font-size: 14px; color: var(--texto3);
+    letter-spacing: 0.15em; margin-bottom: 8px;
+  }
+  .footer-logo em { color: var(--amber); font-style: italic; }
+  .footer-sub { font-size: 12px; color: var(--texto3); }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 768px) {
+    .hero { padding: 60px 20px 48px; }
+    .wrap { padding: 0 20px; }
+    .section { padding: 48px 0; }
+    .analise-grid { grid-template-columns: 1fr; }
+    .logo-grid { grid-template-columns: 1fr; }
+    .app-grid { grid-template-columns: 1fr; }
+    .palette-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .hero { padding: 48px 16px 36px; }
+    .wrap { padding: 0 16px; }
+    .section { padding: 36px 0; }
+    .palette-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV BAR -->
+<div style="position:sticky;top:0;z-index:9999;background:rgba(6,6,6,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#F0A500';this.style.borderColor='rgba(240,165,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-eyebrow">CAFF Engenharia &mdash; Identidade Visual</div>
+  <h1>Brandbook &amp;<br><em>Identidade Visual</em></h1>
+  <p>An&aacute;lise da logo atual, extra&ccedil;&atilde;o de paleta de cores, recria&ccedil;&atilde;o em alta qualidade e <strong>propostas de evolu&ccedil;&atilde;o</strong> da marca para apresenta&ccedil;&atilde;o ao cliente.</p>
+</section>
+
+
+<div class="wrap">
+
+<!-- ══════════════════════════════════════════════
+     1. ANÁLISE DA LOGO ATUAL
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">01 &mdash; An&aacute;lise da Logo Atual</div>
+  <h2 class="sec-title">O que a logo <em>comunica</em><br>e o que pode melhorar</h2>
+
+  <div class="sec-body">
+    <p>A logo atual da CAFF &eacute; minimalista e limpa: o nome &ldquo;CAFF&rdquo; em tipografia bold dentro de um c&iacute;rculo com anel dourado/&acirc;mbar, sobre fundo escuro. Funciona como avatar de redes sociais e tem boa leitura em tamanhos pequenos. Abaixo, a an&aacute;lise detalhada.</p>
+  </div>
+
+  <!-- LOGO ATUAL RECRIADA -->
+  <div class="logo-showcase">
+    <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Fundo escuro -->
+      <defs>
+        <radialGradient id="bg-grad" cx="50%" cy="40%" r="70%">
+          <stop offset="0%" stop-color="#1E1E1E"/>
+          <stop offset="100%" stop-color="#0A0A0A"/>
+        </radialGradient>
+        <radialGradient id="circle-grad" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#1C1C1C"/>
+          <stop offset="100%" stop-color="#111111"/>
+        </radialGradient>
+      </defs>
+      <!-- Anel &acirc;mbar -->
+      <circle cx="110" cy="110" r="88" fill="none" stroke="#F0A500" stroke-width="3.5"/>
+      <!-- C&iacute;rculo interno -->
+      <circle cx="110" cy="110" r="83" fill="url(#circle-grad)"/>
+      <!-- Texto CAFF -->
+      <text x="110" y="118" text-anchor="middle" font-family="Montserrat, Inter, sans-serif" font-weight="800" font-size="38" fill="#FFFFFF" letter-spacing="3">CAFF</text>
+    </svg>
+  </div>
+
+  <div style="text-align: center; margin: -24px 0 40px;">
+    <span style="font-size: 11px; color: var(--texto2); font-weight: 400;">Logo atual recriada em SVG &mdash; vetor escal&aacute;vel, qualidade infinita</span>
+  </div>
+
+  <!-- PONTOS POSITIVOS E NEGATIVOS -->
+  <div class="analise-grid">
+    <div class="analise-card">
+      <div class="analise-label positivo">O que funciona</div>
+      <div class="analise-text">
+        <strong>Minimalismo.</strong> A logo &eacute; limpa, sem excessos. Funciona bem como avatar de redes sociais, onde o espa&ccedil;o &eacute; redondo e pequeno.<br><br>
+        <strong>Leitura r&aacute;pida.</strong> &ldquo;CAFF&rdquo; em bold &eacute; leg&iacute;vel mesmo em tamanhos pequenos. O formato circular ajuda na identifica&ccedil;&atilde;o.<br><br>
+        <strong>Paleta s&oacute;bria.</strong> Preto + dourado/&acirc;mbar transmite sofistica&ccedil;&atilde;o e seriedade. Coerente com um servi&ccedil;o de engenharia.
+      </div>
+    </div>
+    <div class="analise-card">
+      <div class="analise-label negativo">O que precisa evoluir</div>
+      <div class="analise-text">
+        <strong>N&atilde;o comunica o que a empresa faz.</strong> &ldquo;CAFF&rdquo; sozinho pode ser qualquer coisa &mdash; cafeteria, moda, tecnologia. N&atilde;o h&aacute; nenhum elemento visual que remeta a engenharia ou impermeabiliza&ccedil;&atilde;o.<br><br>
+        <strong>Sem &ldquo;Engenharia&rdquo;.</strong> O texto complementar est&aacute; ausente na logo. O cliente v&ecirc; &ldquo;CAFF&rdquo; e n&atilde;o sabe o que &eacute;.<br><br>
+        <strong>Qualidade da imagem original &eacute; baixa.</strong> Arquivo JPEG comprimido, sem vers&atilde;o vetorial. Perde defini&ccedil;&atilde;o em impress&atilde;o e materiais ampliados.
+      </div>
+    </div>
+  </div>
+
+  <div class="analise-grid">
+    <div class="analise-card">
+      <div class="analise-label neutro">Formato</div>
+      <div class="analise-text">
+        <strong>Circular.</strong> Bom para avatares (Instagram, WhatsApp, Google Meu Neg&oacute;cio). Ruim para cabe&ccedil;alhos de site, assinaturas de e-mail e materiais horizontais, onde uma vers&atilde;o retangular seria mais adequada.
+      </div>
+    </div>
+    <div class="analise-card">
+      <div class="analise-label neutro">Tipografia</div>
+      <div class="analise-text">
+        <strong>Sans-serif bold.</strong> A fonte atual parece ser uma varia&ccedil;&atilde;o de Montserrat Black ou similar. Transmite solidez e modernidade, mas poderia ter mais personalidade com um tratamento tipogr&aacute;fico &uacute;nico.
+      </div>
+    </div>
+  </div>
+
+  <div class="nota">
+    <span class="label">Veredicto:</span> A logo atual &eacute; <strong>funcional para avatar</strong>, mas <strong>insuficiente como identidade de marca</strong>. Falta: vers&atilde;o horizontal, descritivo &ldquo;Engenharia&rdquo;, elemento visual de nicho e arquivo vetorial. As propostas abaixo resolvem cada um desses pontos.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     2. PALETA DE CORES EXTRAÍDA
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">02 &mdash; Paleta de Cores</div>
+  <h2 class="sec-title">Cores extra&iacute;das da <em>logo atual</em></h2>
+
+  <div class="sec-body">
+    <p>A paleta extra&iacute;da da logo &eacute; enxuta e coerente: <strong>preto + &acirc;mbar/dourado + branco</strong>. Essa combina&ccedil;&atilde;o transmite sofistica&ccedil;&atilde;o, solidez e confian&ccedil;a &mdash; exatamente o que um servi&ccedil;o de engenharia precisa. Abaixo, as cores prim&aacute;rias e secund&aacute;rias para toda a comunica&ccedil;&atilde;o visual.</p>
+  </div>
+
+  <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin: 40px 0 16px;">Cores prim&aacute;rias</div>
+
+  <div class="palette-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #F0A500;"></div>
+      <div class="color-info">
+        <div class="color-name">&Acirc;mbar CAFF</div>
+        <div class="color-hex">#F0A500</div>
+        <div class="color-role">Cor principal da marca. Anel da logo, bot&otilde;es, destaques e CTAs.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #111111;"></div>
+      <div class="color-info">
+        <div class="color-name">Preto CAFF</div>
+        <div class="color-hex">#111111</div>
+        <div class="color-role">Fundo principal. Interior da logo, backgrounds de p&aacute;ginas e materiais.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #FFFFFF;"></div>
+      <div class="color-info">
+        <div class="color-name">Branco Puro</div>
+        <div class="color-hex">#FFFFFF</div>
+        <div class="color-role">Texto principal sobre fundo escuro. Tipografia da logo.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #1C1C1C;"></div>
+      <div class="color-info">
+        <div class="color-name">Carv&atilde;o</div>
+        <div class="color-hex">#1C1C1C</div>
+        <div class="color-role">Cards, pain&eacute;is elevados. Gradiente interno da logo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin: 40px 0 16px;">Cores secund&aacute;rias e de apoio</div>
+
+  <div class="palette-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #FFB800;"></div>
+      <div class="color-info">
+        <div class="color-name">&Acirc;mbar Claro</div>
+        <div class="color-hex">#FFB800</div>
+        <div class="color-role">Varia&ccedil;&atilde;o para hover, badges e destaques secund&aacute;rios.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #C48400;"></div>
+      <div class="color-info">
+        <div class="color-name">&Acirc;mbar Escuro</div>
+        <div class="color-hex">#C48400</div>
+        <div class="color-role">Textos sobre fundo claro, bordas, detalhes sutis.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #A0A0A0;"></div>
+      <div class="color-info">
+        <div class="color-name">Cinza Texto</div>
+        <div class="color-hex">#A0A0A0</div>
+        <div class="color-role">Texto secund&aacute;rio, legendas, descri&ccedil;&otilde;es e subtextos.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #2A2A2A;"></div>
+      <div class="color-info">
+        <div class="color-name">Cinza Estrutura</div>
+        <div class="color-hex">#2A2A2A</div>
+        <div class="color-role">Bordas, divis&oacute;rias, separa&ccedil;&otilde;es visuais.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nota">
+    <span class="label">Regra de uso:</span> A cor &acirc;mbar (<strong>#F0A500</strong>) nunca deve ocupar mais de 20% da &aacute;rea visual. Ela funciona como <strong>destaque e foco</strong>, n&atilde;o como cor de fundo. O preto domina, o branco comunica, o &acirc;mbar chama a aten&ccedil;&atilde;o.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     3. LOGO RECRIADA EM ALTA QUALIDADE
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">03 &mdash; Logo Recriada em Vetor</div>
+  <h2 class="sec-title">Original em <em>alta qualidade</em></h2>
+
+  <div class="sec-body">
+    <p>A logo original foi recriada em SVG (vetor) &mdash; escal&aacute;vel para qualquer tamanho sem perda de qualidade. Abaixo, as tr&ecirc;s vers&otilde;es obrigat&oacute;rias: fundo escuro, fundo claro e monocrom&aacute;tica.</p>
+  </div>
+
+  <div class="logo-grid">
+    <!-- FUNDO ESCURO -->
+    <div class="logo-card">
+      <div class="logo-card-num">Vers&atilde;o principal</div>
+      <div class="logo-card-name">Fundo Escuro</div>
+      <div class="logo-card-svg" style="background: radial-gradient(circle, #1a1a1a, #0a0a0a); border-radius: 4px;">
+        <svg width="180" height="180" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="110" cy="110" r="88" fill="none" stroke="#F0A500" stroke-width="3.5"/>
+          <circle cx="110" cy="110" r="83" fill="#141414"/>
+          <text x="110" y="118" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="38" fill="#FFFFFF" letter-spacing="3">CAFF</text>
+        </svg>
+      </div>
+      <div class="logo-card-desc">Uso principal: redes sociais, materiais digitais, apresenta&ccedil;&otilde;es.</div>
+    </div>
+
+    <!-- FUNDO CLARO -->
+    <div class="logo-card">
+      <div class="logo-card-num">Vers&atilde;o secund&aacute;ria</div>
+      <div class="logo-card-name">Fundo Claro</div>
+      <div class="logo-card-svg" style="background: #F5F5F5; border-radius: 4px;">
+        <svg width="180" height="180" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="110" cy="110" r="88" fill="none" stroke="#C48400" stroke-width="3.5"/>
+          <circle cx="110" cy="110" r="83" fill="#111111"/>
+          <text x="110" y="118" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="38" fill="#FFFFFF" letter-spacing="3">CAFF</text>
+        </svg>
+      </div>
+      <div class="logo-card-desc">Para fundos brancos e claros: documentos, impressos, uniformes.</div>
+    </div>
+
+    <!-- MONOCROMÁTICA -->
+    <div class="logo-card">
+      <div class="logo-card-num">Vers&atilde;o auxiliar</div>
+      <div class="logo-card-name">Monocrom&aacute;tica</div>
+      <div class="logo-card-svg" style="background: #0a0a0a; border-radius: 4px;">
+        <svg width="180" height="180" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="110" cy="110" r="88" fill="none" stroke="#FFFFFF" stroke-width="3.5"/>
+          <circle cx="110" cy="110" r="83" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.2"/>
+          <text x="110" y="118" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="38" fill="#FFFFFF" letter-spacing="3">CAFF</text>
+        </svg>
+      </div>
+      <div class="logo-card-desc">Para marca d'&aacute;gua, grava&ccedil;&atilde;o e aplica&ccedil;&otilde;es de uma cor.</div>
+    </div>
+
+    <!-- COM DESCRITIVO -->
+    <div class="logo-card">
+      <div class="logo-card-num">Vers&atilde;o completa</div>
+      <div class="logo-card-name">Com Descritivo</div>
+      <div class="logo-card-svg" style="background: radial-gradient(circle, #1a1a1a, #0a0a0a); border-radius: 4px;">
+        <svg width="180" height="180" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="100" r="68" fill="none" stroke="#F0A500" stroke-width="3"/>
+          <circle cx="90" cy="100" r="64" fill="#141414"/>
+          <text x="90" y="107" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="28" fill="#FFFFFF" letter-spacing="2">CAFF</text>
+          <text x="205" y="92" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="22" fill="#FFFFFF" letter-spacing="4">CAFF</text>
+          <text x="205" y="112" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="400" font-size="10" fill="#F0A500" letter-spacing="5">ENGENHARIA</text>
+        </svg>
+      </div>
+      <div class="logo-card-desc">S&iacute;mbolo + wordmark. Para cabe&ccedil;alhos, sites e materiais horizontais.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     4. PROPOSTAS DE EVOLUÇÃO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">04 &mdash; Propostas de Evolu&ccedil;&atilde;o</div>
+  <h2 class="sec-title">Sugest&otilde;es de <em>nova logo</em></h2>
+
+  <div class="sec-body">
+    <p>As propostas abaixo <strong>respeitam a paleta de cores existente</strong> (preto + &acirc;mbar + branco) e a ess&ecirc;ncia minimalista da marca. Cada uma adiciona um elemento visual que comunica o que a CAFF faz &mdash; sem perder a sobriedade que o setor de engenharia exige.</p>
+  </div>
+
+  <div class="logo-grid">
+
+    <!-- PROPOSTA 1: ESCUDO + ENGENHARIA -->
+    <div class="logo-card">
+      <div class="logo-card-num">Proposta 01</div>
+      <div class="logo-card-name">CAFF Escudo</div>
+      <div class="logo-card-svg" style="background: radial-gradient(circle, #1a1a1a, #0a0a0a); border-radius: 4px;">
+        <svg width="180" height="180" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Escudo -->
+          <path d="M110 25 L185 65 L185 120 Q185 175 110 200 Q35 175 35 120 L35 65 Z" fill="none" stroke="#F0A500" stroke-width="2.5"/>
+          <path d="M110 32 L180 68 L180 118 Q180 170 110 193 Q40 170 40 118 L40 68 Z" fill="#141414"/>
+          <!-- Texto -->
+          <text x="110" y="110" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="36" fill="#FFFFFF" letter-spacing="3">CAFF</text>
+          <text x="110" y="135" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="500" font-size="9" fill="#F0A500" letter-spacing="6">ENGENHARIA</text>
+          <!-- Linha decorativa -->
+          <line x1="75" y1="118" x2="145" y2="118" stroke="#F0A500" stroke-width="0.8" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="logo-card-desc">O escudo transmite prote&ccedil;&atilde;o &mdash; exatamente o que a impermeabiliza&ccedil;&atilde;o faz. Inclui &ldquo;Engenharia&rdquo; integrado.</div>
+    </div>
+
+    <!-- PROPOSTA 2: GOTA INVERTIDA -->
+    <div class="logo-card recomendada">
+      <div class="logo-card-badge">Recomendada</div>
+      <div class="logo-card-num">Proposta 02</div>
+      <div class="logo-card-name">CAFF Imperme&aacute;vel</div>
+      <div class="logo-card-svg" style="background: radial-gradient(circle, #1a1a1a, #0a0a0a); border-radius: 4px;">
+        <svg width="180" height="180" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg">
+          <!-- Gota invertida (proteção contra água) -->
+          <path d="M110 195 Q55 155 55 105 Q55 55 110 25 Q165 55 165 105 Q165 155 110 195 Z" fill="#141414" stroke="#F0A500" stroke-width="2.5"/>
+          <!-- Linha de barreira (impermeabilização) -->
+          <line x1="72" y1="135" x2="148" y2="135" stroke="#F0A500" stroke-width="2" stroke-dasharray="0"/>
+          <!-- Gotas bloqueadas abaixo da linha -->
+          <circle cx="90" cy="150" r="3" fill="#F0A500" opacity="0.3"/>
+          <circle cx="110" cy="155" r="3" fill="#F0A500" opacity="0.3"/>
+          <circle cx="130" cy="148" r="3" fill="#F0A500" opacity="0.3"/>
+          <!-- X sobre as gotas (bloqueio) -->
+          <line x1="87" y1="147" x2="93" y2="153" stroke="#F0A500" stroke-width="1" opacity="0.4"/>
+          <line x1="93" y1="147" x2="87" y2="153" stroke="#F0A500" stroke-width="1" opacity="0.4"/>
+          <line x1="107" y1="152" x2="113" y2="158" stroke="#F0A500" stroke-width="1" opacity="0.4"/>
+          <line x1="113" y1="152" x2="107" y2="158" stroke="#F0A500" stroke-width="1" opacity="0.4"/>
+          <line x1="127" y1="145" x2="133" y2="151" stroke="#F0A500" stroke-width="1" opacity="0.4"/>
+          <line x1="133" y1="145" x2="127" y2="151" stroke="#F0A500" stroke-width="1" opacity="0.4"/>
+          <!-- Texto -->
+          <text x="110" y="100" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="32" fill="#FFFFFF" letter-spacing="2">CAFF</text>
+          <text x="110" y="120" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="500" font-size="8" fill="#F0A500" letter-spacing="5">ENGENHARIA</text>
+        </svg>
+      </div>
+      <div class="logo-card-desc">Gota invertida com barreira &mdash; comunica impermeabiliza&ccedil;&atilde;o visualmente. As gotas bloqueadas abaixo da linha refor&ccedil;am a prote&ccedil;&atilde;o. Moderno e &uacute;nico.</div>
+    </div>
+
+    <!-- PROPOSTA 3: ARQUITETÔNICO -->
+    <div class="logo-card">
+      <div class="logo-card-num">Proposta 03</div>
+      <div class="logo-card-name">CAFF Estrutura</div>
+      <div class="logo-card-svg" style="background: radial-gradient(circle, #1a1a1a, #0a0a0a); border-radius: 4px;">
+        <svg width="180" height="180" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Anel original mantido -->
+          <circle cx="110" cy="110" r="88" fill="none" stroke="#F0A500" stroke-width="2.5"/>
+          <circle cx="110" cy="110" r="83" fill="#141414"/>
+          <!-- Linhas de construção (blueprint sutil) -->
+          <line x1="60" y1="85" x2="160" y2="85" stroke="#F0A500" stroke-width="0.5" opacity="0.2"/>
+          <line x1="60" y1="135" x2="160" y2="135" stroke="#F0A500" stroke-width="0.5" opacity="0.2"/>
+          <!-- Teto estilizado acima do texto -->
+          <polyline points="70,82 110,62 150,82" fill="none" stroke="#F0A500" stroke-width="1.5" opacity="0.6"/>
+          <!-- Texto -->
+          <text x="110" y="113" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="34" fill="#FFFFFF" letter-spacing="3">CAFF</text>
+          <text x="110" y="132" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="500" font-size="8" fill="#F0A500" letter-spacing="5">ENGENHARIA</text>
+        </svg>
+      </div>
+      <div class="logo-card-desc">Mant&eacute;m o c&iacute;rculo original e adiciona um telhado estilizado &mdash; remete a constru&ccedil;&atilde;o civil sem poluir. Evolu&ccedil;&atilde;o sutil da logo atual.</div>
+    </div>
+
+    <!-- PROPOSTA 4: TIPOGRÁFICO -->
+    <div class="logo-card">
+      <div class="logo-card-num">Proposta 04</div>
+      <div class="logo-card-name">CAFF Wordmark</div>
+      <div class="logo-card-svg" style="background: radial-gradient(circle, #1a1a1a, #0a0a0a); border-radius: 4px;">
+        <svg width="180" height="180" viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Barra vertical âmbar -->
+          <rect x="20" y="30" width="4" height="100" rx="2" fill="#F0A500"/>
+          <!-- CAFF grande -->
+          <text x="38" y="90" font-family="Montserrat, sans-serif" font-weight="900" font-size="60" fill="#FFFFFF" letter-spacing="5">CAFF</text>
+          <!-- Linha separadora -->
+          <line x1="38" y1="102" x2="250" y2="102" stroke="#F0A500" stroke-width="1" opacity="0.4"/>
+          <!-- ENGENHARIA -->
+          <text x="38" y="120" font-family="Montserrat, sans-serif" font-weight="500" font-size="14" fill="#F0A500" letter-spacing="8">ENGENHARIA</text>
+        </svg>
+      </div>
+      <div class="logo-card-desc">Vers&atilde;o puramente tipogr&aacute;fica para uso horizontal. A barra &acirc;mbar na lateral funciona como assinatura visual. Ideal para cabe&ccedil;alhos de site e materiais impressos.</div>
+    </div>
+
+  </div>
+
+  <div class="nota">
+    <span class="label">Recomenda&ccedil;&atilde;o:</span> A <strong>Proposta 02 (CAFF Imperme&aacute;vel)</strong> &eacute; a mais estrat&eacute;gica &mdash; comunica o servi&ccedil;o visualmente (gota + barreira), mant&eacute;m a sobriedade da paleta e se diferencia dos concorrentes que usam logos gen&eacute;ricas. Pode funcionar tanto como avatar circular quanto em formato horizontal com wordmark ao lado.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     5. TIPOGRAFIA
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">05 &mdash; Tipografia</div>
+  <h2 class="sec-title">Fontes da <em>marca</em></h2>
+
+  <div class="sec-body">
+    <p>Duas fam&iacute;lias tipogr&aacute;ficas para toda a comunica&ccedil;&atilde;o da CAFF. <strong>Montserrat</strong> para a logo e t&iacute;tulos (for&ccedil;a, solidez), <strong>Inter</strong> para textos corridos (legibilidade, modernidade). Ambas s&atilde;o gratuitas (Google Fonts) e funcionam em qualquer plataforma.</p>
+  </div>
+
+  <div class="tipo-showcase">
+    <div class="tipo-sample">
+      <div class="tipo-label">Prim&aacute;ria &mdash; Logo &amp; T&iacute;tulos</div>
+      <div class="tipo-demo" style="font-family: Montserrat, sans-serif;">Montserrat</div>
+      <div class="tipo-weights" style="font-family: Montserrat, sans-serif;">
+        <span style="font-weight: 400;">Regular 400</span> &mdash;
+        <span style="font-weight: 600;">Semi-Bold 600</span> &mdash;
+        <span style="font-weight: 700;">Bold 700</span> &mdash;
+        <span style="font-weight: 800;">Extra-Bold 800</span> &mdash;
+        <span style="font-weight: 900;">Black 900</span>
+      </div>
+      <div style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 20px; color: var(--branco); margin-top: 16px; letter-spacing: 3px;">
+        CAFF ENGENHARIA
+      </div>
+      <div style="font-size: 11px; color: var(--texto2); margin-top: 8px;">Uso: logo, t&iacute;tulos de se&ccedil;&atilde;o, headlines de an&uacute;ncios, cabe&ccedil;alhos</div>
+    </div>
+    <div class="tipo-sample">
+      <div class="tipo-label">Secund&aacute;ria &mdash; Textos &amp; Interface</div>
+      <div class="tipo-demo" style="font-family: Inter, sans-serif;">Inter</div>
+      <div class="tipo-weights" style="font-family: Inter, sans-serif;">
+        <span style="font-weight: 300;">Light 300</span> &mdash;
+        <span style="font-weight: 400;">Regular 400</span> &mdash;
+        <span style="font-weight: 500;">Medium 500</span> &mdash;
+        <span style="font-weight: 600;">Semi-Bold 600</span> &mdash;
+        <span style="font-weight: 700;">Bold 700</span>
+      </div>
+      <div style="font-family: Inter, sans-serif; font-weight: 400; font-size: 15px; color: var(--texto); margin-top: 16px; line-height: 1.7; max-width: 500px;">
+        Impermeabilize uma vez. Esque&ccedil;a por d&eacute;cadas. Tecnologia italiana com at&eacute; 25 anos de vida &uacute;til e garantia de 6 anos com ART.
+      </div>
+      <div style="font-size: 11px; color: var(--texto2); margin-top: 8px;">Uso: par&aacute;grafos, legendas, bot&otilde;es, labels, descri&ccedil;&otilde;es</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     6. APLICAÇÕES
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">06 &mdash; Aplica&ccedil;&otilde;es</div>
+  <h2 class="sec-title">Como a marca <em>vive</em></h2>
+
+  <div class="sec-body">
+    <p>Exemplos de como a identidade visual se aplica nos principais pontos de contato da CAFF. Todas as aplica&ccedil;&otilde;es seguem a paleta e tipografia definidas.</p>
+  </div>
+
+  <div class="app-grid">
+
+    <!-- AVATAR INSTAGRAM -->
+    <div class="app-card">
+      <div class="app-preview" style="background: #0a0a0a;">
+        <div style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #F0A500; display: flex; align-items: center; justify-content: center; background: #141414;">
+          <span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 16px; color: #fff; letter-spacing: 2px;">CAFF</span>
+        </div>
+      </div>
+      <div class="app-info">
+        <div class="app-name">Avatar Instagram</div>
+        <div class="app-desc">Logo circular sobre fundo escuro. O anel &acirc;mbar se destaca no feed.</div>
+      </div>
+    </div>
+
+    <!-- CAPA DESTAQUE -->
+    <div class="app-card">
+      <div class="app-preview" style="background: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid #F0A500; display: flex; align-items: center; justify-content: center; background: rgba(240,165,0,0.08);">
+          <span style="font-size: 20px;">&#128736;&#65039;</span>
+        </div>
+        <span style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 8px; color: #F0A500; letter-spacing: 2px; text-transform: uppercase;">Como Funciona</span>
+      </div>
+      <div class="app-info">
+        <div class="app-name">Capa de Destaque</div>
+        <div class="app-desc">Fundo escuro, &iacute;cone centralizado, nome em &acirc;mbar. Padr&atilde;o para todos os destaques.</div>
+      </div>
+    </div>
+
+    <!-- CARTÃO DE VISITA -->
+    <div class="app-card">
+      <div class="app-preview" style="background: #111; padding: 20px;">
+        <div style="width: 100%; max-width: 200px; aspect-ratio: 1.75; background: linear-gradient(135deg, #141414, #0a0a0a); border: 1px solid rgba(240,165,0,0.2); border-radius: 4px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 12px; color: #fff; letter-spacing: 2px;">CAFF</div>
+            <div style="font-family: Montserrat, sans-serif; font-weight: 400; font-size: 6px; color: #F0A500; letter-spacing: 3px; margin-top: 2px;">ENGENHARIA</div>
+          </div>
+          <div>
+            <div style="font-family: Inter, sans-serif; font-size: 7px; color: #A0A0A0; line-height: 1.6;">
+              Austry F. Filho<br>
+              Engenheiro Civil | CREA-BA<br>
+              <span style="color: #F0A500;">Barreiras &mdash; BA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-info">
+        <div class="app-name">Cart&atilde;o de Visita</div>
+        <div class="app-desc">Frente escura com borda &acirc;mbar sutil. Tipografia hier&aacute;rquica.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="app-grid" style="margin-top: 2px;">
+
+    <!-- ASSINATURA E-MAIL -->
+    <div class="app-card">
+      <div class="app-preview" style="background: #fff; padding: 20px;">
+        <div style="border-top: 3px solid #F0A500; padding-top: 12px; width: 100%; max-width: 240px;">
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #F0A500; display: flex; align-items: center; justify-content: center; background: #111; flex-shrink: 0;">
+              <span style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 8px; color: #fff; letter-spacing: 1px;">CAFF</span>
+            </div>
+            <div>
+              <div style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 9px; color: #111;">Austry F. Filho</div>
+              <div style="font-family: Inter, sans-serif; font-size: 7px; color: #666; margin-top: 1px;">Engenheiro Civil | CAFF Engenharia</div>
+              <div style="font-family: Inter, sans-serif; font-size: 7px; color: #C48400; margin-top: 3px;">Barreiras e Lu&iacute;s Eduardo &mdash; BA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-info">
+        <div class="app-name">Assinatura de E-mail</div>
+        <div class="app-desc">Linha &acirc;mbar no topo, logo miniatura + dados. Funciona em fundo claro.</div>
+      </div>
+    </div>
+
+    <!-- POST FEED -->
+    <div class="app-card">
+      <div class="app-preview" style="background: #0a0a0a; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px;">
+        <div style="font-family: Montserrat, sans-serif; font-weight: 800; font-size: 14px; color: #fff; text-align: center; line-height: 1.3; max-width: 180px;">Impermeabilize uma vez.</div>
+        <div style="width: 40px; height: 2px; background: #F0A500;"></div>
+        <div style="font-family: Inter, sans-serif; font-weight: 300; font-size: 9px; color: #A0A0A0; text-align: center;">Esque&ccedil;a por d&eacute;cadas.</div>
+      </div>
+      <div class="app-info">
+        <div class="app-name">Post Feed / Stories</div>
+        <div class="app-desc">Fundo escuro, headline em branco, separador &acirc;mbar. Padr&atilde;o de criativos.</div>
+      </div>
+    </div>
+
+    <!-- MARCA D'ÁGUA -->
+    <div class="app-card">
+      <div class="app-preview" style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a); display: flex; align-items: center; justify-content: center;">
+        <div style="opacity: 0.15;">
+          <svg width="120" height="120" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="110" cy="110" r="88" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+            <text x="110" y="118" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="800" font-size="38" fill="#FFFFFF" letter-spacing="3">CAFF</text>
+          </svg>
+        </div>
+      </div>
+      <div class="app-info">
+        <div class="app-name">Marca d'&Aacute;gua</div>
+        <div class="app-desc">Vers&atilde;o monocrom&aacute;tica em 15% de opacidade para fotos e v&iacute;deos de obra.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     7. REGRAS DE USO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">07 &mdash; Regras de Uso</div>
+  <h2 class="sec-title">O que <em>nunca</em> fazer</h2>
+
+  <div class="sec-body">
+    <p>Para manter a consist&ecirc;ncia da marca em todos os pontos de contato, estas regras devem ser seguidas em qualquer material &mdash; digital ou impresso.</p>
+  </div>
+
+  <div style="margin: 40px 0;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px;">
+      <div style="background: var(--card); border: 1px solid var(--border); padding: 24px;">
+        <div style="font-size: 18px; margin-bottom: 8px; color: var(--vermelho);">&#10007;</div>
+        <div style="font-size: 13px; color: var(--branco); font-weight: 600; margin-bottom: 6px;">N&atilde;o distorcer</div>
+        <div style="font-size: 12px; color: var(--texto2); font-weight: 300; line-height: 1.5;">Nunca esticar, comprimir ou rotacionar a logo. Manter sempre as propor&ccedil;&otilde;es originais.</div>
+      </div>
+      <div style="background: var(--card); border: 1px solid var(--border); padding: 24px;">
+        <div style="font-size: 18px; margin-bottom: 8px; color: var(--vermelho);">&#10007;</div>
+        <div style="font-size: 13px; color: var(--branco); font-weight: 600; margin-bottom: 6px;">N&atilde;o mudar as cores</div>
+        <div style="font-size: 12px; color: var(--texto2); font-weight: 300; line-height: 1.5;">Usar apenas as cores definidas na paleta. Nunca aplicar gradientes, sombras ou efeitos 3D na logo.</div>
+      </div>
+      <div style="background: var(--card); border: 1px solid var(--border); padding: 24px;">
+        <div style="font-size: 18px; margin-bottom: 8px; color: var(--vermelho);">&#10007;</div>
+        <div style="font-size: 13px; color: var(--branco); font-weight: 600; margin-bottom: 6px;">N&atilde;o colocar em fundo colorido</div>
+        <div style="font-size: 12px; color: var(--texto2); font-weight: 300; line-height: 1.5;">A logo funciona em fundo escuro (#000-#222) ou fundo claro (#F0-#FFF). Nunca sobre fotos sem overlay.</div>
+      </div>
+      <div style="background: var(--card); border: 1px solid var(--border); padding: 24px;">
+        <div style="font-size: 18px; margin-bottom: 8px; color: var(--vermelho);">&#10007;</div>
+        <div style="font-size: 13px; color: var(--branco); font-weight: 600; margin-bottom: 6px;">N&atilde;o reduzir abaixo de 32px</div>
+        <div style="font-size: 12px; color: var(--texto2); font-weight: 300; line-height: 1.5;">Tamanho m&iacute;nimo: 32px de di&acirc;metro (digital) ou 12mm (impresso). Abaixo disso, o texto fica ileg&iacute;vel.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px;">
+    <div style="background: var(--card); border: 1px solid var(--border); padding: 24px;">
+      <div style="font-size: 18px; margin-bottom: 8px; color: var(--verde);">&#10003;</div>
+      <div style="font-size: 13px; color: var(--branco); font-weight: 600; margin-bottom: 6px;">&Aacute;rea de respiro</div>
+      <div style="font-size: 12px; color: var(--texto2); font-weight: 300; line-height: 1.5;">Manter uma margem m&iacute;nima equivalente &agrave; metade do di&acirc;metro do anel ao redor da logo. Nenhum outro elemento pode invadir esse espa&ccedil;o.</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid var(--border); padding: 24px;">
+      <div style="font-size: 18px; margin-bottom: 8px; color: var(--verde);">&#10003;</div>
+      <div style="font-size: 13px; color: var(--branco); font-weight: 600; margin-bottom: 6px;">Sempre usar vetor (SVG/PDF)</div>
+      <div style="font-size: 12px; color: var(--texto2); font-weight: 300; line-height: 1.5;">Para materiais impressos e qualquer amplia&ccedil;&atilde;o, usar o arquivo vetorial. JPEG/PNG apenas para redes sociais em tamanho fixo.</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">ADS <em>Company</em> &mdash; Assessoria de Marketing e Performance</div>
+  <div class="footer-sub">Brandbook &amp; Identidade Visual &mdash; CAFF Engenharia &mdash; Maio 2026</div>
+</footer>
+
+</body>
+</html>
