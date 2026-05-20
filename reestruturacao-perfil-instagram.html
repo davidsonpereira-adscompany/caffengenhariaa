@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reestrutura&ccedil;&atilde;o do Perfil Instagram &mdash; CAFF Engenharia | ADS Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --laranja: #FF5C00;
+    --laranja2: #FF7A33;
+    --laranja3: rgba(255,92,0,0.12);
+    --verde: #2ecc71;
+    --verde3: rgba(46,204,113,0.12);
+    --vermelho: #e74c3c;
+    --vermelho3: rgba(231,76,60,0.12);
+    --amarelo: #f1c40f;
+    --amarelo3: rgba(241,196,15,0.12);
+    --preto: #060606;
+    --bg2: #0A0A0A;
+    --card: #111111;
+    --border: rgba(255,255,255,0.06);
+    --branco: #F5F5F5;
+    --texto: #A0A0A0;
+    --texto2: #666;
+    --texto3: #333;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: var(--sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 32px 80px;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,92,0,0.06) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--laranja); margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(32px, 6vw, 56px);
+    font-weight: 700; line-height: 1.1; margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: italic; color: var(--laranja); }
+  .hero p {
+    font-size: 17px; color: var(--texto); font-weight: 300;
+    max-width: 600px; margin: 0 auto; line-height: 1.7;
+  }
+  .hero p strong { color: var(--branco); font-weight: 500; }
+
+  /* ── WRAP ── */
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+  .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+
+  .sec-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--laranja); margin-bottom: 16px;
+  }
+  .sec-title {
+    font-family: var(--serif); font-size: clamp(26px, 4vw, 44px);
+    font-weight: 700; line-height: 1.15; margin-bottom: 28px;
+  }
+  .sec-title em { font-style: italic; color: var(--laranja); }
+  .sec-body {
+    font-size: 15px; color: var(--texto); font-weight: 300;
+    max-width: 700px; line-height: 1.8;
+  }
+  .sec-body p + p { margin-top: 16px; }
+  .sec-body strong { color: var(--branco); font-weight: 500; }
+
+  /* ── DIAGNÓSTICO ── */
+  .diag-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 40px 0;
+  }
+  .diag-card {
+    background: var(--card); border: 1px solid var(--border); padding: 28px;
+  }
+  .diag-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .diag-label.atual { color: var(--vermelho); }
+  .diag-label.prob { color: var(--amarelo); }
+  .diag-value {
+    font-size: 15px; color: var(--branco); font-weight: 500;
+    line-height: 1.5; margin-bottom: 12px; font-family: var(--sans);
+  }
+  .diag-explain {
+    font-size: 13px; color: var(--texto2); font-weight: 300; line-height: 1.6;
+  }
+
+  /* ── OPÇÃO CARD ── */
+  .opcao-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 40px 0;
+  }
+  .opcao {
+    background: var(--card); border: 1px solid var(--border); padding: 32px;
+    position: relative; transition: border-color 0.3s;
+  }
+  .opcao:hover { border-color: rgba(255,92,0,0.25); }
+  .opcao.recomendada { border-color: rgba(255,92,0,0.4); background: rgba(255,92,0,0.03); }
+  .opcao-num {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--texto3); margin-bottom: 16px;
+  }
+  .opcao.recomendada .opcao-num { color: var(--laranja); }
+  .opcao-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-size: 8px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--preto); background: var(--laranja);
+    padding: 3px 8px; border-radius: 3px;
+  }
+  .opcao-principal {
+    font-family: var(--serif); font-size: 18px; font-weight: 700;
+    color: var(--branco); line-height: 1.3; margin-bottom: 16px;
+  }
+  .opcao-conteudo {
+    font-size: 13px; color: var(--texto); font-weight: 300;
+    line-height: 1.7; white-space: pre-line;
+  }
+  .opcao-conteudo strong { color: var(--branco); font-weight: 500; }
+  .opcao-razao {
+    margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--texto2); font-weight: 300; line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── BIO PREVIEW ── */
+  .bio-preview {
+    background: #1a1a1a; border-radius: 12px; padding: 24px;
+    margin: 16px 0; font-family: -apple-system, sans-serif;
+    max-width: 380px;
+  }
+  .bio-preview-name {
+    font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;
+  }
+  .bio-preview-text {
+    font-size: 13px; color: #e0e0e0; line-height: 1.5; white-space: pre-line;
+  }
+  .bio-preview-link {
+    font-size: 13px; color: #5b9bd5; font-weight: 600; margin-top: 4px;
+  }
+
+  /* ── DESTAQUE CARD ── */
+  .dest-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px; margin: 40px 0;
+  }
+  .dest-card {
+    text-align: center;
+  }
+  .dest-circle {
+    width: 72px; height: 72px; border-radius: 50%;
+    border: 2px solid var(--laranja); display: flex;
+    align-items: center; justify-content: center;
+    margin: 0 auto 12px; font-size: 28px;
+    background: rgba(255,92,0,0.08);
+  }
+  .dest-name {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--branco);
+    margin-bottom: 6px;
+  }
+  .dest-desc {
+    font-size: 11px; color: var(--texto2); font-weight: 300; line-height: 1.4;
+  }
+
+  /* ── POST FIXADO ── */
+  .post-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 40px 0;
+  }
+  .post-card {
+    background: var(--card); border: 1px solid var(--border); padding: 32px;
+    position: relative;
+  }
+  .post-pos {
+    font-size: 48px; font-weight: 900; color: var(--laranja3);
+    line-height: 1; margin-bottom: 16px;
+  }
+  .post-tipo {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--laranja); margin-bottom: 12px;
+  }
+  .post-titulo {
+    font-family: var(--serif); font-size: 18px; font-weight: 700;
+    color: var(--branco); line-height: 1.3; margin-bottom: 12px;
+  }
+  .post-desc {
+    font-size: 13px; color: var(--texto); font-weight: 300;
+    line-height: 1.7; margin-bottom: 16px;
+  }
+  .post-formato {
+    font-size: 11px; color: var(--texto2); font-weight: 400;
+    padding: 8px 12px; background: var(--bg2); border-radius: 4px;
+    border: 1px solid var(--border); line-height: 1.5;
+  }
+  .post-capa {
+    margin-top: 16px; padding: 16px; background: var(--bg2);
+    border: 1px solid var(--border); border-radius: 4px;
+  }
+  .post-capa-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--laranja); margin-bottom: 8px;
+  }
+  .post-capa-text {
+    font-size: 12px; color: var(--texto); line-height: 1.6; font-weight: 300;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 60px 32px; text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: var(--serif); font-size: 14px; color: var(--texto3);
+    letter-spacing: 0.15em; margin-bottom: 8px;
+  }
+  .footer-logo em { color: var(--laranja); font-style: italic; }
+  .footer-sub { font-size: 12px; color: var(--texto3); }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 768px) {
+    .hero { padding: 60px 20px 48px; }
+    .wrap { padding: 0 20px; }
+    .section { padding: 48px 0; }
+    .diag-grid { grid-template-columns: 1fr; }
+    .opcao-grid { grid-template-columns: 1fr; }
+    .post-grid { grid-template-columns: 1fr; }
+    .dest-grid { grid-template-columns: repeat(3, 1fr); }
+    .bio-preview { max-width: 100%; }
+  }
+  @media (max-width: 480px) {
+    .hero { padding: 48px 16px 36px; }
+    .wrap { padding: 0 16px; }
+    .section { padding: 36px 0; }
+    .dest-grid { grid-template-columns: repeat(2, 1fr); }
+    .opcao { padding: 24px; }
+    .post-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV BAR -->
+<div style="position:sticky;top:0;z-index:9999;background:rgba(6,6,6,0.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 24px;display:flex;align-items:center;gap:8px;font-family:Inter,-apple-system,sans-serif;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.5);padding:6px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:5px;transition:all 0.25s;" onmouseover="this.style.color='#FF5C00';this.style.borderColor='rgba(255,92,0,0.25)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.06)'">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Central
+  </a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-eyebrow">CAFF Engenharia &mdash; Reestrutura&ccedil;&atilde;o de Perfil</div>
+  <h1>Instagram:<br>do t&eacute;cnico ao <em>estrat&eacute;gico</em></h1>
+  <p>An&aacute;lise completa do perfil atual e plano de reestrutura&ccedil;&atilde;o &mdash; arroba, nome de exibi&ccedil;&atilde;o, biografia, destaques, link na bio e <strong>tr&ecirc;s primeiros posts fixados.</strong></p>
+</section>
+
+
+<div class="wrap">
+
+<!-- ══════════════════════════════════════════════
+     1. DIAGNÓSTICO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">01 &mdash; Diagn&oacute;stico do Perfil Atual</div>
+  <h2 class="sec-title">O que est&aacute; <em>funcionando</em><br>e o que precisa mudar</h2>
+
+  <div class="sec-body">
+    <p>O perfil @caffengenharia tem uma base s&oacute;lida: 369 seguidores, 9 posts com conte&uacute;do real de obra, e o Austry j&aacute; aparece em v&iacute;deo. Isso &eacute; <strong>ouro</strong> &mdash; pouqu&iacute;ssimos concorrentes t&ecirc;m isso. O problema n&atilde;o &eacute; falta de material. &Eacute; que o perfil fala <strong>de engenheiro para engenheiro</strong>, quando deveria falar de engenheiro para dono de obra.</p>
+  </div>
+
+  <!-- PROBLEMAS IDENTIFICADOS -->
+  <div style="margin: 40px 0;">
+    <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--vermelho); margin-bottom: 20px;">Problemas identificados</div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-label atual">Arroba atual</div>
+        <div class="diag-value">@caffengenharia</div>
+        <div class="diag-explain">Funcional, mas n&atilde;o comunica localiza&ccedil;&atilde;o (Barreiras/BA). Quem busca &ldquo;impermeabiliza&ccedil;&atilde;o Barreiras&rdquo; no Instagram n&atilde;o encontra o perfil pela busca.</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-label atual">Nome de exibi&ccedil;&atilde;o atual</div>
+        <div class="diag-value">CAFF Engenharia | Impermeabiliza&ccedil;&atilde;o Alto Padr&atilde;o</div>
+        <div class="diag-explain">Longo demais. O Instagram corta ap&oacute;s ~26 caracteres na maioria das telas. &ldquo;Alto Padr&atilde;o&rdquo; &eacute; percep&ccedil;&atilde;o, n&atilde;o busca &mdash; ningu&eacute;m procura &ldquo;alto padr&atilde;o&rdquo; no Instagram.</div>
+      </div>
+    </div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-label atual">Biografia atual</div>
+        <div class="diag-value" style="font-size: 13px; white-space: pre-line;">| Prote&ccedil;&atilde;o estrutural com responsabilidade t&eacute;cnica |
+Garantia - Durabilidade - Alto Desempenho
+&#128205; Solicite uma avalia&ccedil;&atilde;o t&eacute;cnica</div>
+        <div class="diag-explain">&ldquo;Prote&ccedil;&atilde;o estrutural com responsabilidade t&eacute;cnica&rdquo; &eacute; linguagem de CREA, n&atilde;o de cliente. &ldquo;Garantia - Durabilidade - Alto Desempenho&rdquo; &eacute; gen&eacute;rico &mdash; qualquer empresa fala isso. Nenhuma frase comunica o <strong>resultado</strong> que o cliente recebe. &Eacute; exatamente o problema do iPod vs. Dell.</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-label atual">Link na bio</div>
+        <div class="diag-value">Nenhum</div>
+        <div class="diag-explain">Perda cr&iacute;tica de convers&atilde;o. Todo o tr&aacute;fego org&acirc;nico e pago que chega ao perfil n&atilde;o tem para onde ir. Sem link = sem lead = sem venda. Prioridade m&aacute;xima.</div>
+      </div>
+    </div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-label atual">Destaques</div>
+        <div class="diag-value">Nenhum</div>
+        <div class="diag-explain">Os destaques s&atilde;o a &ldquo;vitrine&rdquo; do perfil &mdash; o que o cliente v&ecirc; antes de rolar o feed. Sem destaques, o perfil perde a chance de contar a hist&oacute;ria da CAFF em 5 segundos.</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-label atual">Posts atuais</div>
+        <div class="diag-value">9 posts &mdash; todos t&eacute;cnicos</div>
+        <div class="diag-explain">Conte&uacute;do real de obra (excelente!), mas os t&iacute;tulos falam para engenheiros: &ldquo;Aplica&ccedil;&atilde;o da Membrana de Poliuretano&rdquo;, &ldquo;Teste de Estanqueidade&rdquo;, &ldquo;Ponte de Ader&ecirc;ncia&rdquo;. O dono de obra n&atilde;o sabe o que &eacute; estanqueidade. Bom conte&uacute;do, linguagem errada.</div>
+      </div>
+    </div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-label prob">Seguindo</div>
+        <div class="diag-value">323 perfis</div>
+        <div class="diag-explain">Seguir mais pessoas do que seguidores (369 vs. 323) &eacute; aceit&aacute;vel nessa fase, mas &agrave; medida que crescer, convém reduzir. Perfis profissionais com boa autoridade mant&ecirc;m a propor&ccedil;&atilde;o invertida (mais seguidores do que seguindo).</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-label prob">Posts fixados</div>
+        <div class="diag-value">Nenhum post fixado</div>
+        <div class="diag-explain">Os tr&ecirc;s primeiros posts que aparecem no perfil s&atilde;o a &ldquo;primeira impress&atilde;o&rdquo;. Sem posts fixados estrat&eacute;gicos, o visitante v&ecirc; o conte&uacute;do mais recente &mdash; que pode n&atilde;o ser o mais convincente.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- O QUE ESTÁ BOM -->
+  <div style="margin: 48px 0; padding: 32px; background: rgba(46,204,113,0.04); border: 1px solid rgba(46,204,113,0.15); border-radius: 4px;">
+    <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--verde); margin-bottom: 16px;">O que j&aacute; est&aacute; bom</div>
+    <div style="font-size: 14px; color: var(--texto); line-height: 1.8;">
+      <strong style="color: var(--branco);">Conte&uacute;do real de obra.</strong> Os v&iacute;deos mostrando aplica&ccedil;&atilde;o, acabamento e testes s&atilde;o exatamente o que o algoritmo do Instagram prioriza em 2026. A maioria dos concorrentes n&atilde;o tem isso.<br><br>
+      <strong style="color: var(--branco);">O Austry aparece em v&iacute;deo.</strong> Rosto gera confian&ccedil;a. A pesquisa de mercado mostrou que v&iacute;deo-first &eacute; a tend&ecirc;ncia dominante &mdash; a CAFF j&aacute; pratica isso.<br><br>
+      <strong style="color: var(--branco);">Foto de perfil com logo.</strong> Consistente e profissional. Mant&eacute;m.<br><br>
+      <strong style="color: var(--branco);">369 seguidores reais.</strong> Base leg&iacute;tima, n&atilde;o comprada. Ponto de partida s&oacute;lido para crescer com tr&aacute;fego pago e org&acirc;nico.
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     2. ARROBA
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">02 &mdash; Arroba (@)</div>
+  <h2 class="sec-title">Tr&ecirc;s op&ccedil;&otilde;es de <em>arroba</em></h2>
+
+  <div class="sec-body">
+    <p>O arroba atual <strong>@caffengenharia</strong> n&atilde;o &eacute; ruim, mas n&atilde;o ajuda na busca local. Quem procura &ldquo;impermeabiliza&ccedil;&atilde;o em Barreiras&rdquo; no Instagram n&atilde;o vai encontrar o perfil. A adi&ccedil;&atilde;o de localiza&ccedil;&atilde;o ou nicho no arroba melhora a descoberta org&acirc;nica.</p>
+  </div>
+
+  <div class="opcao-grid">
+    <div class="opcao recomendada">
+      <div class="opcao-badge">Recomendada</div>
+      <div class="opcao-num">Op&ccedil;&atilde;o A</div>
+      <div class="opcao-principal">@caffengenharia</div>
+      <div class="opcao-conteudo">Manter o arroba atual. Curto, limpo, f&aacute;cil de digitar. A marca j&aacute; tem 369 seguidores e hist&oacute;rico de conte&uacute;do vinculado a esse arroba.</div>
+      <div class="opcao-razao">Trocar arroba significa perder men&ccedil;&otilde;es anteriores, links compartilhados e reconhecimento. Como o perfil ainda &eacute; pequeno, o impacto seria baixo &mdash; mas tamb&eacute;m n&atilde;o h&aacute; necessidade urgente de mudar. O nome de exibi&ccedil;&atilde;o (que &eacute; onde o Instagram busca) resolve a descoberta local.</div>
+    </div>
+    <div class="opcao">
+      <div class="opcao-num">Op&ccedil;&atilde;o B</div>
+      <div class="opcao-principal">@caffimpermeabiliza</div>
+      <div class="opcao-conteudo">Comunica o nicho diretamente no arroba. Quem l&ecirc; j&aacute; entende o que a empresa faz antes de abrir o perfil.</div>
+      <div class="opcao-razao">Mais descritivo, mas perde o &ldquo;engenharia&rdquo; que transmite credibilidade t&eacute;cnica. Tamb&eacute;m &eacute; mais longo para digitar.</div>
+    </div>
+    <div class="opcao">
+      <div class="opcao-num">Op&ccedil;&atilde;o C</div>
+      <div class="opcao-principal">@caaborreciaeengenharia</div>
+      <div class="opcao-conteudo">Adiciona &ldquo;ba&rdquo; para sinalizar Bahia. Ajuda na busca regional.</div>
+      <div class="opcao-razao">Fica longo e dif&iacute;cil de memorizar. A localiza&ccedil;&atilde;o &eacute; melhor resolvida no nome de exibi&ccedil;&atilde;o do que no arroba.</div>
+    </div>
+  </div>
+
+  <div style="padding: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; font-size: 13px; color: var(--texto); line-height: 1.7;">
+    <strong style="color: var(--laranja);">Veredicto:</strong> Manter <strong style="color: var(--branco);">@caffengenharia</strong>. O arroba est&aacute; bom. A descoberta local ser&aacute; resolvida pelo nome de exibi&ccedil;&atilde;o e pela bio.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     3. NOME DE EXIBIÇÃO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">03 &mdash; Nome de Exibi&ccedil;&atilde;o</div>
+  <h2 class="sec-title">Tr&ecirc;s op&ccedil;&otilde;es de <em>nome</em></h2>
+
+  <div class="sec-body">
+    <p>O nome de exibi&ccedil;&atilde;o &eacute; <strong>onde o Instagram faz busca</strong>. Se algu&eacute;m pesquisa &ldquo;impermeabiliza&ccedil;&atilde;o Barreiras&rdquo;, o perfil s&oacute; aparece se essas palavras estiverem no nome de exibi&ccedil;&atilde;o. Atualmente, o nome &eacute; &ldquo;CAFF Engenharia | Impermeabiliza&ccedil;&atilde;o Alto Padr&atilde;o&rdquo; &mdash; longo demais (cortado na tela) e sem localiza&ccedil;&atilde;o.</p>
+  </div>
+
+  <div class="opcao-grid">
+    <div class="opcao recomendada">
+      <div class="opcao-badge">Recomendada</div>
+      <div class="opcao-num">Op&ccedil;&atilde;o A</div>
+      <div class="opcao-principal">CAFF Engenharia | Barreiras-BA</div>
+      <div class="opcao-conteudo">Marca + localiza&ccedil;&atilde;o. Quem busca &ldquo;engenharia Barreiras&rdquo; ou &ldquo;CAFF Barreiras&rdquo; encontra. Curto o suficiente para n&atilde;o ser cortado (29 caracteres).</div>
+      <div class="opcao-razao">O nicho (impermeabiliza&ccedil;&atilde;o) fica na bio, onde tem mais espa&ccedil;o. A localiza&ccedil;&atilde;o no nome &eacute; mais estrat&eacute;gica porque &eacute; o filtro principal de busca do p&uacute;blico-alvo.</div>
+    </div>
+    <div class="opcao">
+      <div class="opcao-num">Op&ccedil;&atilde;o B</div>
+      <div class="opcao-principal">CAFF | Impermeabiliza&ccedil;&atilde;o Barreiras</div>
+      <div class="opcao-conteudo">Nicho + localiza&ccedil;&atilde;o. Aparece para quem busca &ldquo;impermeabiliza&ccedil;&atilde;o Barreiras&rdquo; diretamente. Sem o &ldquo;Engenharia&rdquo;.</div>
+      <div class="opcao-razao">Boa para descoberta de nicho. Perde o &ldquo;Engenharia&rdquo; que transmite autoridade, mas compensa se o foco for captar leads de busca direta.</div>
+    </div>
+    <div class="opcao">
+      <div class="opcao-num">Op&ccedil;&atilde;o C</div>
+      <div class="opcao-principal">CAFF Engenharia &mdash; Impermeabiliza&ccedil;&atilde;o</div>
+      <div class="opcao-conteudo">Marca + nicho, sem localiza&ccedil;&atilde;o. Limpo e profissional. Comunica o que a empresa faz.</div>
+      <div class="opcao-razao">Perde a descoberta local. Funciona se o tr&aacute;fego vier majoritariamente de an&uacute;ncios (onde a segmenta&ccedil;&atilde;o j&aacute; filtra por regi&atilde;o), n&atilde;o de busca org&acirc;nica.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     4. BIOGRAFIA
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">04 &mdash; Biografia</div>
+  <h2 class="sec-title">Tr&ecirc;s op&ccedil;&otilde;es de <em>bio</em></h2>
+
+  <div class="sec-body">
+    <p>A bio tem <strong>150 caracteres</strong> para responder tr&ecirc;s perguntas que o visitante faz em 3 segundos: <em>O que faz? Por que confiar? Como contratar?</em> A bio atual responde a primeira de forma t&eacute;cnica, ignora a segunda e n&atilde;o resolve a terceira (sem link, sem CTA claro).</p>
+  </div>
+
+  <div class="opcao-grid">
+    <div class="opcao recomendada">
+      <div class="opcao-badge">Recomendada</div>
+      <div class="opcao-num">Op&ccedil;&atilde;o A</div>
+      <div class="opcao-principal">Foco na transforma&ccedil;&atilde;o</div>
+      <div class="bio-preview">
+        <div class="bio-preview-name">CAFF Engenharia | Barreiras-BA</div>
+        <div class="bio-preview-text">Impermeabilize uma vez. Esque&ccedil;a por d&eacute;cadas.
+&#128736;&#65039; Engenheiro civil | Garantia de 6 anos com ART
+&#127470;&#127481; Tecnologia italiana | At&eacute; 25 anos de vida &uacute;til
+&#128205; Barreiras e Lu&iacute;s Eduardo Magalh&atilde;es</div>
+        <div class="bio-preview-link">&#128279; Fale com o engenheiro</div>
+      </div>
+      <div class="opcao-razao">Abre com a Big Idea (transforma&ccedil;&atilde;o). Comunica garantia, tecnologia e localiza&ccedil;&atilde;o em linhas escane&aacute;veis. CTA direto para WhatsApp.</div>
+    </div>
+    <div class="opcao">
+      <div class="opcao-num">Op&ccedil;&atilde;o B</div>
+      <div class="opcao-principal">Foco na dor do cliente</div>
+      <div class="bio-preview">
+        <div class="bio-preview-name">CAFF Engenharia | Barreiras-BA</div>
+        <div class="bio-preview-text">Sua laje protegida. Sua fam&iacute;lia tranquila.
+&#9989; Garantia de 6 anos com ART de engenheiro
+&#9989; Tecnologia italiana com at&eacute; 25 anos de vida &uacute;til
+&#128205; Barreiras e Lu&iacute;s Eduardo &mdash; BA</div>
+        <div class="bio-preview-link">&#128172; Solicite um or&ccedil;amento</div>
+      </div>
+      <div class="opcao-razao">Abre com benefício emocional (proteção + tranquilidade). Mais suave, menos impactante que a Big Idea direta. Boa alternativa se o cliente preferir tom mais acolhedor.</div>
+    </div>
+    <div class="opcao">
+      <div class="opcao-num">Op&ccedil;&atilde;o C</div>
+      <div class="opcao-principal">Foco na autoridade</div>
+      <div class="bio-preview">
+        <div class="bio-preview-name">CAFF Engenharia | Barreiras-BA</div>
+        <div class="bio-preview-text">Eng. Civil | Perito TJ-GO e TJ-BA | Caixa Econ&ocirc;mica
+&#127470;&#127481; Representante de multinacional italiana (80+ anos)
+&#128736;&#65039; Impermeabiliza&ccedil;&atilde;o com garantia de 6 anos
+&#128205; Barreiras e Lu&iacute;s Eduardo Magalh&atilde;es</div>
+        <div class="bio-preview-link">&#128279; Fale com o engenheiro</div>
+      </div>
+      <div class="opcao-razao">Abre com credenciais pesadas. Forte para perfis que recebem visitas de pessoas já em fase de decisão. Porém, pode afastar quem está no nível &ldquo;consciente do problema&rdquo; (maioria do público, conforme briefing).</div>
+    </div>
+  </div>
+
+  <div style="padding: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; font-size: 13px; color: var(--texto); line-height: 1.7;">
+    <strong style="color: var(--laranja);">Nota sobre o link na bio:</strong> Independentemente da opção escolhida, o link é obrigatório. Recomendação: <strong style="color: var(--branco);">link direto para o WhatsApp do Austry</strong> (api.whatsapp.com com mensagem pré-preenchida). Alternativa: Linktree ou página própria quando o funil de vendas estiver pronto.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     5. DESTAQUES
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">05 &mdash; Destaques</div>
+  <h2 class="sec-title">A vitrine do <em>perfil</em></h2>
+
+  <div class="sec-body">
+    <p>Os destaques s&atilde;o os primeiros elementos visuais que o visitante v&ecirc; antes de rolar o feed. Cada destaque deve responder uma pergunta que o potencial cliente tem. A ordem &eacute; estrat&eacute;gica &mdash; da esquerda para a direita, do mais importante ao complementar.</p>
+  </div>
+
+  <div class="dest-grid">
+    <div class="dest-card">
+      <div class="dest-circle">&#128736;&#65039;</div>
+      <div class="dest-name">Como Funciona</div>
+      <div class="dest-desc">O processo da CAFF em 4-5 stories. Do diagn&oacute;stico &agrave; entrega. Simples, visual, sem jarg&atilde;o.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-circle">&#127942;</div>
+      <div class="dest-name">Resultados</div>
+      <div class="dest-desc">Antes e depois de obras reais. Fotos e v&iacute;deos curtos mostrando o acabamento final.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-circle">&#128172;</div>
+      <div class="dest-name">Clientes</div>
+      <div class="dest-desc">Depoimentos da Odete e Andr&eacute;ia. V&iacute;deo &eacute; ideal, print de conversa tamb&eacute;m funciona.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-circle">&#9989;</div>
+      <div class="dest-name">Garantia</div>
+      <div class="dest-desc">O que est&aacute; incluso: ART, 6 anos de garantia, tecnologia italiana, credenciais do Austry.</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-circle">&#10067;</div>
+      <div class="dest-name">D&uacute;vidas</div>
+      <div class="dest-desc">FAQ visual: &ldquo;Quanto custa?&rdquo;, &ldquo;Quanto tempo dura?&rdquo;, &ldquo;Funciona no calor?&rdquo;, &ldquo;O que &eacute; ART?&rdquo;</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-circle">&#128205;</div>
+      <div class="dest-name">Obras</div>
+      <div class="dest-desc">Registro das obras em andamento e conclu&iacute;das. Portf&oacute;lio visual que cresce com cada novo projeto.</div>
+    </div>
+  </div>
+
+  <div style="padding: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; font-size: 13px; color: var(--texto); line-height: 1.7;">
+    <strong style="color: var(--laranja);">Capas dos destaques:</strong> Manter visual consistente &mdash; fundo escuro (#060606 ou #111) com &iacute;cone ou texto curto em laranja (#FF5C00). Uma linha apenas: &ldquo;COMO FUNCIONA&rdquo;, &ldquo;RESULTADOS&rdquo;, &ldquo;CLIENTES&rdquo;, etc. Sem logo repetida, sem excesso de informa&ccedil;&atilde;o.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     6. LINK NA BIO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">06 &mdash; Link na Bio</div>
+  <h2 class="sec-title">Para onde o cliente <em>vai</em></h2>
+
+  <div class="sec-body">
+    <p>Atualmente: <strong>nenhum link.</strong> Isso &eacute; a maior perda do perfil. Todo o investimento em conte&uacute;do e an&uacute;ncios leva o cliente at&eacute; o perfil &mdash; e l&aacute; ele n&atilde;o tem para onde ir.</p>
+  </div>
+
+  <div class="opcao-grid">
+    <div class="opcao recomendada">
+      <div class="opcao-badge">Fase 1 &mdash; Agora</div>
+      <div class="opcao-num">Imediato</div>
+      <div class="opcao-principal">Link direto para WhatsApp</div>
+      <div class="opcao-conteudo">https://wa.me/55XXXXXXXXXXX?text=Ol&aacute;,%20vi%20o%20perfil%20da%20CAFF%20e%20gostaria%20de%20saber%20mais%20sobre%20impermeabiliza&ccedil;&atilde;o
+
+Simples, direto, sem intermedi&aacute;rio. O cliente clica e j&aacute; est&aacute; falando com o Austry.</div>
+      <div class="opcao-razao">Pesquisa indica que atendimento em menos de 30 segundos fecha 60-70% dos contratos. O link direto elimina toda fric&ccedil;&atilde;o entre o clique e o contato.</div>
+    </div>
+    <div class="opcao">
+      <div class="opcao-num">Fase 2 &mdash; P&oacute;s-funil</div>
+      <div class="opcao-principal">P&aacute;gina de vendas + WhatsApp</div>
+      <div class="opcao-conteudo">Quando o funil de vendas estiver pronto, o link aponta para a landing page (com toda a jornada de convencimento) e o WhatsApp fica como CTA final da p&aacute;gina.</div>
+      <div class="opcao-razao">Para leads frios que precisam ser educados antes de converter. O link direto do WhatsApp continua como op&ccedil;&atilde;o no Linktree.</div>
+    </div>
+    <div class="opcao">
+      <div class="opcao-num">Fase 3 &mdash; Escala</div>
+      <div class="opcao-principal">Linktree ou p&aacute;gina de links</div>
+      <div class="opcao-conteudo">Quando houver m&uacute;ltiplos destinos (p&aacute;gina de vendas, or&ccedil;amento, portf&oacute;lio, Google Maps), usar um agregador de links com visual alinhado &agrave; marca.</div>
+      <div class="opcao-razao">S&oacute; faz sentido quando houver mais de um destino relevante. Antes disso, cada clique intermedi&aacute;rio &eacute; fric&ccedil;&atilde;o que reduz convers&atilde;o.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     7. TRÊS PRIMEIROS POSTS FIXADOS
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">07 &mdash; Tr&ecirc;s Primeiros Posts Fixados</div>
+  <h2 class="sec-title">A primeira impress&atilde;o<br>que <em>converte</em></h2>
+
+  <div class="sec-body">
+    <p>Quando algu&eacute;m visita o perfil pela primeira vez &mdash; vindo de um an&uacute;ncio, uma indica&ccedil;&atilde;o ou uma busca &mdash; os tr&ecirc;s primeiros posts fixados s&atilde;o o que decide se essa pessoa segue, conversa ou sai. Cada post tem uma fun&ccedil;&atilde;o espec&iacute;fica:</p>
+  </div>
+
+  <div class="post-grid">
+
+    <!-- POST 1 -->
+    <div class="post-card">
+      <div class="post-pos">01</div>
+      <div class="post-tipo">Como funciona</div>
+      <div class="post-titulo">De obra com problema a laje protegida por d&eacute;cadas</div>
+      <div class="post-desc">Carrossel de 7-10 slides mostrando o passo a passo simplificado do servi&ccedil;o da CAFF. Sem jarg&atilde;o t&eacute;cnico. Cada slide = uma etapa que o cliente entende.</div>
+      <div class="post-formato">
+        <strong style="color: var(--branco);">Formato:</strong> Carrossel (1080&times;1350px)<br>
+        <strong style="color: var(--branco);">Slides sugeridos:</strong><br>
+        1. Capa: &ldquo;Como a CAFF protege sua laje por d&eacute;cadas&rdquo;<br>
+        2. Visita t&eacute;cnica: o engenheiro vai at&eacute; a obra<br>
+        3. Diagn&oacute;stico: identifica onde est&aacute; o problema<br>
+        4. Preparo da superf&iacute;cie: limpeza e tratamento<br>
+        5. Aplica&ccedil;&atilde;o: tecnologia italiana sendo aplicada<br>
+        6. Teste: garantia de que n&atilde;o vaza<br>
+        7. Entrega: laje protegida + ART + garantia de 6 anos<br>
+        8. CTA: &ldquo;Fale com o engenheiro &mdash; link na bio&rdquo;
+      </div>
+      <div class="post-capa">
+        <div class="post-capa-label">Copy do post</div>
+        <div class="post-capa-text">&ldquo;Impermeabilize uma vez. Esque&ccedil;a por d&eacute;cadas.&rdquo;<br><br>Em 7 passos, voc&ecirc; entende como a CAFF protege sua laje com tecnologia italiana, garantia de 6 anos e responsabilidade t&eacute;cnica de engenheiro civil.<br><br>Salva esse post e manda pra quem est&aacute; construindo. &#128205; Barreiras e Lu&iacute;s Eduardo &mdash; BA<br><br>#impermeabiliza&ccedil;&atilde;o #barreiras #luiseduardomagalhaes #engenharia #laje #construcaocivil #reformar #obraresidencial</div>
+      </div>
+    </div>
+
+    <!-- POST 2 -->
+    <div class="post-card">
+      <div class="post-pos">02</div>
+      <div class="post-tipo">Prova social</div>
+      <div class="post-titulo">O que nossos clientes falam sobre o resultado</div>
+      <div class="post-desc">V&iacute;deo-depoimento de uma cliente real (Odete ou Andr&eacute;ia) na obra finalizada, mostrando o resultado e falando sobre a experi&ecirc;ncia. Se n&atilde;o houver v&iacute;deo ainda, usar antes/depois com prints de conversa no WhatsApp.</div>
+      <div class="post-formato">
+        <strong style="color: var(--branco);">Formato ideal:</strong> Reels (9:16, at&eacute; 60s)<br>
+        <strong style="color: var(--branco);">Estrutura:</strong><br>
+        &bull; 0-3s: resultado final (laje impermeabilizada)<br>
+        &bull; 3-15s: cliente falando sobre a experi&ecirc;ncia<br>
+        &bull; 15-30s: antes/depois visual<br>
+        &bull; 30-45s: Austry explicando o que foi feito (sem jarg&atilde;o)<br>
+        &bull; Final: CTA + link na bio<br><br>
+        <strong style="color: var(--branco);">Alternativa (sem v&iacute;deo):</strong> Carrossel com foto antes/depois + print de mensagem da cliente no WhatsApp elogiando o servi&ccedil;o.
+      </div>
+      <div class="post-capa">
+        <div class="post-capa-label">Copy do post</div>
+        <div class="post-capa-text">&ldquo;A [Nome da cliente] impermeabilizou com a CAFF. Olha o resultado.&rdquo;<br><br>Laje que infiltrava toda chuva. Hoje? Protegida com tecnologia italiana, garantia de 6 anos e ART de engenheiro civil.<br><br>A melhor propaganda &eacute; o resultado. Pergunte para quem j&aacute; fez.<br><br>Quer proteger sua laje tamb&eacute;m? Link na bio. &#128205; Barreiras &mdash; BA<br><br>#impermeabilizacao #obrapronta #resultadoreal #engenharia #barreiras #construcao</div>
+      </div>
+    </div>
+
+    <!-- POST 3 -->
+    <div class="post-card">
+      <div class="post-pos">03</div>
+      <div class="post-tipo">Pitch de vendas</div>
+      <div class="post-titulo">Por que a CAFF &eacute; diferente de tudo que voc&ecirc; j&aacute; viu</div>
+      <div class="post-desc">Reels com o Austry falando direto para a c&acirc;mera. Pitch de 30-45 segundos com a proposta de valor completa, sem parecer comercial. Tom de conversa, n&atilde;o de propaganda.</div>
+      <div class="post-formato">
+        <strong style="color: var(--branco);">Formato:</strong> Reels (9:16, 30-45s)<br>
+        <strong style="color: var(--branco);">Roteiro sugerido:</strong><br>
+        &bull; Hook (3s): &ldquo;Se voc&ecirc; est&aacute; construindo em Barreiras, precisa saber disso.&rdquo;<br>
+        &bull; Problema (8s): &ldquo;70% dos v&iacute;cios construtivos s&atilde;o infiltra&ccedil;&atilde;o. E refazer custa 15 vezes mais.&rdquo;<br>
+        &bull; Solu&ccedil;&atilde;o (12s): &ldquo;A CAFF usa tecnologia italiana que dura at&eacute; 25 anos. Voc&ecirc; impermeabiliza uma vez e esquece.&rdquo;<br>
+        &bull; Prova (8s): &ldquo;Eu sou engenheiro civil, perito judicial, e assino embaixo de tudo que fa&ccedil;o. Garantia de 6 anos com ART.&rdquo;<br>
+        &bull; CTA (5s): &ldquo;Quer saber quanto custa proteger sua laje? Chama no link da bio.&rdquo;
+      </div>
+      <div class="post-capa">
+        <div class="post-capa-label">Copy do post</div>
+        <div class="post-capa-text">&#128680; Se voc&ecirc; est&aacute; construindo em Barreiras ou Lu&iacute;s Eduardo, assiste esse v&iacute;deo antes de fechar qualquer impermeabiliza&ccedil;&atilde;o.<br><br>Refazer custa 15x mais do que fazer certo da primeira vez. A CAFF resolve de uma vez &mdash; com engenheiro respons&aacute;vel, tecnologia italiana e garantia de 6 anos.<br><br>Fale com o engenheiro. Link na bio. &#128071;<br><br>#impermeabilizacao #barreiras #luiseduardomagalhaes #engenharia #construindo #laje #obranova</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 32px; padding: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; font-size: 13px; color: var(--texto); line-height: 1.8;">
+    <strong style="color: var(--laranja);">Ordem de fixa&ccedil;&atilde;o:</strong> O Instagram exibe os posts fixados da esquerda para a direita. A ordem recomendada &eacute;:<br><br>
+    <strong style="color: var(--branco);">Posi&ccedil;&atilde;o 1 (esquerda):</strong> Como Funciona &mdash; para quem acabou de chegar e quer entender o servi&ccedil;o.<br>
+    <strong style="color: var(--branco);">Posi&ccedil;&atilde;o 2 (centro):</strong> Prova Social &mdash; para quem j&aacute; entendeu e quer ver resultado real.<br>
+    <strong style="color: var(--branco);">Posi&ccedil;&atilde;o 3 (direita):</strong> Pitch de Vendas &mdash; para quem est&aacute; pronto e precisa do &uacute;ltimo empurr&atilde;o.<br><br>
+    Essa sequ&ecirc;ncia replica um mini funil de vendas: <strong style="color: var(--branco);">educa &rarr; comprova &rarr; converte.</strong>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     8. RESUMO EXECUTIVO
+═══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="sec-label">08 &mdash; Resumo Executivo</div>
+  <h2 class="sec-title">Checklist de <em>implementa&ccedil;&atilde;o</em></h2>
+
+  <div style="margin: 32px 0;">
+    <div style="padding: 20px 24px; background: var(--card); border: 1px solid var(--border); margin-bottom: 2px; display: flex; gap: 16px; align-items: flex-start;">
+      <div style="font-size: 11px; font-weight: 700; color: var(--laranja); width: 20px; flex-shrink: 0;">01</div>
+      <div>
+        <div style="font-size: 14px; color: var(--branco); font-weight: 600; margin-bottom: 4px;">Arroba</div>
+        <div style="font-size: 13px; color: var(--texto); font-weight: 300;">Manter <strong style="color: var(--branco);">@caffengenharia</strong> &mdash; sem necessidade de altera&ccedil;&atilde;o.</div>
+      </div>
+    </div>
+    <div style="padding: 20px 24px; background: var(--card); border: 1px solid var(--border); margin-bottom: 2px; display: flex; gap: 16px; align-items: flex-start;">
+      <div style="font-size: 11px; font-weight: 700; color: var(--laranja); width: 20px; flex-shrink: 0;">02</div>
+      <div>
+        <div style="font-size: 14px; color: var(--branco); font-weight: 600; margin-bottom: 4px;">Nome de exibi&ccedil;&atilde;o</div>
+        <div style="font-size: 13px; color: var(--texto); font-weight: 300;">Alterar para <strong style="color: var(--branco);">CAFF Engenharia | Barreiras-BA</strong></div>
+      </div>
+    </div>
+    <div style="padding: 20px 24px; background: var(--card); border: 1px solid var(--border); margin-bottom: 2px; display: flex; gap: 16px; align-items: flex-start;">
+      <div style="font-size: 11px; font-weight: 700; color: var(--laranja); width: 20px; flex-shrink: 0;">03</div>
+      <div>
+        <div style="font-size: 14px; color: var(--branco); font-weight: 600; margin-bottom: 4px;">Biografia</div>
+        <div style="font-size: 13px; color: var(--texto); font-weight: 300;">Op&ccedil;&atilde;o A &mdash; Big Idea na primeira linha + garantia + tecnologia + localiza&ccedil;&atilde;o</div>
+      </div>
+    </div>
+    <div style="padding: 20px 24px; background: var(--card); border: 1px solid var(--border); margin-bottom: 2px; display: flex; gap: 16px; align-items: flex-start;">
+      <div style="font-size: 11px; font-weight: 700; color: var(--laranja); width: 20px; flex-shrink: 0;">04</div>
+      <div>
+        <div style="font-size: 14px; color: var(--branco); font-weight: 600; margin-bottom: 4px;">Link na bio</div>
+        <div style="font-size: 13px; color: var(--texto); font-weight: 300;">Adicionar <strong style="color: var(--branco);">link direto para WhatsApp</strong> com mensagem pr&eacute;-preenchida. Prioridade m&aacute;xima.</div>
+      </div>
+    </div>
+    <div style="padding: 20px 24px; background: var(--card); border: 1px solid var(--border); margin-bottom: 2px; display: flex; gap: 16px; align-items: flex-start;">
+      <div style="font-size: 11px; font-weight: 700; color: var(--laranja); width: 20px; flex-shrink: 0;">05</div>
+      <div>
+        <div style="font-size: 14px; color: var(--branco); font-weight: 600; margin-bottom: 4px;">Destaques</div>
+        <div style="font-size: 13px; color: var(--texto); font-weight: 300;">Criar 6 destaques: Como Funciona, Resultados, Clientes, Garantia, D&uacute;vidas, Obras</div>
+      </div>
+    </div>
+    <div style="padding: 20px 24px; background: var(--card); border: 1px solid var(--border); margin-bottom: 2px; display: flex; gap: 16px; align-items: flex-start;">
+      <div style="font-size: 11px; font-weight: 700; color: var(--laranja); width: 20px; flex-shrink: 0;">06</div>
+      <div>
+        <div style="font-size: 14px; color: var(--branco); font-weight: 600; margin-bottom: 4px;">Posts fixados</div>
+        <div style="font-size: 13px; color: var(--texto); font-weight: 300;">Criar e fixar 3 posts estrat&eacute;gicos: <strong style="color: var(--branco);">Como Funciona</strong> (carrossel) + <strong style="color: var(--branco);">Prova Social</strong> (depoimento) + <strong style="color: var(--branco);">Pitch</strong> (Reels)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">ADS <em>Company</em> &mdash; Assessoria de Marketing e Performance</div>
+  <div class="footer-sub">Reestrutura&ccedil;&atilde;o de Perfil Instagram &mdash; CAFF Engenharia &mdash; Maio 2026</div>
+</footer>
+
+</body>
+</html>
